@@ -4,10 +4,16 @@
  */
 package uicontroller;
 
+import communication.Operation;
 import communication.Receiver;
+import communication.Request;
+import communication.Response;
 import communication.Sender;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Instruktor;
 
 /**
  *
@@ -29,6 +35,29 @@ public class Controller {
         if(instance==null)
             instance = new Controller();
         return instance;
+    }
+
+    public Instruktor login(Instruktor i) throws Exception {
+            Request request = new Request(Operation.LOGIN, i);
+
+            sender.send(request);
+            Response response = (Response) receiver.receive();
+            if(response.getException()==null){
+                return (Instruktor) response.getResult();
+            }
+            throw response.getException();
+    }
+
+    public Instruktor register(Instruktor i) throws Exception {
+        Request request = new Request(Operation.REGISTER, i);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (Instruktor) response.getResult();
+        }
+        throw response.getException();
+        
     }
     
     

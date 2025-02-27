@@ -4,6 +4,8 @@
  */
 package main;
 
+import uiform.LoginForm;
+
 /**
  *
  * @author milan
@@ -11,6 +13,8 @@ package main;
 public class Main {
     
     public static void main(String[] args) {
+        LoginForm lf = new LoginForm();
+        lf.setVisible(true);
         
     }
     
