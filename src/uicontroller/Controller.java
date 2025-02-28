@@ -59,6 +59,26 @@ public class Controller {
         throw response.getException();
         
     }
+
+    public Instruktor editInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.EDIT_INSTRUKTOR,i);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (Instruktor) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean deleteInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.DELETE_INSTRUKTOR,i);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
     
     
 }

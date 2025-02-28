@@ -48,53 +48,62 @@ public class RegisterForm extends javax.swing.JFrame {
         jButtonRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(446, 365));
+        setPreferredSize(new java.awt.Dimension(450, 350));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Ime:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(108, 39, 111, 34);
+        jLabel1.setBounds(75, 30, 100, 20);
 
-        jLabel2.setText("Povtrdi sifru:");
+        jLabel2.setText("Povtrdi šifru:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(108, 239, 111, 34);
+        jLabel2.setBounds(75, 180, 100, 20);
 
         jLabel3.setText("Prezime:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(108, 79, 111, 34);
+        jLabel3.setBounds(75, 60, 100, 20);
 
         jLabel4.setText("Kontakt telefon:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(108, 119, 111, 34);
+        jLabel4.setBounds(75, 90, 100, 20);
 
-        jLabel5.setText("Korisnicko ime:");
+        jLabel5.setText("Korisničko ime:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(108, 159, 111, 34);
+        jLabel5.setBounds(75, 120, 100, 20);
 
-        jLabel6.setText("Sifra:");
+        jLabel6.setText("Šifra:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(108, 199, 111, 34);
+        jLabel6.setBounds(75, 150, 100, 20);
         getContentPane().add(jPasswordFieldPass);
-        jPasswordFieldPass.setBounds(225, 199, 144, 34);
+        jPasswordFieldPass.setBounds(225, 150, 150, 20);
         getContentPane().add(jPasswordFieldRepeatPass);
-        jPasswordFieldRepeatPass.setBounds(225, 239, 144, 34);
+        jPasswordFieldRepeatPass.setBounds(225, 180, 150, 20);
         getContentPane().add(jTextFieldName);
-        jTextFieldName.setBounds(225, 39, 144, 34);
+        jTextFieldName.setBounds(225, 30, 150, 20);
+
+        jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSurnameActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldSurname);
-        jTextFieldSurname.setBounds(225, 79, 144, 34);
+        jTextFieldSurname.setBounds(225, 60, 150, 20);
         getContentPane().add(jTextFieldContact);
-        jTextFieldContact.setBounds(225, 119, 144, 34);
+        jTextFieldContact.setBounds(225, 90, 150, 20);
         getContentPane().add(jTextFieldUser);
-        jTextFieldUser.setBounds(225, 159, 144, 34);
+        jTextFieldUser.setBounds(225, 120, 150, 20);
 
         jButtonRegister.setText("Registruj se");
+        jButtonRegister.setHideActionText(true);
+        jButtonRegister.setPreferredSize(new java.awt.Dimension(100, 25));
         jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegisterActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonRegister);
-        jButtonRegister.setBounds(150, 280, 162, 39);
+        jButtonRegister.setBounds(150, 245, 150, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -103,23 +112,49 @@ public class RegisterForm extends javax.swing.JFrame {
         try {        
         String pass = String.valueOf(jPasswordFieldPass.getText());
         String repeatPass = String.valueOf(jPasswordFieldRepeatPass.getText());
-        
-        if(!pass.equals(repeatPass)){
-            throw new Exception("Loš unos šifre.");
-        }
         String user = jTextFieldUser.getText();
         String name = jTextFieldName.getText();
         String contact = jTextFieldContact.getText();
         String surname = jTextFieldSurname.getText();
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite ime!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(surname.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite prezime!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(user.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite korisničko ime!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(contact.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite kontakt broj!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite šifru!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(repeatPass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ponovite šifru!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(!pass.equals(repeatPass)){
+            JOptionPane.showMessageDialog(this, "Šifre se ne poklapaju!","Register",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            
+        
         
         Instruktor i = new Instruktor(0, name, surname, contact, user, pass);
         i = Controller.getInstance().register(i);
         JOptionPane.showMessageDialog(this, i.getKorisnickoIme()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
-
+        this.dispose();
+        LoginForm lf = new LoginForm();
+        lf.setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Greška prilikom registrovanja. \n"+ex.getMessage(), "Register", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
+
+    private void jTextFieldSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSurnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSurnameActionPerformed
 
     /**
      * @param args the command line arguments

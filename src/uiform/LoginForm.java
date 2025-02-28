@@ -7,6 +7,7 @@ package uiform;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Instruktor;
 import uicontroller.Controller;
@@ -22,6 +23,11 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        setTitle("Login"); 
+        setSize(450, 300); 
+        setLocationRelativeTo(null); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        setLayout(null);
     }
 
     /**
@@ -40,18 +46,42 @@ public class LoginForm extends javax.swing.JFrame {
         jButtonLogin = new javax.swing.JButton();
         jButtonExit = new javax.swing.JButton();
         jButtonExitRegister = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(450, 500));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Šifra:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(75, 80, 100, 20);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Korisničko ime:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(75, 40, 100, 20);
 
+        jTextFieldKorisnickoIme.setText("admin");
         jTextFieldKorisnickoIme.setBorder(null);
+        jTextFieldKorisnickoIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldKorisnickoImeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldKorisnickoIme);
+        jTextFieldKorisnickoIme.setBounds(225, 40, 150, 20);
 
+        jPasswordFieldSifra.setText("admin");
         jPasswordFieldSifra.setBorder(null);
+        jPasswordFieldSifra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldSifraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordFieldSifra);
+        jPasswordFieldSifra.setBounds(225, 80, 150, 20);
 
         jButtonLogin.setText("Uloguj se");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +89,8 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonLogin);
+        jButtonLogin.setBounds(150, 120, 150, 25);
 
         jButtonExit.setText("Izađi");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +98,8 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonExitActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonExit);
+        jButtonExit.setBounds(150, 150, 150, 25);
 
         jButtonExitRegister.setText("Registruj se");
         jButtonExitRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -73,55 +107,12 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonExitRegisterActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonExitRegister);
+        jButtonExitRegister.setBounds(225, 215, 115, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldKorisnickoIme)
-                            .addComponent(jPasswordFieldSifra, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonExitRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))))
-                .addContainerGap(106, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(245, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jTextFieldKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordFieldSifra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonExitRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(97, 97, 97)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(233, Short.MAX_VALUE)))
-        );
+        jLabel3.setText("Nemaš nalog?");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(115, 215, 100, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,13 +123,22 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String username = jTextFieldKorisnickoIme.getText();
+        if(username.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite korisničko ime!","Login",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String pass = String.valueOf(jPasswordFieldSifra.getText());
+        if(pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Unesite šifru!","Login",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Instruktor i = new Instruktor(username,pass);
         try {
             Instruktor ins = Controller.getInstance().login(i);
             JOptionPane.showMessageDialog(this, ins.getKorisnickoIme()+" se ulogovao/la!", "Login", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            
+            MainForm mf = new MainForm(ins);
+            mf.setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Neuspesno prijavljivanje!\n"+ex.getMessage(), "Login", JOptionPane.ERROR_MESSAGE);
         } 
@@ -147,8 +147,17 @@ public class LoginForm extends javax.swing.JFrame {
     private void jButtonExitRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitRegisterActionPerformed
         this.dispose();
         RegisterForm rf = new RegisterForm();
+        rf.setLocationRelativeTo(null);
         rf.setVisible(true);
     }//GEN-LAST:event_jButtonExitRegisterActionPerformed
+
+    private void jPasswordFieldSifraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSifraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldSifraActionPerformed
+
+    private void jTextFieldKorisnickoImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldKorisnickoImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldKorisnickoImeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +170,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordFieldSifra;
     private javax.swing.JTextField jTextFieldKorisnickoIme;
     // End of variables declaration//GEN-END:variables
