@@ -6,6 +6,7 @@ package uiform;
 
 import uidialog.EditProfileDialog;
 import model.Instruktor;
+import uidialog.InstructorListDialog;
 
 /**
  *
@@ -53,6 +54,11 @@ public class MainForm extends javax.swing.JFrame {
         jMenu3.add(jMenuItemEditProfile);
 
         jMenuItem1.setText("Instruktori");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem1);
 
         jMenuItem2.setText("Odjavi se");
@@ -92,6 +98,11 @@ public class MainForm extends javax.swing.JFrame {
         this.dispose();
         new LoginForm().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        InstructorListDialog ild = new InstructorListDialog(this, rootPaneCheckingEnabled);
+        ild.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -56,31 +56,61 @@ public class EditProfileDialog extends javax.swing.JDialog {
         jButtonEdit = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jButtonSave1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPasswordFieldRepeatPass = new javax.swing.JPasswordField();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(560, 300));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setText("Ime:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 20, 100, 20);
 
         jLabel2.setText("Prezime:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(60, 60, 100, 20);
 
         jLabel3.setText("Kontakt:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(60, 100, 100, 20);
 
         jLabel4.setText("Korisnicko ime:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(60, 140, 100, 20);
 
-        jLabel5.setText("Šifra");
+        jLabel5.setText("Ponovi šifru");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(60, 220, 100, 20);
+        getContentPane().add(jTextFieldName);
+        jTextFieldName.setBounds(180, 20, 150, 20);
 
         jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSurnameActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextFieldSurname);
+        jTextFieldSurname.setBounds(180, 60, 150, 20);
+        getContentPane().add(jTextFieldContact);
+        jTextFieldContact.setBounds(180, 100, 150, 20);
+        getContentPane().add(jTextFieldUsername);
+        jTextFieldUsername.setBounds(180, 140, 150, 20);
 
         jPasswordFieldPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldPassActionPerformed(evt);
             }
         });
+        getContentPane().add(jPasswordFieldPass);
+        jPasswordFieldPass.setBounds(180, 180, 150, 20);
 
         jButtonSave.setText("Sačuvaj");
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +118,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 jButtonSaveActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonSave);
+        jButtonSave.setBounds(360, 20, 120, 25);
 
         jButtonEdit.setText("Izmeni ");
         jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +127,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 jButtonEditActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonEdit);
+        jButtonEdit.setBounds(360, 20, 120, 25);
 
         jButtonDelete.setText("Obriši nalog");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +136,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 jButtonDeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonDelete);
+        jButtonDelete.setBounds(360, 175, 120, 25);
 
         jButtonSave1.setText("Izađi");
         jButtonSave1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,109 +145,144 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 jButtonSave1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonSave1);
+        jButtonSave1.setBounds(360, 55, 120, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldContact, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButtonSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jPasswordFieldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextFieldContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jPasswordFieldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(180, 40, 150, 20);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(180, 80, 150, 20);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(180, 120, 150, 20);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(180, 160, 150, 20);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(180, 200, 170, 20);
+
+        jLabel11.setText("Šifra");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(60, 180, 100, 20);
+
+        jPasswordFieldRepeatPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldRepeatPassActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordFieldRepeatPass);
+        jPasswordFieldRepeatPass.setBounds(180, 220, 150, 20);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(180, 240, 170, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         try {
+            String pass = String.valueOf(jPasswordFieldPass.getText());
+            String repeatPass = String.valueOf(jPasswordFieldRepeatPass.getPassword());
+            String user = jTextFieldUsername.getText();
+            String name = jTextFieldName.getText();
+            String contact = jTextFieldContact.getText();
+            String surname = jTextFieldSurname.getText();
             
-            Instruktor loggedCopy = logged;
-            loggedCopy.setIme(jTextFieldName.getText());
-            loggedCopy.setPrezime(jTextFieldSurname.getText());
-            loggedCopy.setKontakt(jTextFieldContact.getText());
-            loggedCopy.setKorisnickoIme(jTextFieldUsername.getText());
-            loggedCopy.setSifra(String.valueOf(jPasswordFieldPass.getText()));
-            logged = Controller.getInstance().editInstruktor(loggedCopy);
-            JOptionPane.showMessageDialog(this, "Uspesno ste izmenili podatke.");
-            this.dispose();
+            fillLabels();
+            boolean valid = true;
+        
+            if (name.isEmpty()) {
+                jLabel6.setVisible(true);
+                valid=false;
+            }   
+            if (surname.isEmpty()) {
+                jLabel7.setVisible(true);
+                valid=false;
+            }
+            if (contact.isEmpty()) {
+                jLabel8.setVisible(true);
+                valid=false;
+            }else if (!contact.matches("\\+?[0-9]{9,15}")) {
+                jLabel8.setText("Kontakt mora imati 9-15 cifara!");
+                jLabel8.setVisible(true);
+                valid = false;
+            }
+            if (user.isEmpty()) {
+                jLabel9.setVisible(true);
+                valid=false;
+            }else if (user.length() < 5) {
+                jLabel9.setText("Korisničko ime mora imati bar 5 karaktera!");
+                jLabel9.setVisible(true);
+                valid = false;
+            }
+            if (pass.isEmpty()) {
+                jLabel10.setVisible(true);
+                valid=false;
+            }else if (pass.length() < 5) {
+            jLabel10.setText("Šifra mora imati bar 5 karaktera!");
+            jLabel10.setVisible(true);
+            valid = false;
+            } else if (!pass.matches(".*\\d.*")) { 
+                jLabel10.setText("Šifra mora sadržati bar jedan broj!");
+                jLabel10.setVisible(true);
+                valid = false;
+            }
+             if (repeatPass.isEmpty()) {
+                jLabel12.setVisible(true);
+                valid=false;
+            }else if (!pass.equals(repeatPass)) {
+                jLabel10.setText("Šifre se ne poklapaju!");
+                jLabel12.setText("Šifre se ne poklapaju!");
+                jLabel10.setVisible(true);
+                jLabel12.setVisible(true);
+                valid = false;
+            }   
+    
+        
+        if(!valid){
+            
+            return;
+        }
+            
+            
+            Instruktor loggedCopy = new Instruktor();
+            loggedCopy.setIdInstruktor(logged.getIdInstruktor());
+            loggedCopy.setIme(name);
+            loggedCopy.setPrezime(surname);
+            loggedCopy.setKontakt(contact);
+            loggedCopy.setKorisnickoIme(user);
+            loggedCopy.setSifra(pass);
+            
+            
+            
+            
+            if(loggedCopy.getIme().equals(logged.getIme()) && loggedCopy.getSifra().equals(logged.getSifra()) && loggedCopy.getPrezime().equals(logged.getPrezime()) && 
+                    loggedCopy.getKontakt().equals(logged.getKontakt()) && loggedCopy.getKorisnickoIme().equals(logged.getKorisnickoIme())){
+                JOptionPane.showMessageDialog(this, "Niste izmenili podatke. \n","Izmena podataka",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da izmenite podatke?", "Potvrda izmene podataka",JOptionPane.YES_NO_OPTION);
+            
+            if(odgovor==JOptionPane.YES_OPTION){
+                logged = Controller.getInstance().editInstruktor(loggedCopy);
+                JOptionPane.showMessageDialog(this, "Uspesno ste izmenili podatke.");
+                this.dispose();
+            }
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Greska kod azuriranja podataka. \n"+ex.getMessage(),"Izmena podataka",JOptionPane.ERROR_MESSAGE);
             
@@ -224,6 +295,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         configureVisibility(true);
+        jButtonEdit.setVisible(false);
     }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -235,8 +307,6 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 this.dispose();
                 parent.dispose();
                 new LoginForm().setVisible(true);
-        } else{
-            
         }
         
         }catch(Exception ex){
@@ -252,6 +322,10 @@ public class EditProfileDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSurnameActionPerformed
 
+    private void jPasswordFieldRepeatPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldRepeatPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldRepeatPassActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,11 +338,19 @@ public class EditProfileDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonSave1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordFieldPass;
+    private javax.swing.JPasswordField jPasswordFieldRepeatPass;
     private javax.swing.JTextField jTextFieldContact;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldSurname;
@@ -280,7 +362,6 @@ public class EditProfileDialog extends javax.swing.JDialog {
         jTextFieldSurname.setText(logged.getPrezime());
         jTextFieldUsername.setText(logged.getKorisnickoIme());
         jTextFieldContact.setText(logged.getKontakt());
-        jPasswordFieldPass.setText(logged.getSifra());
     }
 
     private void configureVisibility(boolean b) {
@@ -288,8 +369,28 @@ public class EditProfileDialog extends javax.swing.JDialog {
         jTextFieldSurname.setEnabled(b);
         jTextFieldContact.setEnabled(b);
         jTextFieldUsername.setEnabled(b);
+        
         jButtonSave.setVisible(b);
+        
         jLabel5.setVisible(b);
+        jLabel11.setVisible(b);
+        
         jPasswordFieldPass.setVisible(b);
+        jPasswordFieldRepeatPass.setVisible(b);
+    }
+
+    private void fillLabels() {
+        jLabel6.setText("Unesite ime!"); 
+        jLabel7.setText("Unesite prezime!"); 
+        jLabel8.setText("Unesite kontakt telefon!"); 
+        jLabel9.setText("Unesite korisničko ime!"); 
+        jLabel10.setText("Unesite šifru!");
+        jLabel12.setText("Ponovite šifru!"); 
+        jLabel9.setVisible(false);
+        jLabel10.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jLabel6.setVisible(false);
+        jLabel12.setVisible(false);
     }
 }

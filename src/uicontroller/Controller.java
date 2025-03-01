@@ -11,6 +11,7 @@ import communication.Response;
 import communication.Sender;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Instruktor;
@@ -76,6 +77,16 @@ public class Controller {
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
             return (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public List<Instruktor> getInstructorList() throws Exception {
+        Request request = new Request(Operation.VRATI_LISTU_INSTRUKTOR, new Instruktor());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<Instruktor>) response.getResult();
         }
         throw response.getException();
     }

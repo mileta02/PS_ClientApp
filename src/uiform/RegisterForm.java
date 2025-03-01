@@ -22,6 +22,7 @@ public class RegisterForm extends javax.swing.JFrame {
      */
     public RegisterForm() {
         initComponents();
+        fillLabels();
     }
 
     /**
@@ -46,6 +47,12 @@ public class RegisterForm extends javax.swing.JFrame {
         jTextFieldContact = new javax.swing.JTextField();
         jTextFieldUser = new javax.swing.JTextField();
         jButtonRegister = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(450, 350));
@@ -58,27 +65,27 @@ public class RegisterForm extends javax.swing.JFrame {
 
         jLabel2.setText("Povtrdi šifru:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(75, 180, 100, 20);
+        jLabel2.setBounds(75, 205, 100, 20);
 
         jLabel3.setText("Prezime:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(75, 60, 100, 20);
+        jLabel3.setBounds(75, 65, 100, 20);
 
         jLabel4.setText("Kontakt telefon:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(75, 90, 100, 20);
+        jLabel4.setBounds(75, 100, 100, 20);
 
         jLabel5.setText("Korisničko ime:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(75, 120, 100, 20);
+        jLabel5.setBounds(75, 135, 100, 20);
 
         jLabel6.setText("Šifra:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(75, 150, 100, 20);
+        jLabel6.setBounds(75, 170, 100, 20);
         getContentPane().add(jPasswordFieldPass);
-        jPasswordFieldPass.setBounds(225, 150, 150, 20);
+        jPasswordFieldPass.setBounds(225, 170, 150, 20);
         getContentPane().add(jPasswordFieldRepeatPass);
-        jPasswordFieldRepeatPass.setBounds(225, 180, 150, 20);
+        jPasswordFieldRepeatPass.setBounds(225, 205, 150, 20);
         getContentPane().add(jTextFieldName);
         jTextFieldName.setBounds(225, 30, 150, 20);
 
@@ -88,11 +95,11 @@ public class RegisterForm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldSurname);
-        jTextFieldSurname.setBounds(225, 60, 150, 20);
+        jTextFieldSurname.setBounds(225, 65, 150, 20);
         getContentPane().add(jTextFieldContact);
-        jTextFieldContact.setBounds(225, 90, 150, 20);
+        jTextFieldContact.setBounds(225, 100, 150, 20);
         getContentPane().add(jTextFieldUser);
-        jTextFieldUser.setBounds(225, 120, 150, 20);
+        jTextFieldUser.setBounds(225, 135, 150, 20);
 
         jButtonRegister.setText("Registruj se");
         jButtonRegister.setHideActionText(true);
@@ -105,6 +112,36 @@ public class RegisterForm extends javax.swing.JFrame {
         getContentPane().add(jButtonRegister);
         jButtonRegister.setBounds(150, 245, 150, 30);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(225, 50, 150, 15);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(225, 85, 150, 15);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(225, 120, 150, 15);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(225, 155, 200, 15);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(225, 190, 200, 15);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(225, 225, 200, 15);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,31 +153,61 @@ public class RegisterForm extends javax.swing.JFrame {
         String name = jTextFieldName.getText();
         String contact = jTextFieldContact.getText();
         String surname = jTextFieldSurname.getText();
-        if(name.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite ime!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(surname.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite prezime!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(user.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite korisničko ime!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(contact.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite kontakt broj!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(pass.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite šifru!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(repeatPass.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ponovite šifru!","Register",JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(!pass.equals(repeatPass)){
-            JOptionPane.showMessageDialog(this, "Šifre se ne poklapaju!","Register",JOptionPane.ERROR_MESSAGE);
+        fillLabels();
+        boolean valid = true;
+        
+        if (name.isEmpty()) {
+            jLabel7.setVisible(true);
+            valid=false;
+        }   
+        if (surname.isEmpty()) {
+            jLabel8.setVisible(true);
+            valid=false;
+        }
+        if (contact.isEmpty()) {
+            jLabel9.setVisible(true);
+            valid=false;
+        }else if (!contact.matches("\\+?[0-9]{9,15}")) {
+            jLabel9.setText("Kontakt mora imati 9-15 cifara!");
+            jLabel9.setVisible(true);
+            valid = false;
+        }
+        if (user.isEmpty()) {
+            jLabel10.setVisible(true);
+            valid=false;
+        }else if (user.length() < 5) {
+            jLabel10.setText("Korisničko ime mora imati bar 5 karaktera!");
+            jLabel10.setVisible(true);
+            valid = false;
+        }
+        if (pass.isEmpty()) {
+            jLabel11.setVisible(true);
+            valid=false;
+        }else if (pass.length() < 5) {
+            jLabel11.setText("Šifra mora imati bar 5 karaktera!");
+            jLabel11.setVisible(true);
+            valid = false;
+        } else if (!pass.matches(".*\\d.*")) { 
+            jLabel11.setText("Šifra mora sadržati bar jedan broj!");
+            jLabel11.setVisible(true);
+            valid = false;
+        }
+        if (repeatPass.isEmpty()) {
+            jLabel12.setVisible(true);
+            valid=false;
+        }else if (!pass.equals(repeatPass)) {
+            jLabel11.setText("Šifre se ne poklapaju!");
+            jLabel12.setText("Šifre se ne poklapaju!");
+            jLabel11.setVisible(true);
+            jLabel12.setVisible(true);
+            valid = false;
+        }   
+    
+        
+        if(!valid){
+            
             return;
         }
-            
-        
-        
         Instruktor i = new Instruktor(0, name, surname, contact, user, pass);
         i = Controller.getInstance().register(i);
         JOptionPane.showMessageDialog(this, i.getKorisnickoIme()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
@@ -164,11 +231,17 @@ public class RegisterForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordFieldPass;
     private javax.swing.JPasswordField jPasswordFieldRepeatPass;
     private javax.swing.JTextField jTextFieldContact;
@@ -176,4 +249,19 @@ public class RegisterForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldSurname;
     private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
+
+    private void fillLabels() {
+        jLabel7.setText("Unesite ime!"); 
+        jLabel8.setText("Unesite prezime!"); 
+        jLabel9.setText("Unesite kontakt telefon!"); 
+        jLabel10.setText("Unesite korisničko ime!"); 
+        jLabel11.setText("Unesite šifru!"); 
+        jLabel12.setText("Ponovite šifru!"); 
+        jLabel9.setVisible(false);
+        jLabel10.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel12.setVisible(false);
+    }
 }

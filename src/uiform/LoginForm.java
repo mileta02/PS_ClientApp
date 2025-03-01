@@ -47,6 +47,8 @@ public class LoginForm extends javax.swing.JFrame {
         jButtonExit = new javax.swing.JButton();
         jButtonExitRegister = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,7 +75,7 @@ public class LoginForm extends javax.swing.JFrame {
         getContentPane().add(jTextFieldKorisnickoIme);
         jTextFieldKorisnickoIme.setBounds(225, 40, 150, 20);
 
-        jPasswordFieldSifra.setText("admin");
+        jPasswordFieldSifra.setText("admin02");
         jPasswordFieldSifra.setBorder(null);
         jPasswordFieldSifra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +116,16 @@ public class LoginForm extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(115, 215, 100, 25);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(225, 100, 200, 20);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(225, 60, 200, 20);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,15 +135,34 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String username = jTextFieldKorisnickoIme.getText();
-        if(username.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite korisničko ime!","Login",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         String pass = String.valueOf(jPasswordFieldSifra.getText());
-        if(pass.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Unesite šifru!","Login",JOptionPane.ERROR_MESSAGE);
-            return;
+        
+        jLabel5.setText("");
+        jLabel4.setText("");
+        
+        boolean valid = true;
+        
+        if (username.isEmpty()) {
+            jLabel5.setText("Unesite korisničko ime!");
+            valid = false;
+        } else if (username.length() < 5) {
+            jLabel5.setText("Korisničko ime mora imati bar 5 karaktera!");
+            valid = false;
         }
+        if (pass.isEmpty()) {
+            jLabel4.setText("Unesite šifru!");
+            valid = false;
+        } else if (pass.length() < 5) {
+            jLabel4.setText("Šifra mora imati bar 5 karaktera!");
+            valid = false;
+        } else if (!pass.matches(".*\\d.*")) { 
+            jLabel4.setText("Šifra mora sadržati bar jedan broj!");
+            valid = false;
+        }
+        
+        if(!valid)
+            return;
+        
         Instruktor i = new Instruktor(username,pass);
         try {
             Instruktor ins = Controller.getInstance().login(i);
@@ -171,6 +202,8 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordFieldSifra;
     private javax.swing.JTextField jTextFieldKorisnickoIme;
     // End of variables declaration//GEN-END:variables
