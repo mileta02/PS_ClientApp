@@ -279,7 +279,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
             int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da izmenite podatke?", "Potvrda izmene podataka",JOptionPane.YES_NO_OPTION);
             
             if(odgovor==JOptionPane.YES_OPTION){
-                logged = Controller.getInstance().editInstruktor(loggedCopy);
+                logged = Controller.getInstance().promeniInstruktor(loggedCopy);
                 JOptionPane.showMessageDialog(this, "Uspesno ste izmenili podatke.");
                 this.dispose();
             }
@@ -302,7 +302,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
         int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete nalog?", "Potvrda brisanja",JOptionPane.YES_NO_OPTION);
         try{
         if (odgovor == JOptionPane.YES_OPTION) {
-            if(Controller.getInstance().deleteInstruktor(logged))
+            if(Controller.getInstance().obrisiInstruktor(logged))
                 JOptionPane.showMessageDialog(this, "Uspesno ste obrisali nalog.");
                 this.dispose();
                 parent.dispose();

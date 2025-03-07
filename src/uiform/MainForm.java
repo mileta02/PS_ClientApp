@@ -39,6 +39,10 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItemEditProfile = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        Podešavanja = new javax.swing.JMenu();
+        jMenuItemLicenca = new javax.swing.JMenuItem();
+        jMenuItemNivo = new javax.swing.JMenuItem();
+        jMenuItemTip = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -70,6 +74,29 @@ public class MainForm extends javax.swing.JFrame {
         jMenu3.add(jMenuItem2);
 
         jMenuBar2.add(jMenu3);
+
+        Podešavanja.setText("Podešavanja");
+
+        jMenuItemLicenca.setText("Licenca");
+        jMenuItemLicenca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLicencaActionPerformed(evt);
+            }
+        });
+        Podešavanja.add(jMenuItemLicenca);
+
+        jMenuItemNivo.setText("Nivo skijanja");
+        jMenuItemNivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNivoActionPerformed(evt);
+            }
+        });
+        Podešavanja.add(jMenuItemNivo);
+
+        jMenuItemTip.setText("Tipovi termina");
+        Podešavanja.add(jMenuItemTip);
+
+        jMenuBar2.add(Podešavanja);
 
         setJMenuBar(jMenuBar2);
 
@@ -104,16 +131,31 @@ public class MainForm extends javax.swing.JFrame {
         ild.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItemNivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemNivoActionPerformed
+
+    private void jMenuItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLicencaActionPerformed
+ //        LicenceForm lf = new LicenceForm();
+ //       lf.setVisible(true);
+           InstructorLicenceForm ilf = new InstructorLicenceForm(ulogovan);
+           ilf.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLicencaActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Podešavanja;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemEditProfile;
+    private javax.swing.JMenuItem jMenuItemLicenca;
+    private javax.swing.JMenuItem jMenuItemNivo;
+    private javax.swing.JMenuItem jMenuItemTip;
     // End of variables declaration//GEN-END:variables
 }

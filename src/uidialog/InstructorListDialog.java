@@ -68,6 +68,11 @@ public class InstructorListDialog extends javax.swing.JDialog {
         jLabel2.setText("Prezime");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonClearFilter.setText("Ukloni filter");
 
@@ -114,6 +119,28 @@ public class InstructorListDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        try {
+            String name = jTextFieldName.getText();
+            String surname = jTextFieldSurname.getText();
+            if(name.isEmpty() || surname.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Unesite oba kriterijuma.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            Instruktor i = new Instruktor();
+            i.setIme(name);
+            i.setPrezime(surname);
+            List<Instruktor> list = Controller.getInstance().vratiListuInstruktor(i);
+            InstructorTableModel itm = new InstructorTableModel(list);
+            jTableInstructor.setModel(itm);
+            System.out.println(list);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -133,7 +160,7 @@ public class InstructorListDialog extends javax.swing.JDialog {
     private void fillTable() {
         List<Instruktor> list = new ArrayList<Instruktor>();
         try {
-            list = Controller.getInstance().getInstructorList();
+            list = Controller.getInstance().vratiListuSviInstruktor();
             jTableInstructor.setModel(new InstructorTableModel(list));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja podataka.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);

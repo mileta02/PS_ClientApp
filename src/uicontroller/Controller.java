@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Instruktor;
+import model.InstruktorLicenca;
+import model.Licenca;
 
 /**
  *
@@ -38,6 +40,8 @@ public class Controller {
         return instance;
     }
 
+    //INSTRUKTOR SO
+    
     public Instruktor login(Instruktor i) throws Exception {
             Request request = new Request(Operation.LOGIN, i);
 
@@ -49,8 +53,8 @@ public class Controller {
             throw response.getException();
     }
 
-    public Instruktor register(Instruktor i) throws Exception {
-        Request request = new Request(Operation.REGISTER, i);
+    public Instruktor kreirajInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.KREIRAJ_INSTRUKTOR, i);
         sender.send(request);
         
         Response response = (Response) receiver.receive();
@@ -61,8 +65,8 @@ public class Controller {
         
     }
 
-    public Instruktor editInstruktor(Instruktor i) throws Exception {
-        Request request = new Request(Operation.EDIT_INSTRUKTOR,i);
+    public Instruktor promeniInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.PROMENI_INSTRUKTOR,i);
         sender.send(request);
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
@@ -71,8 +75,8 @@ public class Controller {
         throw response.getException();
     }
 
-    public boolean deleteInstruktor(Instruktor i) throws Exception {
-        Request request = new Request(Operation.DELETE_INSTRUKTOR,i);
+    public boolean obrisiInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.OBRISI_INSTRUKTOR,i);
         sender.send(request);
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
@@ -81,8 +85,8 @@ public class Controller {
         throw response.getException();
     }
 
-    public List<Instruktor> getInstructorList() throws Exception {
-        Request request = new Request(Operation.VRATI_LISTU_INSTRUKTOR, new Instruktor());
+    public List<Instruktor> vratiListuSviInstruktor() throws Exception {
+        Request request = new Request(Operation.UCITAJ_INSTRUKTOR, new Instruktor());
         sender.send(request);
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
@@ -90,6 +94,94 @@ public class Controller {
         }
         throw response.getException();
     }
+
+    public List<Instruktor> vratiListuInstruktor(Instruktor i) throws Exception {
+        Request request = new Request(Operation.UCITAJ_INSTRUKTOR_FILTER, i);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<Instruktor>) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    
+    //LICENCA SO
+    public List<Licenca> vratiListuSviLicenca() throws Exception {
+        Request request = new Request(Operation.UCITAJ_LICENCA, new Licenca());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<Licenca>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public boolean obrisiLicenca(Licenca l) throws Exception {
+        Request request = new Request(Operation.OBRISI_LICENCA, l);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return true;
+        }
+        throw response.getException();
+    }
+    
+    
+    public boolean promeniLicenca(Licenca l) throws Exception {
+        Request request = new Request(Operation.PROMENI_LICENCA, l);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return true;
+        }
+        throw response.getException();
+    }
+    
+    
+    public boolean kreirajLicenca(Licenca l) throws Exception {
+        Request request = new Request(Operation.KREIRAJ_LICENCA, l);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return true;
+        }
+        throw response.getException();
+    }
+
+    //ISTRUKTORLICENCA SO
+    public List<InstruktorLicenca> vratiListuInstruktorLicenca(Instruktor i) throws Exception {
+        Request request = new Request(Operation.UCITAJ_INSTRUKTOR_LICENCA_FILTER, i);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<InstruktorLicenca>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public boolean obrisiInstruktorLicenca(InstruktorLicenca il) throws Exception {
+        Request request = new Request(Operation.OBRISI_INSTRUKTOR_LICENCA, il);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean kreirajInstruktorLicenca(InstruktorLicenca il) throws Exception {
+        Request request = new Request(Operation.KREIRAJ_INSTRUKTOR_LICENCA, il);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return  true;
+        }
+        throw response.getException();
+    }
+    
+    
+    
     
     
 }

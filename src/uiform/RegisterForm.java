@@ -209,7 +209,7 @@ public class RegisterForm extends javax.swing.JFrame {
             return;
         }
         Instruktor i = new Instruktor(0, name, surname, contact, user, pass);
-        i = Controller.getInstance().register(i);
+        i = Controller.getInstance().kreirajInstruktor(i);
         JOptionPane.showMessageDialog(this, i.getKorisnickoIme()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         LoginForm lf = new LoginForm();
