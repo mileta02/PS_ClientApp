@@ -132,7 +132,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItemNivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNivoActionPerformed
-        // TODO add your handling code here:
+        NivoSkijanjaForm nsf = new NivoSkijanjaForm();
+        nsf.setVisible(true);
     }//GEN-LAST:event_jMenuItemNivoActionPerformed
 
     private void jMenuItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLicencaActionPerformed

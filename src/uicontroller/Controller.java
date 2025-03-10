@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
+import model.NivoSkijanja;
 
 /**
  *
@@ -150,7 +151,18 @@ public class Controller {
     }
 
     //ISTRUKTORLICENCA SO
+    
     public List<InstruktorLicenca> vratiListuInstruktorLicenca(Instruktor i) throws Exception {
+        Request request = new Request(Operation.UCITAJ_INSTRUKTOR_LICENCA, i);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<InstruktorLicenca>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public List<InstruktorLicenca> vratiListuInstruktorLicencaFilter(InstruktorLicenca i) throws Exception {
         Request request = new Request(Operation.UCITAJ_INSTRUKTOR_LICENCA_FILTER, i);
         sender.send(request);
         Response response = (Response) receiver.receive();
@@ -179,6 +191,59 @@ public class Controller {
         }
         throw response.getException();
     }
+
+    //NIVO_SKIJANJA SO
+    public List<NivoSkijanja> vratiListuSviNivoSkijanja() throws Exception {
+        Request request = new Request(Operation.UCITAJ_NIVO_SKIJANJA, new NivoSkijanja());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<NivoSkijanja>) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean obrisiNivoSkijanja(NivoSkijanja ns) throws Exception {
+        Request request = new Request(Operation.OBRISI_NIVO_SKIJANJA, ns);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return  (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public boolean kreirajNivoSkijanja(NivoSkijanja ns) throws Exception{
+        Request request = new Request(Operation.KREIRAJ_NIVO_SKIJANJA, ns);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return  (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean promeniNivoSkijanja(NivoSkijanja ns) throws Exception {
+        Request request = new Request(Operation.PROMENI_NIVO_SKIJANJA, ns);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return  (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public List<NivoSkijanja> vratiListuNivoSkijanja(NivoSkijanja ns) throws Exception {
+        Request request = new Request(Operation.UCITAJ_NIVO_SKIJANJA_FILTER, ns);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<NivoSkijanja>) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    
     
     
     

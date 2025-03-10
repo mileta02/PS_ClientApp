@@ -21,6 +21,9 @@ import uidialog.LicenceDialog;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import model.NivoSkijanja;
+import table_model.NivoSkijanjaTableModel;
+import uidialog.CreateInstructorLicenceDialog;
 
 /**
  *
@@ -37,9 +40,6 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
         this.ulogovan=ulogovan;
         initComponents();
         fillTable();
-        fillComboBox();
-        setSize(500,300);
-        jTableInstruktorLicence.setBounds(20, 20, 400, 100);
         setLocationRelativeTo(null);
     }
 
@@ -56,10 +56,13 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
         jTableInstruktorLicence = new javax.swing.JTable();
         jButtonDelete = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldName = new javax.swing.JTextField();
+        jButtonSearch = new javax.swing.JButton();
+        jButtonClearFilter = new javax.swing.JButton();
         jButtonAdd = new javax.swing.JButton();
-        jComboBoxLicence = new javax.swing.JComboBox<>();
-        jTextFieldDate = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Moje licence");
@@ -93,6 +96,59 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("Kriterijum pretrage");
+
+        jLabel3.setText("Licenca:");
+
+        jButtonSearch.setText("Pretraži");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+
+        jButtonClearFilter.setText("Očisti filtere");
+        jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearFilterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonClearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jButtonSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClearFilter))
+                .addGap(36, 36, 36))
+        );
+
         jButtonAdd.setText("Dodaj");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,51 +156,43 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldDate.setText("gggg-MM-dd");
-
-        jLabel1.setText("Datum:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxLicence, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jButtonAdd)
-                        .addGap(8, 8, 8)
-                        .addComponent(jButtonDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonBack)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxLicence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAdd)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAdd)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonDelete)
-                        .addComponent(jButtonBack)))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addComponent(jButtonBack))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -185,41 +233,45 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-       
-        Licenca l = (Licenca) jComboBoxLicence.getSelectedItem();
-        String datumSticanja = jTextFieldDate.getText();
-        try{
-            
-        DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(datumSticanja, formater);
-        Date sqlDate = Date.valueOf(localDate);
-        
-        InstruktorLicenca il = new InstruktorLicenca(sqlDate, ulogovan, l);
-        
+
         InstructorLicenceTableModel iltm = (InstructorLicenceTableModel) jTableInstruktorLicence.getModel();
         List<InstruktorLicenca> list = iltm.getList();
-        for(InstruktorLicenca ilm : list){
-            if(ilm.getInstruktor().getIdInstruktor()==il.getInstruktor().getIdInstruktor() &&
-                    ilm.getLicenca().getIdLicenca()==il.getLicenca().getIdLicenca()){
-                JOptionPane.showMessageDialog(rootPane, "Greška prilikom unošenja licence, već postoji.","Pogrešan unos licence",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
         
-        boolean b = Controller.getInstance().kreirajInstruktorLicenca(il);
-        if(b){
-            JOptionPane.showMessageDialog(rootPane, "Uspešno uneta licenca.","Uspešno unošenje",JOptionPane.INFORMATION_MESSAGE);
-            fillTable();
-        }
-        }catch(ParseException pe){
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom unošenja datuma.","Pogrešan format datuma",JOptionPane.ERROR_MESSAGE);
-            return;
-        }catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Neuspešno dodavanje",JOptionPane.ERROR_MESSAGE);
-                        
-        }
+        InstruktorLicenca il = new InstruktorLicenca();
+        il.setInstruktor(ulogovan);
+        
+        CreateInstructorLicenceDialog cild = new CreateInstructorLicenceDialog(this, rootPaneCheckingEnabled,il,list);
+        cild.setVisible(true);
+       
+        
           
     }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        try {
+            String name = jTextFieldName.getText();
+            if(name.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Unesite kriterijum pretrage.");
+                return;
+            }
+            InstruktorLicenca il = new InstruktorLicenca();
+            Licenca l = new Licenca();
+            l.setNazivLicence(name);
+            il.setLicenca(l);
+            il.setInstruktor(ulogovan);
+            List<InstruktorLicenca> list = Controller.getInstance().vratiListuInstruktorLicencaFilter(il);
+            InstructorLicenceTableModel iltm = new InstructorLicenceTableModel(list);
+            jTableInstruktorLicence.setModel(iltm);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja licenci instruktora. \n"+ex.getMessage(),"Ucitavanje licenci instruktora",JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
+        jTextFieldName.setText("");
+        fillTable();
+    }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,15 +281,18 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JComboBox<Licenca> jComboBoxLicence;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonSearch;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInstruktorLicence;
-    private javax.swing.JTextField jTextFieldDate;
+    private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
 
-    private void fillTable() {
+    public void fillTable() {
         try {
             list = Controller.getInstance().vratiListuInstruktorLicenca(ulogovan);
             InstructorLicenceTableModel iltm = new InstructorLicenceTableModel(list);
@@ -248,14 +303,5 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
         }
     }
 
-    private void fillComboBox() {
-        try {
-            List<Licenca> list = Controller.getInstance().vratiListuSviLicenca();
-            for(Licenca l : list){
-                jComboBoxLicence.addItem(l);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(InstructorLicenceForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 }
