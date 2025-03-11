@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import model.Instruktor;
 import uicontroller.Controller;
 import uiform.LoginForm;
-import uiform.MainForm;
+import uiform.GlavnaForm;
 
 /**
  *
@@ -23,8 +23,8 @@ public class EditProfileDialog extends javax.swing.JDialog {
      * Creates new form EditProfileDialog
      */
     private Instruktor logged;
-    private MainForm parent;
-    public EditProfileDialog(MainForm parent, boolean modal, Instruktor ulogovan) {
+    private GlavnaForm parent;
+    public EditProfileDialog(GlavnaForm parent, boolean modal, Instruktor ulogovan) {
         super(parent, modal);
         initComponents();
         this.parent=parent;
@@ -195,7 +195,7 @@ public class EditProfileDialog extends javax.swing.JDialog {
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         try {
-            String pass = String.valueOf(jPasswordFieldPass.getText());
+            String pass = String.valueOf(jPasswordFieldPass.getPassword());
             String repeatPass = String.valueOf(jPasswordFieldRepeatPass.getPassword());
             String user = jTextFieldUsername.getText();
             String name = jTextFieldName.getText();
@@ -250,36 +250,26 @@ public class EditProfileDialog extends javax.swing.JDialog {
                 jLabel10.setVisible(true);
                 jLabel12.setVisible(true);
                 valid = false;
-            }   
-    
-        
-        if(!valid){
-            
-            return;
-        }
-            
-            
-            Instruktor loggedCopy = new Instruktor();
-            loggedCopy.setIdInstruktor(logged.getIdInstruktor());
-            loggedCopy.setIme(name);
-            loggedCopy.setPrezime(surname);
-            loggedCopy.setKontakt(contact);
-            loggedCopy.setKorisnickoIme(user);
-            loggedCopy.setSifra(pass);
-            
-            
-            
-            
-            if(loggedCopy.getIme().equals(logged.getIme()) && loggedCopy.getSifra().equals(logged.getSifra()) && loggedCopy.getPrezime().equals(logged.getPrezime()) && 
-                    loggedCopy.getKontakt().equals(logged.getKontakt()) && loggedCopy.getKorisnickoIme().equals(logged.getKorisnickoIme())){
+            }
+             if(!valid){
+                 return;
+             }   
+           
+            if(name.equals(logged.getIme()) && pass.equals(logged.getSifra()) && surname.equals(logged.getPrezime()) && 
+                    contact.equals(logged.getKontakt()) && user.equals(logged.getKorisnickoIme())){
                 JOptionPane.showMessageDialog(this, "Niste izmenili podatke. \n","Izmena podataka",JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            
             int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da izmenite podatke?", "Potvrda izmene podataka",JOptionPane.YES_NO_OPTION);
             
             if(odgovor==JOptionPane.YES_OPTION){
-                logged = Controller.getInstance().promeniInstruktor(loggedCopy);
+                logged.setIdInstruktor(logged.getIdInstruktor());
+                logged.setIme(name);
+                logged.setPrezime(surname);
+                logged.setKontakt(contact);
+                logged.setKorisnickoIme(user);
+                logged.setSifra(pass);
+                boolean b = Controller.getInstance().promeniInstruktor(logged);
                 JOptionPane.showMessageDialog(this, "Uspesno ste izmenili podatke.");
                 this.dispose();
             }

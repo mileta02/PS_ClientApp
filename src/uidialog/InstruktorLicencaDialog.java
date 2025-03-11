@@ -18,25 +18,25 @@ import model.InstruktorLicenca;
 import model.Licenca;
 import table_model.InstructorLicenceTableModel;
 import uicontroller.Controller;
-import uiform.InstructorLicenceForm;
+import uiform.InstruktorLicencaForm;
 
 /**
  *
  * @author milan
  */
-public class CreateInstructorLicenceDialog extends javax.swing.JDialog {
+public class InstruktorLicencaDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form CreateInstructorLicenceDialog
      */
-    private InstructorLicenceForm parent;
+    private InstruktorLicencaForm parent;
     private InstruktorLicenca il;
     List<InstruktorLicenca> list;
-    public CreateInstructorLicenceDialog(Frame parent, boolean modal, InstruktorLicenca il, List<InstruktorLicenca> list) {
+    public InstruktorLicencaDialog(Frame parent, boolean modal, InstruktorLicenca il, List<InstruktorLicenca> list) {
         super(parent, modal);
         initComponents();
         fillComboBox();
-        this.parent=(InstructorLicenceForm) parent;
+        this.parent=(InstruktorLicencaForm) parent;
         this.il=il;
         this.list=list;
         this.setLocationRelativeTo(null);
@@ -165,7 +165,7 @@ public class CreateInstructorLicenceDialog extends javax.swing.JDialog {
                 jComboBoxLicence.addItem(l);
             }
         } catch (Exception ex) {
-            Logger.getLogger(InstructorLicenceForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InstruktorLicencaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }

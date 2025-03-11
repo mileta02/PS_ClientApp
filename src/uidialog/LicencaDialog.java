@@ -10,22 +10,22 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Licenca;
 import uicontroller.Controller;
-import uiform.LicenceForm;
+import uiform.LicencaForm;
 
 /**
  *
  * @author milan
  */
-public class LicenceDialog extends javax.swing.JDialog {
+public class LicencaDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form LicenceDialog
      */
     private Licenca l;
-    private LicenceForm parent;
-    public LicenceDialog(java.awt.Frame parent, boolean modal, Licenca l) {
+    private LicencaForm parent;
+    public LicencaDialog(java.awt.Frame parent, boolean modal, Licenca l) {
         super(parent, modal);
-        this.parent=(LicenceForm) parent;
+        this.parent=(LicencaForm) parent;
         this.l=l;
         initComponents();
         fillFields();

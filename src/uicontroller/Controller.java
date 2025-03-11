@@ -18,6 +18,7 @@ import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
 import model.NivoSkijanja;
+import model.TipTermina;
 
 /**
  *
@@ -66,12 +67,12 @@ public class Controller {
         
     }
 
-    public Instruktor promeniInstruktor(Instruktor i) throws Exception {
+    public boolean promeniInstruktor(Instruktor i) throws Exception {
         Request request = new Request(Operation.PROMENI_INSTRUKTOR,i);
         sender.send(request);
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
-            return (Instruktor) response.getResult();
+            return (boolean) response.getResult();
         }
         throw response.getException();
     }
@@ -134,7 +135,7 @@ public class Controller {
         sender.send(request);
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
-            return true;
+            return (boolean) response.getResult();
         }
         throw response.getException();
     }
@@ -239,6 +240,58 @@ public class Controller {
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
             return   (List<NivoSkijanja>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    
+    //TIP_TERMINA
+    public List<TipTermina> vratiListuSviTipTermina() throws Exception{
+        Request request = new Request(Operation.UCITAJ_TIP_TERMINA, new TipTermina());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<TipTermina>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public List<TipTermina> vratiListuTipTermina(TipTermina tt) throws Exception{
+        Request request = new Request(Operation.UCITAJ_TIP_TERMINA_FILTER, tt);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<TipTermina>) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean kreirajTipTermina(TipTermina tt) throws Exception{
+        Request request = new Request(Operation.KREIRAJ_TIP_TERMINA, tt);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean promeniTipTermina(TipTermina tt) throws Exception {
+        Request request = new Request(Operation.PROMENI_TIP_TERMINA, tt);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean obrisiTipTermina(TipTermina tt) throws Exception {
+        Request request = new Request(Operation.OBRISI_TIP_TERMINA, tt);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
         }
         throw response.getException();
     }

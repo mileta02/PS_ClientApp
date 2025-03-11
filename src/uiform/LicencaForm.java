@@ -12,19 +12,19 @@ import javax.swing.JOptionPane;
 import model.Licenca;
 import table_model.LicenceTableModel;
 import uicontroller.Controller;
-import uidialog.LicenceDialog;
+import uidialog.LicencaDialog;
 
 /**
  *
  * @author milan
  */
-public class LicenceForm extends javax.swing.JFrame {
+public class LicencaForm extends javax.swing.JFrame {
 
     /**
      * Creates new form LicenceForm
      */
     private List<Licenca> list;
-    public LicenceForm() {
+    public LicencaForm() {
         initComponents();
         fillTable();
         setLocationRelativeTo(null);
@@ -123,7 +123,7 @@ public class LicenceForm extends javax.swing.JFrame {
         LicenceTableModel ltm = (LicenceTableModel) jTableLicence.getModel();
         Licenca l = ltm.getList().get(row);
         
-        LicenceDialog ld = new LicenceDialog(this, rootPaneCheckingEnabled, l);
+        LicencaDialog ld = new LicencaDialog(this, rootPaneCheckingEnabled, l);
         fillTable();
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
@@ -132,7 +132,7 @@ public class LicenceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddLicenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddLicenceActionPerformed
-        LicenceDialog ld = new LicenceDialog(this, rootPaneCheckingEnabled, null);
+        LicencaDialog ld = new LicencaDialog(this, rootPaneCheckingEnabled, null);
         fillTable();
     }//GEN-LAST:event_jButtonAddLicenceActionPerformed
 

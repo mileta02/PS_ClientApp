@@ -17,26 +17,26 @@ import model.Licenca;
 import table_model.InstructorLicenceTableModel;
 import table_model.LicenceTableModel;
 import uicontroller.Controller;
-import uidialog.LicenceDialog;
+import uidialog.LicencaDialog;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import model.NivoSkijanja;
 import table_model.NivoSkijanjaTableModel;
-import uidialog.CreateInstructorLicenceDialog;
+import uidialog.InstruktorLicencaDialog;
 
 /**
  *
  * @author milan
  */
-public class InstructorLicenceForm extends javax.swing.JFrame {
+public class InstruktorLicencaForm extends javax.swing.JFrame {
 
     /**
      * Creates new form LicenceForm
      */
     private List<InstruktorLicenca> list;
     private Instruktor ulogovan;
-    public InstructorLicenceForm(Instruktor ulogovan) {
+    public InstruktorLicencaForm(Instruktor ulogovan) {
         this.ulogovan=ulogovan;
         initComponents();
         fillTable();
@@ -240,7 +240,7 @@ public class InstructorLicenceForm extends javax.swing.JFrame {
         InstruktorLicenca il = new InstruktorLicenca();
         il.setInstruktor(ulogovan);
         
-        CreateInstructorLicenceDialog cild = new CreateInstructorLicenceDialog(this, rootPaneCheckingEnabled,il,list);
+        InstruktorLicencaDialog cild = new InstruktorLicencaDialog(this, rootPaneCheckingEnabled,il,list);
         cild.setVisible(true);
        
         

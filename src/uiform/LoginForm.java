@@ -168,7 +168,7 @@ public class LoginForm extends javax.swing.JFrame {
             Instruktor ins = Controller.getInstance().login(i);
             JOptionPane.showMessageDialog(this, ins.getKorisnickoIme()+" se ulogovao/la!", "Login", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            MainForm mf = new MainForm(ins);
+            GlavnaForm mf = new GlavnaForm(ins);
             mf.setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Neuspesno prijavljivanje!\n"+ex.getMessage(), "Login", JOptionPane.ERROR_MESSAGE);
