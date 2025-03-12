@@ -55,6 +55,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Register");
         setPreferredSize(new java.awt.Dimension(450, 350));
         setResizable(false);
         getContentPane().setLayout(null);

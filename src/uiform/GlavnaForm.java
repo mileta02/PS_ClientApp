@@ -4,7 +4,6 @@
  */
 package uiform;
 
-import uidialog.EditProfileDialog;
 import model.Instruktor;
 
 /**
@@ -195,7 +194,7 @@ public class GlavnaForm extends javax.swing.JFrame {
         });
         Podešavanja.add(jMenuItemNivo);
 
-        jMenuItemTip.setText("Tipovi termina");
+        jMenuItemTip.setText("Tip termina");
         jMenuItemTip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemTipActionPerformed(evt);
@@ -235,8 +234,7 @@ public class GlavnaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditProfileActionPerformed
-        EditProfileDialog epd = new EditProfileDialog(this, rootPaneCheckingEnabled,ulogovan);
-        epd.setLocationRelativeTo(null);
+        InstruktorNalogForm epd = new InstruktorNalogForm(this,ulogovan);
         epd.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemEditProfileActionPerformed
@@ -252,10 +250,9 @@ public class GlavnaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemNivoActionPerformed
 
     private void jMenuItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLicencaActionPerformed
- //        LicenceForm lf = new LicenceForm();
- //       lf.setVisible(true);
-           InstruktorLicencaForm ilf = new InstruktorLicencaForm(ulogovan);
-           ilf.setVisible(true);
+        LicencaForm lf = new LicencaForm(ulogovan);
+        lf.setVisible(true);
+           
     }//GEN-LAST:event_jMenuItemLicencaActionPerformed
 
     private void jMenuItemTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTipActionPerformed
@@ -272,7 +269,7 @@ public class GlavnaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        InstruktorForm ild = new InstruktorForm(this, rootPaneCheckingEnabled);
+        InstruktoriForm ild = new InstruktoriForm(this, rootPaneCheckingEnabled);
         ild.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

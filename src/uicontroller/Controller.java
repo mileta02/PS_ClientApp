@@ -119,6 +119,16 @@ public class Controller {
         throw response.getException();
     }
     
+    public List<Licenca> vratiListuLicenca(Licenca l) throws Exception {
+        Request request = new Request(Operation.UCITAJ_LICENCA_FILTER, l);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<Licenca>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
     public boolean obrisiLicenca(Licenca l) throws Exception {
         Request request = new Request(Operation.OBRISI_LICENCA, l);
         sender.send(request);
@@ -295,6 +305,8 @@ public class Controller {
         }
         throw response.getException();
     }
+
+    
 
     
     

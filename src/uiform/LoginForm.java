@@ -86,6 +86,8 @@ public class LoginForm extends javax.swing.JFrame {
         jPasswordFieldSifra.setBounds(225, 80, 150, 20);
 
         jButtonLogin.setText("Uloguj se");
+        jButtonLogin.setFocusPainted(false);
+        jButtonLogin.setFocusable(false);
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLoginActionPerformed(evt);
@@ -95,6 +97,8 @@ public class LoginForm extends javax.swing.JFrame {
         jButtonLogin.setBounds(150, 120, 150, 25);
 
         jButtonExit.setText("Izađi");
+        jButtonExit.setFocusPainted(false);
+        jButtonExit.setFocusable(false);
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExitActionPerformed(evt);
@@ -104,6 +108,8 @@ public class LoginForm extends javax.swing.JFrame {
         jButtonExit.setBounds(150, 150, 150, 25);
 
         jButtonExitRegister.setText("Registruj se");
+        jButtonExitRegister.setFocusPainted(false);
+        jButtonExitRegister.setFocusable(false);
         jButtonExitRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExitRegisterActionPerformed(evt);
