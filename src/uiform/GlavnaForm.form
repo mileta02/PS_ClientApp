@@ -127,7 +127,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace pref="191" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Component id="jButtonInstruktor" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -138,7 +138,7 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonInstruktor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
@@ -151,7 +151,7 @@
             <Property name="text" type="java.lang.String" value="Instruktori"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jButtonInstruktor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prika&#x17e;i instruktore"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -161,7 +161,7 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInstruktorActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -182,7 +182,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace pref="190" max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Component id="jButtonSkijas" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -192,7 +192,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSkijas" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -206,14 +206,14 @@
             <Property name="text" type="java.lang.String" value="Skija&#x161;i"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="jButtonSkijas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prika&#x17e;i skija&#x161;e"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSkijasActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -18,6 +18,7 @@ import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
 import model.NivoSkijanja;
+import model.Skijas;
 import model.TipTermina;
 
 /**
@@ -306,8 +307,56 @@ public class Controller {
         throw response.getException();
     }
 
+    //SKIJAS
+    public List<Skijas> vratiListuSviSkijas() throws Exception{
+        Request request = new Request(Operation.UCITAJ_SKIJAS, new Skijas());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<Skijas>) response.getResult();
+        }
+        throw response.getException();
+    }
     
+    public List<Skijas> vratiListuSkijas(Skijas s) throws Exception{
+        Request request = new Request(Operation.UCITAJ_SKIJAS_FILTER, s);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<Skijas>) response.getResult();
+        }
+        throw response.getException();
+    }
 
+    public boolean kreirajSkijas(Skijas s) throws Exception{
+        Request request = new Request(Operation.KREIRAJ_SKIJAS, s);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean promeniSkijas(Skijas s) throws Exception {
+        Request request = new Request(Operation.PROMENI_SKIJAS, s);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean obrisiSkijas(Skijas s) throws Exception {
+        Request request = new Request(Operation.OBRISI_SKIJAS, s);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
     
     
     

@@ -34,10 +34,10 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonInstruktor = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonSkijas = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -57,13 +57,13 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         jLabel1.setText("Instruktori");
 
-        jButton1.setText("Prikaži instruktore");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInstruktor.setText("Prikaži instruktore");
+        jButtonInstruktor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonInstruktor.setFocusPainted(false);
+        jButtonInstruktor.setFocusable(false);
+        jButtonInstruktor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonInstruktorActionPerformed(evt);
             }
         });
 
@@ -75,7 +75,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,7 +84,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonInstruktor))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -92,12 +92,12 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         jLabel3.setText("Skijaši");
 
-        jButton3.setText("Prikaži skijaše");
-        jButton3.setFocusPainted(false);
-        jButton3.setFocusable(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSkijas.setText("Prikaži skijaše");
+        jButtonSkijas.setFocusPainted(false);
+        jButtonSkijas.setFocusable(false);
+        jButtonSkijas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSkijasActionPerformed(evt);
             }
         });
 
@@ -109,7 +109,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         jPanel2Layout.setVerticalGroup(
@@ -117,7 +117,7 @@ public class GlavnaForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonSkijas)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -264,14 +264,15 @@ public class GlavnaForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonSkijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSkijasActionPerformed
+        SkijasForm sf = new SkijasForm();
+        sf.setVisible(true);
+    }//GEN-LAST:event_jButtonSkijasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonInstruktorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInstruktorActionPerformed
         InstruktoriForm ild = new InstruktoriForm(this, rootPaneCheckingEnabled);
         ild.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonInstruktorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,9 +281,9 @@ public class GlavnaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Podešavanja;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonInstruktor;
+    private javax.swing.JButton jButtonSkijas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

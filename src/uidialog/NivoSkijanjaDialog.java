@@ -156,7 +156,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                     this.dispose();
                     }
             } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja nivoa skijanja.","Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja nivoa skijanja."+ex.getMessage(),"Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
