@@ -19,6 +19,8 @@ import model.InstruktorLicenca;
 import model.Licenca;
 import model.NivoSkijanja;
 import model.Skijas;
+import model.Termin;
+import model.TerminSkijas;
 import model.TipTermina;
 
 /**
@@ -357,8 +359,89 @@ public class Controller {
         }
         throw response.getException();
     }
+    //TERMIN
+    
+    public List<Termin> vratiListuSviTermin() throws Exception{
+        Request request = new Request(Operation.UCITAJ_TERMIN, new Termin());
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<Termin>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public List<Termin> vratiListuTermin(Termin t) throws Exception{
+        Request request = new Request(Operation.UCITAJ_TERMIN_FILTER, t);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (List<Termin>) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean kreirajTermin(Termin t) throws Exception{
+        Request request = new Request(Operation.KREIRAJ_TERMIN, t);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean promeniTermin(Termin t) throws Exception {
+        Request request = new Request(Operation.PROMENI_TERMIN, t);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+
+    public boolean obrisiTermin(Termin t) throws Exception {
+        Request request = new Request(Operation.OBRISI_TERMIN, t);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return   (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
     
     
+    //TERMIN_SKIJAS
+    public List<TerminSkijas> vratiListuTerminSkijas(Termin t) throws Exception {
+        Request request = new Request(Operation.UCITAJ_TERMIN_SKIJAS, t);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (List<TerminSkijas>) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public boolean kreirajTerminSkijas(TerminSkijas ts) throws Exception {
+        Request request = new Request(Operation.KREIRAJ_TERMIN_SKIJAS, ts);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
+    
+    public boolean obrisiTerminSkijas(TerminSkijas ts) throws Exception {
+        Request request = new Request(Operation.OBRISI_TERMIN_SKIJAS, ts);
+        sender.send(request);
+        Response response = (Response) receiver.receive();
+        if(response.getException()==null){
+            return (boolean) response.getResult();
+        }
+        throw response.getException();
+    }
     
     
     

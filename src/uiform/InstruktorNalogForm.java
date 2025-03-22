@@ -19,9 +19,10 @@ import uiform.GlavnaForm;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.sql.Date;
+import java.util.Date;
 import java.time.format.DateTimeParseException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.ZoneId;
 /**
  *
  * @author milan
@@ -84,9 +85,9 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jComboBoxLicence = new javax.swing.JComboBox<>();
-        jTextFieldDate = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jButtonDelete2 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInstruktorLicence = new javax.swing.JTable();
 
@@ -224,8 +225,6 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldDate.setText("gggg-MM-dd");
-
         jButtonAdd.setText("Dodaj");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +254,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxLicence, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDate))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(136, Short.MAX_VALUE)
@@ -269,14 +268,15 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jComboBoxLicence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jComboBoxLicence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jButtonAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -458,13 +458,14 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         try{
-            String datumSticanja = jTextFieldDate.getText();
-            DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate localDate = LocalDate.parse(datumSticanja, formater);
-            Date sqlDate = Date.valueOf(localDate);
-            
+            Date utilDate = jDateChooser1.getDate();
+            if(utilDate==null){
+                JOptionPane.showMessageDialog(rootPane, "Izaberite datum.","Dodavanje licence",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             InstruktorLicenca il = new InstruktorLicenca();
-            il.setDatumSticanja(sqlDate);
+            il.setDatumSticanja(date);
             il.setLicenca((Licenca) jComboBoxLicence.getSelectedItem());
             il.setInstruktor(logged);
             /*for(InstruktorLicenca ilm : list){
@@ -477,18 +478,16 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
 
             boolean b = Controller.getInstance().kreirajInstruktorLicenca(il);
             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Uspešno uneta licenca.","Uspešno unošenje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Uspešno uneta licenca.","Dodavanje licence",JOptionPane.INFORMATION_MESSAGE);
                 fillTable();
             }
-        }catch(DateTimeParseException pe){
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom unošenja datuma, loš format.","Pogrešan format datuma",JOptionPane.ERROR_MESSAGE);
-            return;
         }catch(SQLIntegrityConstraintViolationException ex){
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n Već postoji.","Neuspešno dodavanje",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n Već postoji.","Dodavanje licence",JOptionPane.ERROR_MESSAGE);
             return;
         }catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Neuspešno dodavanje",JOptionPane.ERROR_MESSAGE);
-            return;
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Dodavanje licence",JOptionPane.ERROR_MESSAGE);
+            return;            //LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
         }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
@@ -536,11 +535,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonDelete1;
     private javax.swing.JButton jButtonDelete2;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonSave;
     private javax.swing.JComboBox<Licenca> jComboBoxLicence;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -564,7 +563,6 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInstruktorLicence;
     private javax.swing.JTextField jTextFieldContact;
-    private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldSurname;
     private javax.swing.JTextField jTextFieldUsername;

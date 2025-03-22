@@ -40,7 +40,7 @@ public class GlavnaForm extends javax.swing.JFrame {
         jButtonSkijas = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonTermin = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemEditProfile = new javax.swing.JMenuItem();
@@ -126,12 +126,12 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         jLabel2.setText("Termini");
 
-        jButton2.setText("Prikaži termine");
-        jButton2.setFocusPainted(false);
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTermin.setText("Prikaži termine");
+        jButtonTermin.setFocusPainted(false);
+        jButtonTermin.setFocusable(false);
+        jButtonTermin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonTerminActionPerformed(evt);
             }
         });
 
@@ -143,7 +143,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         jPanel3Layout.setVerticalGroup(
@@ -152,7 +152,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonTermin))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -260,9 +260,10 @@ public class GlavnaForm extends javax.swing.JFrame {
         ttf.setVisible(true);
     }//GEN-LAST:event_jMenuItemTipActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminActionPerformed
+        TerminForm tf = new TerminForm(ulogovan);
+        tf.setVisible(true);
+    }//GEN-LAST:event_jButtonTerminActionPerformed
 
     private void jButtonSkijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSkijasActionPerformed
         SkijasForm sf = new SkijasForm();
@@ -281,9 +282,9 @@ public class GlavnaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Podešavanja;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonInstruktor;
     private javax.swing.JButton jButtonSkijas;
+    private javax.swing.JButton jButtonTermin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
