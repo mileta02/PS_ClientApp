@@ -8,7 +8,13 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import uicontroller.Controller;
+import communication.Communication;
+import formController.NivoSkijanjaFormController;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import model.NivoSkijanja;
 import uiform.NivoSkijanjaForm;
 
@@ -23,15 +29,24 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
      */
     private NivoSkijanja ns;
     private NivoSkijanjaForm parent;
-    public NivoSkijanjaDialog(java.awt.Frame parent, boolean modal, NivoSkijanja ns) {
+    private NivoSkijanjaFormController controller;
+    public NivoSkijanjaDialog(java.awt.Frame parent, boolean modal, NivoSkijanja ns, NivoSkijanjaFormController controller) {
         super(parent, modal);
         initComponents();
         this.ns=ns;
         this.parent=(NivoSkijanjaForm) parent;
-        fillFields();
-        setSize(300,250);
-        setLocationRelativeTo(null);
+        this.controller=controller;
+        //fillFields();
+        //setLocationRelativeTo(null);
         
+    }
+
+    public NivoSkijanjaFormController getController() {
+        return controller;
+    }
+
+    public void setController(NivoSkijanjaFormController controller) {
+        this.controller = controller;
     }
 
     /**
@@ -43,159 +58,266 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldName = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonAdd = new javax.swing.JButton();
-        jButtonBack = new javax.swing.JButton();
-        jButtonDelete = new javax.swing.JButton();
+        jTextFieldName = new javax.swing.JTextField();
+        jLabelValidation = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jButtonChange = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
-        jLabelValidation = new javax.swing.JLabel();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Detalji nivoa skijanja");
+        setTitle("Podešavanja nivoa skijanja");
         setResizable(false);
-        getContentPane().setLayout(null);
-        getContentPane().add(jTextFieldName);
-        jTextFieldName.setBounds(150, 30, 100, 20);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Naziv nivoa:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 30, 80, 20);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 18, 80, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 18, 123, 20));
 
-        jButtonAdd.setText("Dodaj");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonAdd);
-        jButtonAdd.setBounds(100, 75, 100, 25);
+        jLabelValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 40, 130, 17));
 
-        jButtonBack.setText("Nazad");
-        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonBack);
-        jButtonBack.setBounds(100, 160, 100, 25);
-
-        jButtonDelete.setText("Obriši");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonDelete);
-        jButtonDelete.setBounds(100, 110, 100, 25);
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonChange.setText("Izmeni");
+        jButtonChange.setFocusPainted(false);
+        jButtonChange.setFocusable(false);
         jButtonChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonChangeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonChange);
-        jButtonChange.setBounds(100, 75, 100, 25);
+        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
 
         jButtonSave.setText("Sačuvaj");
+        jButtonSave.setFocusPainted(false);
+        jButtonSave.setFocusable(false);
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSave);
-        jButtonSave.setBounds(100, 75, 100, 25);
+        jPanel2.add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
 
-        jLabelValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelValidation.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabelValidation);
-        jLabelValidation.setBounds(150, 50, 110, 20);
+        jButtonAdd.setText("Dodaj");
+        jButtonAdd.setFocusPainted(false);
+        jButtonAdd.setFocusable(false);
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
+
+        jButtonDelete.setText("Obriši");
+        jButtonDelete.setFocusPainted(false);
+        jButtonDelete.setFocusable(false);
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 50, 100, 25));
+
+        jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 80, 100, 25));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+    public NivoSkijanja getNs() {
+        return ns;
+    }
 
-        try {
-            NivoSkijanja ns = new NivoSkijanja();
-            boolean valid = true;
-            jLabelValidation.setText("");
-            if(jTextFieldName.getText().isEmpty()){
-                jLabelValidation.setText("Popunite polje.");
-                valid=false;
-            }
-            if(!valid)
+    public void setNs(NivoSkijanja ns) {
+        this.ns = ns;
+    }
+
+    public NivoSkijanjaForm getParent() {
+        return parent;
+    }
+
+    public void setParent(NivoSkijanjaForm parent) {
+        this.parent = parent;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonChange() {
+        return jButtonChange;
+    }
+
+    public void setjButtonChange(JButton jButtonChange) {
+        this.jButtonChange = jButtonChange;
+    }
+
+    public JButton getjButtonDelete() {
+        return jButtonDelete;
+    }
+
+    public void setjButtonDelete(JButton jButtonDelete) {
+        this.jButtonDelete = jButtonDelete;
+    }
+
+    public JButton getjButtonSave() {
+        return jButtonSave;
+    }
+
+    public void setjButtonSave(JButton jButtonSave) {
+        this.jButtonSave = jButtonSave;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabelValidation() {
+        return jLabelValidation;
+    }
+
+    public void setjLabelValidation(JLabel jLabelValidation) {
+        this.jLabelValidation = jLabelValidation;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        /*try {
+            if(!validation())
                 return;
+            NivoSkijanja ns = new NivoSkijanja();
             ns.setNazivNivoa(jTextFieldName.getText());
-            boolean b = Controller.getInstance().kreirajNivoSkijanja(ns);
+            boolean b = Communication.getInstance().kreirajNivoSkijanja(ns);
             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Uspešno kreiran nivo skijanja.","Uspešno kreiranje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Uspešno kreiran nivo skijanja.","Kreiranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                 parent.fillTable();
                 this.dispose();
                 return;
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja nivoa skijanja. \n"+ex.getMessage(),"Neuspešno kreiranje",JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom kreiranja nivoa skijanja. \n"+ex.getMessage(),"Kreiranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+        }*/
         
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        
-        int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete nivo skijanja?","Brisanje nivoa skijanja",JOptionPane.YES_NO_OPTION);
-        
+        /*int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete nivo skijanja?","Brisanje nivoa skijanja",JOptionPane.YES_NO_OPTION);
         if(i == JOptionPane.YES_OPTION){
             try {
-
-                boolean b = Controller.getInstance().obrisiNivoSkijanja(ns);
+                boolean b = Communication.getInstance().obrisiNivoSkijanja(ns);
                 if(b){
-                    JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan nivo skijanja.","Uspešno brisanje",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan nivo skijanja.","Brisanje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                     parent.fillTable();
                     this.dispose();
-                    }
+                }
             } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja nivoa skijanja."+ex.getMessage(),"Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja nivoa skijanja."+ex.getMessage(),"Brisanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
             }
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        jButtonSave.setVisible(true);
+        /*jButtonSave.setVisible(true);
         jButtonChange.setVisible(false);
         jButtonDelete.setVisible(false);
-        jTextFieldName.setEnabled(true);
+        jTextFieldName.setEnabled(true);*/
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        try {
-            boolean valid = true;
-            jLabelValidation.setText("");
-            if(jTextFieldName.getText().equals(ns.getNazivNivoa())){
-                valid=false;
-                jLabelValidation.setText("Unesite drugi naziv.");
-            }
-            if(jTextFieldName.getText().isEmpty()){
-                valid=false;
-                jLabelValidation.setText("Popunite polje.");
-            }
-            if(!valid)
+        /*try {        
+            if(!validation() || !isEdited())
                 return;
+            
             ns.setNazivNivoa(jTextFieldName.getText());
-            boolean b = Controller.getInstance().promeniNivoSkijanja(ns);
+            boolean b = Communication.getInstance().promeniNivoSkijanja(ns);
             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Uspešno izmenjen nivo skijanja.","Uspešna izmena nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Uspešno ažuriran nivo skijanja.","Ažuriranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                 parent.fillTable();
                 this.dispose();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom izmene nivoa skijanja. \n"+ex.getMessage(),"Neuspešna izmena",JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom ažuriranja nivoa skijanja. \n"+ex.getMessage(),"Ažuriranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+        }*/
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
@@ -211,13 +333,19 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelValidation;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
 
+   
+/*
     private void fillFields() {
         if(ns == null){
             jTextFieldName.setText("");
             jButtonAdd.setVisible(true);
+            jButtonChange.setVisible(false);
+            jButtonSave.setVisible(false);
             jButtonDelete.setVisible(false);
         }
         else{
@@ -228,4 +356,46 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
             
         }
     }
+
+    private boolean validation() {
+            jLabelValidation.setText("");
+            String name = jTextFieldName.getText();
+            boolean valid = true;
+            if(name.isEmpty()){
+                valid=false;
+                jLabelValidation.setText("Unesite naziv");
+            }else if(!name.matches("^[a-zA-Z ]+$")){
+                jLabelValidation.setText("Naziv mora sadržati slova");
+                valid=false;
+            }   
+            return valid;
+    }
+
+    private boolean isEdited() {
+        if(ns.getNazivNivoa().equals(jTextFieldName.getText())){
+            jLabelValidation.setText("Niste izvršili izmenu");
+            return false;
+        }
+        return true;
+    }*/
+
+    public void saveActionListener(ActionListener actionListener) {
+        jButtonSave.addActionListener(actionListener);
+    }
+
+    public void changeActionListener(ActionListener actionListener) {
+        jButtonChange.addActionListener(actionListener);
+    }
+
+    public void deleteActionListener(ActionListener actionListener) {
+        jButtonDelete.addActionListener(actionListener);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+    
+     public void backActionListener(ActionListener actionListener) {
+         jButtonBack.addActionListener(actionListener);
+     }
 }

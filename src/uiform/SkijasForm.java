@@ -4,16 +4,26 @@
  */
 package uiform;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import model.NivoSkijanja;
 import model.Skijas;
 import table_model.NivoSkijanjaTableModel;
 import table_model.SkijasTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import uidialog.NivoSkijanjaDialog;
 import uidialog.SkijasDialog;
 
@@ -28,8 +38,8 @@ public class SkijasForm extends javax.swing.JFrame {
      */
     public SkijasForm() {
         initComponents();
-        fillTable(null);
-        fillComboBox();
+        //fillTable(null);
+        //fillComboBox();
         setLocationRelativeTo(null);
     }
 
@@ -55,7 +65,7 @@ public class SkijasForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonDetails = new javax.swing.JButton();
-        Back = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSkijas = new javax.swing.JTable();
 
@@ -158,12 +168,12 @@ public class SkijasForm extends javax.swing.JFrame {
             }
         });
 
-        Back.setText("Nazad");
-        Back.setFocusPainted(false);
-        Back.setFocusable(false);
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                jButtonBackActionPerformed(evt);
             }
         });
 
@@ -176,7 +186,7 @@ public class SkijasForm extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(Back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addComponent(jButtonBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -187,7 +197,7 @@ public class SkijasForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(Back)
+                .addComponent(jButtonBack)
                 .addGap(14, 14, 14))
         );
 
@@ -233,17 +243,163 @@ public class SkijasForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_BackActionPerformed
+    public JButton getBack() {
+        return jButtonBack;
+    }
+
+    public void setBack(JButton Back) {
+        this.jButtonBack = Back;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonFilter() {
+        return jButtonFilter;
+    }
+
+    public void setjButtonFilter(JButton jButtonFilter) {
+        this.jButtonFilter = jButtonFilter;
+    }
+
+    public JComboBox<NivoSkijanja> getjComboNivo() {
+        return jComboNivo;
+    }
+
+    public void setjComboNivo(JComboBox<NivoSkijanja> jComboNivo) {
+        this.jComboNivo = jComboNivo;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableSkijas() {
+        return jTableSkijas;
+    }
+
+    public void setjTableSkijas(JTable jTableSkijas) {
+        this.jTableSkijas = jTableSkijas;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldSurname() {
+        return jTextFieldSurname;
+    }
+
+    public void setjTextFieldSurname(JTextField jTextFieldSurname) {
+        this.jTextFieldSurname = jTextFieldSurname;
+    }
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        //this.dispose();
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
-        try {
+        /*try {
             String name = jTextFieldName.getText();
             String surname = jTextFieldSurname.getText();
             NivoSkijanja ns = (NivoSkijanja) jComboNivo.getSelectedItem();
+            jTextFieldName.setBorder(new LineBorder(Color.black,1));
+            jTextFieldSurname.setBorder(new LineBorder(Color.black,1));
+            
             if(name.isEmpty() && surname.isEmpty() && ns==null){
-                JOptionPane.showMessageDialog(rootPane, "Unesite kriterijum pretrage.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            boolean valid = true;
+            
+            if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
+                valid = false;
+                jTextFieldName.setBorder(new LineBorder(Color.red,2));
+            }
+            if(!surname.isEmpty() && !surname.matches("^[a-zA-Z ]+$")){
+                valid = false;
+                jTextFieldSurname.setBorder(new LineBorder(Color.red,2));
+            }
+            if(!valid){
+                JOptionPane.showMessageDialog(rootPane, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -251,29 +407,31 @@ public class SkijasForm extends javax.swing.JFrame {
             s.setIme(name);
             s.setPrezime(surname);
             s.setNivoSkijanja(ns);
-            List<Skijas> list = Controller.getInstance().vratiListuSkijas(s);
+            List<Skijas> list = Communication.getInstance().vratiListuSkijas(s);
             fillTable(list);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
         }
-        
+        */
     }//GEN-LAST:event_jButtonFilterActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        jTextFieldName.setText("");
-        jTextFieldSurname.setText("");
-        jComboNivo.setSelectedIndex(-1);
-        fillTable(null);
+        //jTextFieldName.setText("");
+       // jTextFieldSurname.setText("");
+       // jTextFieldName.setBorder(new LineBorder(Color.black,1));
+        //jTextFieldSurname.setBorder(new LineBorder(Color.black,1));
+        //jComboNivo.setSelectedIndex(-1);
+        //fillTable(null);
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
-        SkijasDialog sd = new SkijasDialog(this, rootPaneCheckingEnabled, null);
-        sd.setVisible(true);
+        //SkijasDialog sd = new SkijasDialog(this, rootPaneCheckingEnabled, null);
+        //sd.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
-        int row = jTableSkijas.getSelectedRow();
+        /*int row = jTableSkijas.getSelectedRow();
         if(row==-1){
             JOptionPane.showMessageDialog(rootPane, "Izaberite skijasa iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -282,7 +440,7 @@ public class SkijasForm extends javax.swing.JFrame {
             Skijas s = stm.getList().get(row);
             
             SkijasDialog sd = new SkijasDialog(this, rootPaneCheckingEnabled, s);
-            sd.setVisible(true);
+            sd.setVisible(true);*/
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     /**
@@ -291,8 +449,8 @@ public class SkijasForm extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonDetails;
     private javax.swing.JButton jButtonFilter;
@@ -309,10 +467,11 @@ public class SkijasForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldSurname;
     // End of variables declaration//GEN-END:variables
 
+    /*
     public void fillTable(List<Skijas> list) {
         try {
             if(list==null)
-                 list = Controller.getInstance().vratiListuSviSkijas();
+                 list = Communication.getInstance().vratiListuSviSkijas();
             SkijasTableModel stm = new SkijasTableModel(list);
             jTableSkijas.setModel(stm);
         } catch (Exception ex) {
@@ -323,7 +482,7 @@ public class SkijasForm extends javax.swing.JFrame {
     private void fillComboBox(){
         List<NivoSkijanja> list;
         try {
-            list = Controller.getInstance().vratiListuSviNivoSkijanja();
+            list = Communication.getInstance().vratiListuSviNivoSkijanja();
             for(NivoSkijanja ns : list)
                 jComboNivo.addItem(ns);
             jComboNivo.setSelectedItem(null);
@@ -332,5 +491,24 @@ public class SkijasForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
         }
         
+    }*/
+    public void searchActionsListener(ActionListener actionListener) {
+        jButtonFilter.addActionListener(actionListener);
+    }
+    
+    public void clearFilterActionsListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void addActionsListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void detailsFilterActionsListener(ActionListener actionListener) {
+        jButtonDetails.addActionListener(actionListener);
+    }
+
+    public void backActionsListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
 }

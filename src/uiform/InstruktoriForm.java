@@ -12,7 +12,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Instruktor;
 import table_model.InstructorTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,7 +33,7 @@ public class InstruktoriForm extends javax.swing.JFrame {
     public InstruktoriForm(java.awt.Frame parent, boolean modal) {
         initComponents();
         setLocationRelativeTo(null);
-        fillTable();
+       // fillTable();
     }
 
     /**
@@ -199,36 +206,132 @@ public class InstruktoriForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonFilter() {
+        return jButtonFilter;
+    }
+
+    public void setjButtonFilter(JButton jButtonFilter) {
+        this.jButtonFilter = jButtonFilter;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableInstructor() {
+        return jTableInstructor;
+    }
+
+    public void setjTableInstructor(JTable jTableInstructor) {
+        this.jTableInstructor = jTableInstructor;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldSurname() {
+        return jTextFieldSurname;
+    }
+
+    public void setjTextFieldSurname(JTextField jTextFieldSurname) {
+        this.jTextFieldSurname = jTextFieldSurname;
+    }
+
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
-        try {
+        /*try {
             String name = jTextFieldName.getText();
             String surname = jTextFieldSurname.getText();
             if(name.isEmpty() && surname.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Unesite kriterijum pretrage.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             
             Instruktor i = new Instruktor();
             i.setIme(name);
             i.setPrezime(surname);
-            List<Instruktor> list = Controller.getInstance().vratiListuInstruktor(i);
+            List<Instruktor> list = Communication.getInstance().vratiListuInstruktor(i);
             InstructorTableModel itm = new InstructorTableModel(list);
             jTableInstructor.setModel(itm);
             System.out.println(list);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
         
     }//GEN-LAST:event_jButtonFilterActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        jTextFieldName.setText("");
-        jTextFieldSurname.setText("");
-        fillTable();
+        //jTextFieldName.setText("");
+        //jTextFieldSurname.setText("");
+        //fillTable();
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
@@ -251,13 +354,25 @@ public class InstruktoriForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldSurname;
     // End of variables declaration//GEN-END:variables
 
+    public void backActionsListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
+/*
     private void fillTable() {
         List<Instruktor> list = new ArrayList<Instruktor>();
         try {
-            list = Controller.getInstance().vratiListuSviInstruktor();
+            list = Communication.getInstance().vratiListuSviInstruktor();
             jTableInstructor.setModel(new InstructorTableModel(list));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja podataka.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
         }
+    }*/
+
+    public void clearFilterActionsListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void searchActionsListener(ActionListener actionListener) {
+        jButtonFilter.addActionListener(actionListener);
     }
 }

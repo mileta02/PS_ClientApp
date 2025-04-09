@@ -4,6 +4,7 @@
  */
 package uidialog;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -24,7 +25,13 @@ import model.Instruktor;
 import model.Skijas;
 import model.Termin;
 import model.TipTermina;
-import uicontroller.Controller;
+import communication.Communication;
+import formController.TerminFormController;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import uiform.TerminForm;
 
 /**
@@ -38,12 +45,14 @@ public class TerminDialog extends javax.swing.JDialog {
      */
     private Instruktor ulogovan;
     private TerminForm parent;
-    public TerminDialog(java.awt.Frame parent, boolean modal, Instruktor ulogovan) {
+    private TerminFormController controller;
+    public TerminDialog(java.awt.Frame parent, boolean modal, Instruktor ulogovan, TerminFormController controller) {
         initComponents();
-        fillComboBox();
         this.parent=(TerminForm) parent;
         this.ulogovan=ulogovan;
-        setLocationRelativeTo(null);
+        this.controller=controller;
+        //fillComboBox();
+        //setLocationRelativeTo(null);
     }
 
     /**
@@ -222,12 +231,156 @@ public class TerminDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Instruktor getUlogovan() {
+        return ulogovan;
+    }
+
+    public void setUlogovan(Instruktor ulogovan) {
+        this.ulogovan = ulogovan;
+    }
+
+    public TerminForm getParent() {
+        return parent;
+    }
+
+    public void setParent(TerminForm parent) {
+        this.parent = parent;
+    }
+
+    public TerminFormController getController() {
+        return controller;
+    }
+
+    public void setController(TerminFormController controller) {
+        this.controller = controller;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JComboBox<TipTermina> getjComboBoxTipTermina() {
+        return jComboBoxTipTermina;
+    }
+
+    public void setjComboBoxTipTermina(JComboBox<TipTermina> jComboBoxTipTermina) {
+        this.jComboBoxTipTermina = jComboBoxTipTermina;
+    }
+
+    public JDateChooser getjDateChooser() {
+        return jDateChooser;
+    }
+
+    public void setjDateChooser(JDateChooser jDateChooser) {
+        this.jDateChooser = jDateChooser;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JSpinner getjSpinnerBrojSkijasa() {
+        return jSpinnerBrojSkijasa;
+    }
+
+    public void setjSpinnerBrojSkijasa(JSpinner jSpinnerBrojSkijasa) {
+        this.jSpinnerBrojSkijasa = jSpinnerBrojSkijasa;
+    }
+
+    public JSpinner getjSpinnerVremeDo() {
+        return jSpinnerVremeDo;
+    }
+
+    public void setjSpinnerVremeDo(JSpinner jSpinnerVremeDo) {
+        this.jSpinnerVremeDo = jSpinnerVremeDo;
+    }
+
+    public JSpinner getjSpinnerVremeOd() {
+        return jSpinnerVremeOd;
+    }
+
+    public void setjSpinnerVremeOd(JSpinner jSpinnerVremeOd) {
+        this.jSpinnerVremeOd = jSpinnerVremeOd;
+    }
+
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        try {
+        /*try {
             
             Date utilDate = jDateChooser.getDate();
             LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -281,7 +434,7 @@ public class TerminDialog extends javax.swing.JDialog {
             t.setTipTermina(tip);
             t.setInstruktor(ulogovan);
             
-            boolean b = Controller.getInstance().kreirajTermin(t);
+            boolean b = Communication.getInstance().kreirajTermin(t);
             if(b){
                 JOptionPane.showMessageDialog(this, "Termin uspešno kreiran!","Kreiranje termina",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
@@ -291,7 +444,7 @@ public class TerminDialog extends javax.swing.JDialog {
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Termin nije kreiran!"+ex.getMessage(),"Kreiranje termina",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     /**
@@ -317,10 +470,11 @@ public class TerminDialog extends javax.swing.JDialog {
     private javax.swing.JSpinner jSpinnerVremeOd;
     // End of variables declaration//GEN-END:variables
 
-    private void fillComboBox() {
+
+    /*private void fillComboBox() {
          List<TipTermina> listTip;
         try {
-            listTip = Controller.getInstance().vratiListuSviTipTermina();
+            listTip = Communication.getInstance().vratiListuSviTipTermina();
             for(TipTermina t : listTip){
                 jComboBoxTipTermina.addItem(t);
             }
@@ -329,7 +483,13 @@ public class TerminDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
         }
             
-    }
+    }*/
 
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
     
 }

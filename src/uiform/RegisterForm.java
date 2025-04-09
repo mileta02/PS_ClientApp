@@ -9,7 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Instruktor;
-import uicontroller.Controller;
+import communication.Communication;
+import cordinator.Cordinator;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -22,7 +27,104 @@ public class RegisterForm extends javax.swing.JFrame {
      */
     public RegisterForm() {
         initComponents();
-        fillLabels();
+        //fillLabels();
+        setLocationRelativeTo(null);
+    }
+
+    public JLabel getjLabelContact() {
+        return jLabelContact;
+    }
+
+    public void setjLabelContact(JLabel jLabelContact) {
+        this.jLabelContact = jLabelContact;
+    }
+
+    public JLabel getjLabelName() {
+        return jLabelName;
+    }
+
+    public void setjLabelName(JLabel jLabelName) {
+        this.jLabelName = jLabelName;
+    }
+
+    public JLabel getjLabelPass() {
+        return jLabelPass;
+    }
+
+    public void setjLabelPass(JLabel jLabelPass) {
+        this.jLabelPass = jLabelPass;
+    }
+
+    public JLabel getjLabelRepeatPass() {
+        return jLabelRepeatPass;
+    }
+
+    public void setjLabelRepeatPass(JLabel jLabelRepeatPass) {
+        this.jLabelRepeatPass = jLabelRepeatPass;
+    }
+
+    public JLabel getjLabelSurname() {
+        return jLabelSurname;
+    }
+
+    public void setjLabelSurname(JLabel jLabelSurname) {
+        this.jLabelSurname = jLabelSurname;
+    }
+
+    public JLabel getjLabelUsername() {
+        return jLabelUsername;
+    }
+
+    public void setjLabelUsername(JLabel jLabelUsername) {
+        this.jLabelUsername = jLabelUsername;
+    }
+
+    public JPasswordField getjPasswordFieldPass() {
+        return jPasswordFieldPass;
+    }
+
+    public void setjPasswordFieldPass(JPasswordField jPasswordFieldPass) {
+        this.jPasswordFieldPass = jPasswordFieldPass;
+    }
+
+    public JPasswordField getjPasswordFieldRepeatPass() {
+        return jPasswordFieldRepeatPass;
+    }
+
+    public void setjPasswordFieldRepeatPass(JPasswordField jPasswordFieldRepeatPass) {
+        this.jPasswordFieldRepeatPass = jPasswordFieldRepeatPass;
+    }
+
+    public JTextField getjTextFieldContact() {
+        return jTextFieldContact;
+    }
+
+    public void setjTextFieldContact(JTextField jTextFieldContact) {
+        this.jTextFieldContact = jTextFieldContact;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldSurname() {
+        return jTextFieldSurname;
+    }
+
+    public void setjTextFieldSurname(JTextField jTextFieldSurname) {
+        this.jTextFieldSurname = jTextFieldSurname;
+    }
+
+    public JTextField getjTextFieldUser() {
+        return jTextFieldUser;
+    }
+
+    public void setjTextFieldUser(JTextField jTextFieldUser) {
+        this.jTextFieldUser = jTextFieldUser;
     }
 
     /**
@@ -34,73 +136,91 @@ public class RegisterForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPasswordFieldPass = new javax.swing.JPasswordField();
-        jPasswordFieldRepeatPass = new javax.swing.JPasswordField();
         jTextFieldName = new javax.swing.JTextField();
+        jLabelName = new javax.swing.JLabel();
         jTextFieldSurname = new javax.swing.JTextField();
+        jLabelSurname = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jTextFieldContact = new javax.swing.JTextField();
+        jLabelContact = new javax.swing.JLabel();
         jTextFieldUser = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelUsername = new javax.swing.JLabel();
+        jPasswordFieldPass = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabelPass = new javax.swing.JLabel();
+        jPasswordFieldRepeatPass = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelRepeatPass = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jButtonRegister = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register");
-        setPreferredSize(new java.awt.Dimension(450, 350));
         setResizable(false);
-        getContentPane().setLayout(null);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Ime:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(75, 30, 100, 20);
-
-        jLabel2.setText("Povtrdi šifru:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(75, 205, 100, 20);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 23, 100, 20));
 
         jLabel3.setText("Prezime:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(75, 65, 100, 20);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 70, 100, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 23, 200, 20));
 
-        jLabel4.setText("Kontakt telefon:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(75, 100, 100, 20);
-
-        jLabel5.setText("Korisničko ime:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(75, 135, 100, 20);
-
-        jLabel6.setText("Šifra:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(75, 170, 100, 20);
-        getContentPane().add(jPasswordFieldPass);
-        jPasswordFieldPass.setBounds(225, 170, 150, 20);
-        getContentPane().add(jPasswordFieldRepeatPass);
-        jPasswordFieldRepeatPass.setBounds(225, 205, 150, 20);
-        getContentPane().add(jTextFieldName);
-        jTextFieldName.setBounds(225, 30, 150, 20);
+        jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelName.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 49, 150, 15));
 
         jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSurnameActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldSurname);
-        jTextFieldSurname.setBounds(225, 65, 150, 20);
-        getContentPane().add(jTextFieldContact);
-        jTextFieldContact.setBounds(225, 100, 150, 20);
-        getContentPane().add(jTextFieldUser);
-        jTextFieldUser.setBounds(225, 135, 150, 20);
+        jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 70, 200, 20));
+
+        jLabelSurname.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelSurname.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 96, 150, 15));
+
+        jLabel4.setText("Kontakt telefon:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 117, 100, 20));
+        jPanel1.add(jTextFieldContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 117, 200, 20));
+
+        jLabelContact.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelContact.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 143, 150, 15));
+        jPanel1.add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 164, 200, 20));
+
+        jLabel5.setText("Korisničko ime:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 164, 100, 20));
+
+        jLabelUsername.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 190, 200, 15));
+        jPanel1.add(jPasswordFieldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 211, 200, 20));
+
+        jLabel6.setText("Šifra:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 211, 100, 20));
+
+        jLabelPass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPass.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, 200, 15));
+        jPanel1.add(jPasswordFieldRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 258, 200, 20));
+
+        jLabel2.setText("Povtrdi šifru:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 258, 100, 20));
+
+        jLabelRepeatPass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelRepeatPass.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 284, 200, 15));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonRegister.setText("Registruj se");
         jButtonRegister.setHideActionText(true);
@@ -110,97 +230,111 @@ public class RegisterForm extends javax.swing.JFrame {
                 jButtonRegisterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegister);
-        jButtonRegister.setBounds(150, 245, 150, 30);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(225, 50, 150, 15);
+        jButtonBack.setText("Nazad na login");
+        jButtonBack.setHideActionText(true);
+        jButtonBack.setPreferredSize(new java.awt.Dimension(100, 25));
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(225, 85, 150, 15);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(225, 120, 150, 15);
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(225, 155, 200, 15);
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(225, 190, 200, 15);
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(225, 225, 200, 15);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
-        try {        
-        String pass = String.valueOf(jPasswordFieldPass.getText());
-        String repeatPass = String.valueOf(jPasswordFieldRepeatPass.getText());
-        String user = jTextFieldUser.getText();
-        String name = jTextFieldName.getText();
-        String contact = jTextFieldContact.getText();
-        String surname = jTextFieldSurname.getText();
+        //validacija
+        /*
         fillLabels();
         boolean valid = true;
         
         if (name.isEmpty()) {
-            jLabel7.setVisible(true);
+            jLabelName.setVisible(true);
             valid=false;
         }   
         if (surname.isEmpty()) {
-            jLabel8.setVisible(true);
+            jLabelSurname.setVisible(true);
             valid=false;
         }
         if (contact.isEmpty()) {
-            jLabel9.setVisible(true);
+            jLabelContact.setVisible(true);
             valid=false;
         }else if (!contact.matches("\\+?[0-9]{9,15}")) {
-            jLabel9.setText("Kontakt mora imati 9-15 cifara!");
-            jLabel9.setVisible(true);
+            jLabelContact.setText("Kontakt mora imati 9-15 cifara!");
+            jLabelContact.setVisible(true);
             valid = false;
         }
         if (user.isEmpty()) {
-            jLabel10.setVisible(true);
+            jLabelUsername.setVisible(true);
             valid=false;
         }else if (user.length() < 5) {
-            jLabel10.setText("Korisničko ime mora imati bar 5 karaktera!");
-            jLabel10.setVisible(true);
+            jLabelUsername.setText("Korisničko ime mora imati bar 5 karaktera!");
+            jLabelUsername.setVisible(true);
             valid = false;
         }
         if (pass.isEmpty()) {
-            jLabel11.setVisible(true);
+            jLabelPass.setVisible(true);
             valid=false;
         }else if (pass.length() < 5) {
-            jLabel11.setText("Šifra mora imati bar 5 karaktera!");
-            jLabel11.setVisible(true);
+            jLabelPass.setText("Šifra mora imati bar 5 karaktera!");
+            jLabelPass.setVisible(true);
             valid = false;
         } else if (!pass.matches(".*\\d.*")) { 
-            jLabel11.setText("Šifra mora sadržati bar jedan broj!");
-            jLabel11.setVisible(true);
+            jLabelPass.setText("Šifra mora sadržati bar jedan broj!");
+            jLabelPass.setVisible(true);
             valid = false;
         }
         if (repeatPass.isEmpty()) {
-            jLabel12.setVisible(true);
+            jLabelRepeatPass.setVisible(true);
             valid=false;
         }else if (!pass.equals(repeatPass)) {
-            jLabel11.setText("Šifre se ne poklapaju!");
-            jLabel12.setText("Šifre se ne poklapaju!");
-            jLabel11.setVisible(true);
-            jLabel12.setVisible(true);
+            jLabelPass.setText("Šifre se ne poklapaju!");
+            jLabelRepeatPass.setText("Šifre se ne poklapaju!");
+            jLabelPass.setVisible(true);
+            jLabelRepeatPass.setVisible(true);
             valid = false;
         }   
     
@@ -209,20 +343,17 @@ public class RegisterForm extends javax.swing.JFrame {
             
             return;
         }
-        Instruktor i = new Instruktor(0, name, surname, contact, user, pass);
-        i = Controller.getInstance().kreirajInstruktor(i);
-        JOptionPane.showMessageDialog(this, i.getKorisnickoIme()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
-        LoginForm lf = new LoginForm();
-        lf.setVisible(true);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Greška prilikom registrovanja. \n"+ex.getMessage(), "Register", JOptionPane.ERROR_MESSAGE);
-        }
+        */
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     private void jTextFieldSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSurnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSurnameActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+       // this.dispose();
+       // Cordinator.getInstance().openLoginForm();
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,19 +361,22 @@ public class RegisterForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelContact;
+    private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelPass;
+    private javax.swing.JLabel jLabelRepeatPass;
+    private javax.swing.JLabel jLabelSurname;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldPass;
     private javax.swing.JPasswordField jPasswordFieldRepeatPass;
     private javax.swing.JTextField jTextFieldContact;
@@ -252,17 +386,25 @@ public class RegisterForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fillLabels() {
-        jLabel7.setText("Unesite ime!"); 
-        jLabel8.setText("Unesite prezime!"); 
-        jLabel9.setText("Unesite kontakt telefon!"); 
-        jLabel10.setText("Unesite korisničko ime!"); 
-        jLabel11.setText("Unesite šifru!"); 
-        jLabel12.setText("Ponovite šifru!"); 
-        jLabel9.setVisible(false);
-        jLabel10.setVisible(false);
-        jLabel7.setVisible(false);
-        jLabel8.setVisible(false);
-        jLabel11.setVisible(false);
-        jLabel12.setVisible(false);
+        jLabelName.setText("Unesite ime!"); 
+        jLabelSurname.setText("Unesite prezime!"); 
+        jLabelContact.setText("Unesite kontakt telefon!"); 
+        jLabelUsername.setText("Unesite korisničko ime!"); 
+        jLabelPass.setText("Unesite šifru!"); 
+        jLabelRepeatPass.setText("Ponovite šifru!"); 
+        jLabelContact.setVisible(false);
+        jLabelUsername.setVisible(false);
+        jLabelName.setVisible(false);
+        jLabelSurname.setVisible(false);
+        jLabelPass.setVisible(false);
+        jLabelRepeatPass.setVisible(false);
+    }
+
+    public void registerActionListener(ActionListener actionListener) {
+        jButtonRegister.addActionListener(actionListener);
+    }
+
+    public void exitActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
 }

@@ -4,6 +4,7 @@
  */
 package uiform;
 
+import com.toedter.calendar.JDateChooser;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,7 +14,8 @@ import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
 import table_model.InstructorLicenceTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
 import uiform.LoginForm;
 import uiform.GlavnaForm;
 
@@ -23,6 +25,14 @@ import java.util.Date;
 import java.time.format.DateTimeParseException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.ZoneId;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 /**
  *
  * @author milan
@@ -39,12 +49,300 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         initComponents();
         this.parent=parent;
         logged=ulogovan;
-        fillTextFields();
-        fillComboBox();
-        fillTable();
-        configureVisibility(false);
-        
+        //fillTextFields();
+        //fillComboBox();
+        //fillTable();
+        //configureVisibility(false);
         setLocationRelativeTo(null);
+        
+    }
+
+    public Instruktor getLogged() {
+        return logged;
+    }
+
+    public void setLogged(Instruktor logged) {
+        this.logged = logged;
+    }
+
+    public GlavnaForm getParent() {
+        return parent;
+    }
+
+    public void setParent(GlavnaForm parent) {
+        this.parent = parent;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonDelete() {
+        return jButtonDelete;
+    }
+
+    public void setjButtonDelete(JButton jButtonDelete) {
+        this.jButtonDelete = jButtonDelete;
+    }
+
+    public JButton getjButtonDelete2() {
+        return jButtonDeleteLicence;
+    }
+
+    public void setjButtonDelete2(JButton jButtonDelete2) {
+        this.jButtonDeleteLicence = jButtonDelete2;
+    }
+
+    public JButton getjButtonEdit() {
+        return jButtonEdit;
+    }
+
+    public void setjButtonEdit(JButton jButtonEdit) {
+        this.jButtonEdit = jButtonEdit;
+    }
+
+    public JButton getjButtonSave() {
+        return jButtonSave;
+    }
+
+    public void setjButtonSave(JButton jButtonSave) {
+        this.jButtonSave = jButtonSave;
+    }
+
+    public JComboBox<Licenca> getjComboBoxLicence() {
+        return jComboBoxLicence;
+    }
+
+    public void setjComboBoxLicence(JComboBox<Licenca> jComboBoxLicence) {
+        this.jComboBoxLicence = jComboBoxLicence;
+    }
+
+    public JDateChooser getjDateChooser1() {
+        return jDateChooser1;
+    }
+
+    public void setjDateChooser1(JDateChooser jDateChooser1) {
+        this.jDateChooser1 = jDateChooser1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    public void setjLabel10(JLabel jLabel10) {
+        this.jLabel10 = jLabel10;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public void setjLabel11(JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    public JLabel getjLabel12() {
+        return jLabel12;
+    }
+
+    public void setjLabel12(JLabel jLabel12) {
+        this.jLabel12 = jLabel12;
+    }
+
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
+    public void setjLabel13(JLabel jLabel13) {
+        this.jLabel13 = jLabel13;
+    }
+
+    public JLabel getjLabel14() {
+        return jLabel14;
+    }
+
+    public void setjLabel14(JLabel jLabel14) {
+        this.jLabel14 = jLabel14;
+    }
+
+    public JLabel getjLabel15() {
+        return jLabel15;
+    }
+
+    public void setjLabel15(JLabel jLabel15) {
+        this.jLabel15 = jLabel15;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public void setjPanel3(JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    public JPasswordField getjPasswordFieldPass() {
+        return jPasswordFieldPass;
+    }
+
+    public void setjPasswordFieldPass(JPasswordField jPasswordFieldPass) {
+        this.jPasswordFieldPass = jPasswordFieldPass;
+    }
+
+    public JPasswordField getjPasswordFieldRepeatPass() {
+        return jPasswordFieldRepeatPass;
+    }
+
+    public void setjPasswordFieldRepeatPass(JPasswordField jPasswordFieldRepeatPass) {
+        this.jPasswordFieldRepeatPass = jPasswordFieldRepeatPass;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableInstruktorLicence() {
+        return jTableInstruktorLicence;
+    }
+
+    public void setjTableInstruktorLicence(JTable jTableInstruktorLicence) {
+        this.jTableInstruktorLicence = jTableInstruktorLicence;
+    }
+
+    public JTextField getjTextFieldContact() {
+        return jTextFieldContact;
+    }
+
+    public void setjTextFieldContact(JTextField jTextFieldContact) {
+        this.jTextFieldContact = jTextFieldContact;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldSurname() {
+        return jTextFieldSurname;
+    }
+
+    public void setjTextFieldSurname(JTextField jTextFieldSurname) {
+        this.jTextFieldSurname = jTextFieldSurname;
+    }
+
+    public JTextField getjTextFieldUsername() {
+        return jTextFieldUsername;
+    }
+
+    public void setjTextFieldUsername(JTextField jTextFieldUsername) {
+        this.jTextFieldUsername = jTextFieldUsername;
     }
 
     /**
@@ -86,7 +384,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jComboBoxLicence = new javax.swing.JComboBox<>();
         jButtonAdd = new javax.swing.JButton();
-        jButtonDelete2 = new javax.swing.JButton();
+        jButtonDeleteLicence = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInstruktorLicence = new javax.swing.JTable();
@@ -232,12 +530,12 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonDelete2.setText("Obriši");
-        jButtonDelete2.setFocusPainted(false);
-        jButtonDelete2.setFocusable(false);
-        jButtonDelete2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteLicence.setText("Obriši");
+        jButtonDeleteLicence.setFocusPainted(false);
+        jButtonDeleteLicence.setFocusable(false);
+        jButtonDeleteLicence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDelete2ActionPerformed(evt);
+                jButtonDeleteLicenceActionPerformed(evt);
             }
         });
 
@@ -259,7 +557,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(136, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDeleteLicence, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(132, 132, 132))
         );
@@ -268,7 +566,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -277,10 +575,10 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(35, 35, 35)
                 .addComponent(jButtonAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDelete2)
+                .addComponent(jButtonDeleteLicence)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -333,7 +631,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        try {
+       /* try {
             String pass = String.valueOf(jPasswordFieldPass.getPassword());
             String repeatPass = String.valueOf(jPasswordFieldRepeatPass.getPassword());
             String user = jTextFieldUsername.getText();
@@ -408,27 +706,27 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
                 logged.setKontakt(contact);
                 logged.setKorisnickoIme(user);
                 logged.setSifra(pass);
-                boolean b = Controller.getInstance().promeniInstruktor(logged);
+                boolean b = Communication.getInstance().promeniInstruktor(logged);
                 JOptionPane.showMessageDialog(this, "Uspesno ste izmenili podatke.");
                 this.dispose();
             }
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Greska kod azuriranja podataka. \n"+ex.getMessage(),"Izmena podataka",JOptionPane.ERROR_MESSAGE);
             
-        }
+        }*/
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-        configureVisibility(true);
+      /*  configureVisibility(true);
         jButtonEdit.setVisible(false);
-        jButtonDelete.setVisible(false);
+        jButtonDelete.setVisible(false);*/
     }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete nalog?", "Potvrda brisanja",JOptionPane.YES_NO_OPTION);
+        /*int odgovor = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete nalog?", "Potvrda brisanja",JOptionPane.YES_NO_OPTION);
         try{
         if (odgovor == JOptionPane.YES_OPTION) {
-            if(Controller.getInstance().obrisiInstruktor(logged))
+            if(Communication.getInstance().obrisiInstruktor(logged))
                 JOptionPane.showMessageDialog(this, "Uspesno ste obrisali nalog.");
                 this.dispose();
                 parent.dispose();
@@ -437,11 +735,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Greska kod brisanja instruktora. \n"+ex.getMessage(),"Brisanje instruktora",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+//        this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jPasswordFieldRepeatPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldRepeatPassActionPerformed
@@ -457,46 +755,47 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSurnameActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        try{
+    /*        try{
             Date utilDate = jDateChooser1.getDate();
             if(utilDate==null){
                 JOptionPane.showMessageDialog(rootPane, "Izaberite datum.","Dodavanje licence",JOptionPane.WARNING_MESSAGE);
                 return;
             }
             LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            if(date.isAfter(LocalDate.now())){
+                JOptionPane.showMessageDialog(rootPane, "Datum se mora odnositi na prošlost.","Dodavanje licence",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             InstruktorLicenca il = new InstruktorLicenca();
             il.setDatumSticanja(date);
             il.setLicenca((Licenca) jComboBoxLicence.getSelectedItem());
             il.setInstruktor(logged);
-            /*for(InstruktorLicenca ilm : list){
-                if(ilm.getInstruktor().getIdInstruktor()==il.getInstruktor().getIdInstruktor() &&
-                    ilm.getLicenca().getIdLicenca()==il.getLicenca().getIdLicenca()){
-                    JOptionPane.showMessageDialog(rootPane, "Greška prilikom unošenja licence, već postoji.","Pogrešan unos licence",JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            }*/
 
-            boolean b = Controller.getInstance().kreirajInstruktorLicenca(il);
+            boolean b = Communication.getInstance().kreirajInstruktorLicenca(il);
             if(b){
                 JOptionPane.showMessageDialog(rootPane, "Uspešno uneta licenca.","Dodavanje licence",JOptionPane.INFORMATION_MESSAGE);
                 fillTable();
             }
+        }catch(DateTimeParseException pe){
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom unošenja datuma, loš format.","Pogrešan format datuma",JOptionPane.ERROR_MESSAGE);
+            return;
         }catch(SQLIntegrityConstraintViolationException ex){
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n Već postoji.","Dodavanje licence",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n Već postoji.","Neuspešno dodavanje",JOptionPane.ERROR_MESSAGE);
             return;
         }catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Dodavanje licence",JOptionPane.ERROR_MESSAGE);
-            return;            //LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        }
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Neuspešno dodavanje",JOptionPane.ERROR_MESSAGE);
+            return;
+        }*/
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jComboBoxLicenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLicenceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxLicenceActionPerformed
 
-    private void jButtonDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDelete2ActionPerformed
-
+    private void jButtonDeleteLicenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLicenceActionPerformed
+/*
         int row = jTableInstruktorLicence.getSelectedRow();
         if(row==-1){
             JOptionPane.showMessageDialog(rootPane, "Izaberite licencu iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
@@ -509,7 +808,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             InstruktorLicenca il = iltm.getList().get(row);
             boolean b;
             try {
-                b = Controller.getInstance().obrisiInstruktorLicenca(il);
+                b = Communication.getInstance().obrisiInstruktorLicenca(il);
                 if(b){
                     JOptionPane.showMessageDialog(rootPane, "Uspešno obrisana licenca.","Uspešno brisanje",JOptionPane.INFORMATION_MESSAGE);
                     fillTable();
@@ -522,8 +821,8 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
 
         }
         else
-        return;
-    }//GEN-LAST:event_jButtonDelete2ActionPerformed
+        return;*/
+    }//GEN-LAST:event_jButtonDeleteLicenceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,7 +834,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonDelete2;
+    private javax.swing.JButton jButtonDeleteLicence;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonSave;
     private javax.swing.JComboBox<Licenca> jComboBoxLicence;
@@ -607,7 +906,7 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     
     private void fillComboBox() {
         try {
-            List<Licenca> list = Controller.getInstance().vratiListuSviLicenca();
+            List<Licenca> list = Communication.getInstance().vratiListuSviLicenca();
             for(Licenca l : list){
                 jComboBoxLicence.addItem(l);
             }
@@ -619,12 +918,36 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     
     public void fillTable() {
         try {
-            List<InstruktorLicenca> list = Controller.getInstance().vratiListuInstruktorLicenca(logged);
+            List<InstruktorLicenca> list = Communication.getInstance().vratiListuInstruktorLicenca(logged);
             InstructorLicenceTableModel iltm = new InstructorLicenceTableModel(list);
             jTableInstruktorLicence.setModel(iltm);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greška prilikom učitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR_MESSAGE);
             
         }
+    }
+
+    public void addLicenceActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void deleteLicenceActionListener(ActionListener actionListener) {
+        jButtonDeleteLicence.addActionListener(actionListener);
+    }
+
+    public void deleteAccountActionListener(ActionListener actionListener) {
+        jButtonDelete.addActionListener(actionListener);
+    }
+
+    public void editAccoutActionListener(ActionListener actionListener) {
+        jButtonEdit.addActionListener(actionListener);
+    }
+
+    public void saveChangesActionListener(ActionListener actionListener) {
+        jButtonSave.addActionListener(actionListener);
+    }
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
 }

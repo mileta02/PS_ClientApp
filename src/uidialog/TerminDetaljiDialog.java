@@ -4,6 +4,7 @@
  */
 package uidialog;
 
+import com.toedter.calendar.JDateChooser;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.io.IOException;
 import java.time.Duration;
@@ -23,8 +24,17 @@ import model.Skijas;
 import model.Termin;
 import model.TerminSkijas;
 import model.TipTermina;
+import table_model.SkijasTableModel;
 import table_model.TerminSkijasTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import formController.TerminFormController;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import uiform.TerminForm;
 
 /**
@@ -38,18 +48,20 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
      */
     private Termin t;
     private TerminForm parent;
-    public TerminDetaljiDialog(java.awt.Frame parent, boolean modal,Termin t) {
+    private TerminFormController controller;
+    public TerminDetaljiDialog(java.awt.Frame parent, boolean modal,Termin t, TerminFormController controller) {
         super(parent, modal);
         initComponents();
         this.t=t;
         this.parent=(TerminForm) parent;
-        fillComboBoxes();
-        fillFields();
-        fillTable();
-        configureFields(false);
-        configureVisibility();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        this.controller=controller;
+        //fillComboBoxes();
+        //fillFields();
+        //fillTable();
+        //configureFields(false);
+        //configureVisibility();
+        //setLocationRelativeTo(null);
+        //setVisible(true);
     }
 
     /**
@@ -295,16 +307,15 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jComboBoxSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSkijas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAddSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonDeleteSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE))
+                        .addComponent(jButtonDeleteSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
         );
         jPanel3Layout.setVerticalGroup(
@@ -351,16 +362,246 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Termin getT() {
+        return t;
+    }
+
+    public void setT(Termin t) {
+        this.t = t;
+    }
+
+    public TerminForm getParent() {
+        return parent;
+    }
+
+    public void setParent(TerminForm parent) {
+        this.parent = parent;
+    }
+
+    public TerminFormController getController() {
+        return controller;
+    }
+
+    public void setController(TerminFormController controller) {
+        this.controller = controller;
+    }
+
+    public JButton getjButtonAddSkijas() {
+        return jButtonAddSkijas;
+    }
+
+    public void setjButtonAddSkijas(JButton jButtonAddSkijas) {
+        this.jButtonAddSkijas = jButtonAddSkijas;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonChange() {
+        return jButtonChange;
+    }
+
+    public void setjButtonChange(JButton jButtonChange) {
+        this.jButtonChange = jButtonChange;
+    }
+
+    public JButton getjButtonDelete() {
+        return jButtonDelete;
+    }
+
+    public void setjButtonDelete(JButton jButtonDelete) {
+        this.jButtonDelete = jButtonDelete;
+    }
+
+    public JButton getjButtonDeleteSkijas() {
+        return jButtonDeleteSkijas;
+    }
+
+    public void setjButtonDeleteSkijas(JButton jButtonDeleteSkijas) {
+        this.jButtonDeleteSkijas = jButtonDeleteSkijas;
+    }
+
+    public JButton getjButtonSave() {
+        return jButtonSave;
+    }
+
+    public void setjButtonSave(JButton jButtonSave) {
+        this.jButtonSave = jButtonSave;
+    }
+
+    public JComboBox<Instruktor> getjComboBoxInstruktor() {
+        return jComboBoxInstruktor;
+    }
+
+    public void setjComboBoxInstruktor(JComboBox<Instruktor> jComboBoxInstruktor) {
+        this.jComboBoxInstruktor = jComboBoxInstruktor;
+    }
+
+    public JComboBox<Skijas> getjComboBoxSkijas() {
+        return jComboBoxSkijas;
+    }
+
+    public void setjComboBoxSkijas(JComboBox<Skijas> jComboBoxSkijas) {
+        this.jComboBoxSkijas = jComboBoxSkijas;
+    }
+
+    public JComboBox<TipTermina> getjComboBoxTipTermina() {
+        return jComboBoxTipTermina;
+    }
+
+    public void setjComboBoxTipTermina(JComboBox<TipTermina> jComboBoxTipTermina) {
+        this.jComboBoxTipTermina = jComboBoxTipTermina;
+    }
+
+    public JDateChooser getjDateChooser() {
+        return jDateChooser;
+    }
+
+    public void setjDateChooser(JDateChooser jDateChooser) {
+        this.jDateChooser = jDateChooser;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public void setjPanel3(JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JSpinner getjSpinnerBrojSkijasa() {
+        return jSpinnerBrojSkijasa;
+    }
+
+    public void setjSpinnerBrojSkijasa(JSpinner jSpinnerBrojSkijasa) {
+        this.jSpinnerBrojSkijasa = jSpinnerBrojSkijasa;
+    }
+
+    public JSpinner getjSpinnerVremeDo() {
+        return jSpinnerVremeDo;
+    }
+
+    public void setjSpinnerVremeDo(JSpinner jSpinnerVremeDo) {
+        this.jSpinnerVremeDo = jSpinnerVremeDo;
+    }
+
+    public JSpinner getjSpinnerVremeOd() {
+        return jSpinnerVremeOd;
+    }
+
+    public void setjSpinnerVremeOd(JSpinner jSpinnerVremeOd) {
+        this.jSpinnerVremeOd = jSpinnerVremeOd;
+    }
+
+    public JTable getjTableSkijasi() {
+        return jTableSkijasi;
+    }
+
+    public void setjTableSkijasi(JTable jTableSkijasi) {
+        this.jTableSkijasi = jTableSkijasi;
+    }
+
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        jButtonChange.setVisible(false);
-        jButtonSave.setVisible(true);
-        configureFields(true);
+       // jButtonChange.setVisible(false);
+       // jButtonSave.setVisible(true);
+       // configureFields(true);
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-       //NASTAVI
-       
-            Date utilDate = jDateChooser.getDate();
+            /*Date utilDate = jDateChooser.getDate();
             LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
        
             if (date == null) {
@@ -399,41 +640,50 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 return;
             }
             
+            TerminSkijasTableModel stm = (TerminSkijasTableModel) jTableSkijasi.getModel();
+            int brojSkijasa = stm.getList().size();
+            double ukupanIznos = brojSkijasa*brojSati*tip.getCenaSata();
+            
             t.setBrojSati(brojSati);
             t.setMaxBrojSkijasa(maxBrojSkijasa);
             t.setDatum(date);
             t.setVremeOd(vremeOd);
             t.setVremeDo(vremeDo);
             t.setTipTermina(tip);
+            t.setUkupanIznos(ukupanIznos);
             
         try {
-            boolean b = Controller.getInstance().promeniTermin(t);
+            boolean b = Communication.getInstance().promeniTermin(t);
             JOptionPane.showMessageDialog(this, "Termin uspešno izmenjen!","Ažuriranje termina",JOptionPane.INFORMATION_MESSAGE);
             parent.fillTable(null);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Termin nije izmenjen!"+ex.getMessage(),"Ažuriranje termina",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddSkijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddSkijasActionPerformed
-        TerminSkijas ts = new TerminSkijas((Skijas) jComboBoxSkijas.getSelectedItem(), t, LocalDate.now());
+        /*TerminSkijas ts = new TerminSkijas((Skijas) jComboBoxSkijas.getSelectedItem(), t, LocalDate.now());
         
         TerminSkijasTableModel tstm = (TerminSkijasTableModel) jTableSkijasi.getModel();
         List<TerminSkijas> list = tstm.getList();
         int num = list.size();
         if(num==t.getMaxBrojSkijasa()){
-            JOptionPane.showMessageDialog(this, "Dostigli se maksimalni kapacitet skijaša za izabrani termin.","Dodavanje skijaša",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Dostigli se maksimalan kapacitet skijaša za izabrani termin.","Dodavanje skijaša",JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
-            boolean b = Controller.getInstance().kreirajTerminSkijas(ts);
+            boolean b = Communication.getInstance().kreirajTerminSkijas(ts);
             if(b){
                 JOptionPane.showMessageDialog(this, "Uspešno dodat skijaš.","Dodavanje skijaša",JOptionPane.INFORMATION_MESSAGE);
                 fillTable();
+                double cena = t.getBrojSati() * t.getTipTermina().getCenaSata();
+                t.setUkupanIznos(t.getUkupanIznos()+cena);
+                Communication.getInstance().promeniTermin(t);
+                parent.fillTable(null);
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             JOptionPane.showMessageDialog(this, "Greška prilikom dodavanja skijaša, već postoji","Dodavanje skijaša",JOptionPane.ERROR_MESSAGE);
@@ -441,10 +691,11 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Greška prilikom dodavanja skijaša."+ex.getMessage(),"Dodavanje skijaša",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonAddSkijasActionPerformed
 
     private void jButtonDeleteSkijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteSkijasActionPerformed
+        /*
         int row = jTableSkijasi.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Morate izabrati skijaša!", "Greška", JOptionPane.WARNING_MESSAGE);
@@ -457,23 +708,23 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         
         
         try {
-            boolean b = Controller.getInstance().obrisiTerminSkijas(ts);
+            boolean b = Communication.getInstance().obrisiTerminSkijas(ts);
             if(b){
                 JOptionPane.showMessageDialog(this, "Uspešno obrisan skijaš.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
                 fillTable();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Greška prilikom brisanja skijaša."+ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteSkijasActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-      int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete termin?","Brisanje termina",JOptionPane.YES_NO_OPTION);
+      /*int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete termin?","Brisanje termina",JOptionPane.YES_NO_OPTION);
         
         if(i == JOptionPane.YES_OPTION){
             try {
 
-                boolean b = Controller.getInstance().obrisiTermin(t);
+                boolean b = Communication.getInstance().obrisiTermin(t);
                 if(b){
                     JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan termin.","Brisanje termina",JOptionPane.INFORMATION_MESSAGE);
                     parent.fillTable(null);
@@ -482,7 +733,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
             } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja termina.\n"+ex.getMessage(),"Brisanje termina",JOptionPane.ERROR_MESSAGE);
             }
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
@@ -518,20 +769,19 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
     private javax.swing.JSpinner jSpinnerVremeOd;
     private javax.swing.JTable jTableSkijasi;
     // End of variables declaration//GEN-END:variables
-
-    private void fillComboBoxes() {
+    /*private void fillComboBoxes() {
         try {
-            List<Instruktor> listIns = Controller.getInstance().vratiListuSviInstruktor();
+            List<Instruktor> listIns = Communication.getInstance().vratiListuSviInstruktor();
             for(Instruktor i : listIns){
                 jComboBoxInstruktor.addItem(i);
             }
             
-            List<TipTermina> listTip = Controller.getInstance().vratiListuSviTipTermina();
+            List<TipTermina> listTip = Communication.getInstance().vratiListuSviTipTermina();
             for(TipTermina t : listTip){
                 jComboBoxTipTermina.addItem(t);
             }
             
-            List<Skijas> listSki = Controller.getInstance().vratiListuSviSkijas();
+            List<Skijas> listSki = Communication.getInstance().vratiListuSviSkijas();
             for(Skijas s : listSki){
                 jComboBoxSkijas.addItem(s);
             }
@@ -574,7 +824,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
 
     private void fillTable() {
         try {
-            List<TerminSkijas> list = Controller.getInstance().vratiListuTerminSkijas(t);
+            List<TerminSkijas> list = Communication.getInstance().vratiListuTerminSkijas(t);
             TerminSkijasTableModel tstm = new TerminSkijasTableModel(list);
             jTableSkijasi.setModel(tstm);
         } catch (Exception ex) {
@@ -594,8 +844,30 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         jButtonChange.setVisible(visible);
         jButtonDeleteSkijas.setVisible(visible);
         jComboBoxSkijas.setVisible(visible);
+    }*/
+    
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
-    
-    
+
+    public void changeActionListener(ActionListener actionListener) {
+        jButtonChange.addActionListener(actionListener);
+    }
+
+    public void saveActionListener(ActionListener actionListener) {
+        jButtonSave.addActionListener(actionListener);
+    }
+
+    public void deleteActionListener(ActionListener actionListener) {
+        jButtonDelete.addActionListener(actionListener);
+    }
+
+    public void addSkijasActionListener(ActionListener actionListener) {
+        jButtonAddSkijas.addActionListener(actionListener);
+    }
+
+    public void deleteSkijasActionListener(ActionListener actionListener) {
+        jButtonDeleteSkijas.addActionListener(actionListener);
+    }
     
 }

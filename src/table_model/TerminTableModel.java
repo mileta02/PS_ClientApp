@@ -14,7 +14,7 @@ import model.Termin;
  */
 public class TerminTableModel extends AbstractTableModel {
 
-    private String[] columns = {"Instruktor","Datum","Vreme od","Vreme do","Broj sati","Broj skijasa","Tip termina"};
+    private String[] columns = {"Instruktor","Datum","Vreme od","Vreme do","Broj sati","Broj skijasa","Tip termina","Ukupan iznos"};
     private List<Termin> list;
 
     public List<Termin> getList() {
@@ -47,6 +47,7 @@ public class TerminTableModel extends AbstractTableModel {
             case 4: return t.getBrojSati();
             case 5: return t.getMaxBrojSkijasa();
             case 6: return t.getTipTermina().getNazivTipa();
+            case 7: return t.getUkupanIznos();
             default: return "";
         }
     }

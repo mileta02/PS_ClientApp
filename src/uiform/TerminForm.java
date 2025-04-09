@@ -14,7 +14,16 @@ import model.Instruktor;
 import model.Termin;
 import model.TipTermina;
 import table_model.TerminTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import uidialog.TerminDetaljiDialog;
 
 /**
@@ -35,11 +44,8 @@ public class TerminForm extends javax.swing.JFrame {
     public TerminForm(Instruktor ulogovan) {
         this.ulogovan=ulogovan;
         initComponents();
-        fillTable(null);
-        //DATUMI IZMENA
-        jDateChooser.setVisible(false);
-        jLabel5.setVisible(false);
-        fillComboBoxes();
+        //fillTable(null);
+        //fillComboBoxes();
         setLocationRelativeTo(null);
     }
 
@@ -63,8 +69,6 @@ public class TerminForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
         jCheckBoxFuture = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
@@ -113,8 +117,6 @@ public class TerminForm extends javax.swing.JFrame {
 
         jLabel4.setText("Broj skijasa:");
 
-        jLabel5.setText("Datum:");
-
         jCheckBoxFuture.setText("Predstojeći termini");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -136,13 +138,10 @@ public class TerminForm extends javax.swing.JFrame {
                 .addGap(168, 168, 168)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonClearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38))
         );
@@ -157,16 +156,13 @@ public class TerminForm extends javax.swing.JFrame {
                         .addComponent(jButtonClearFilter))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jComboInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jComboInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboTipTermina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBoxFuture)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -255,11 +251,136 @@ public class TerminForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonFilter() {
+        return jButtonFilter;
+    }
+
+    public void setjButtonFilter(JButton jButtonFilter) {
+        this.jButtonFilter = jButtonFilter;
+    }
+
+    public JCheckBox getjCheckBoxFuture() {
+        return jCheckBoxFuture;
+    }
+
+    public void setjCheckBoxFuture(JCheckBox jCheckBoxFuture) {
+        this.jCheckBoxFuture = jCheckBoxFuture;
+    }
+
+    public JComboBox<Instruktor> getjComboInstruktor() {
+        return jComboInstruktor;
+    }
+
+    public void setjComboInstruktor(JComboBox<Instruktor> jComboInstruktor) {
+        this.jComboInstruktor = jComboInstruktor;
+    }
+
+    public JComboBox<TipTermina> getjComboTipTermina() {
+        return jComboTipTermina;
+    }
+
+    public void setjComboTipTermina(JComboBox<TipTermina> jComboTipTermina) {
+        this.jComboTipTermina = jComboTipTermina;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableTermin() {
+        return jTableTermin;
+    }
+
+    public void setjTableTermin(JTable jTableTermin) {
+        this.jTableTermin = jTableTermin;
+    }
+
+    public JTextField getjTextFieldNum() {
+        return jTextFieldNum;
+    }
+
+    public void setjTextFieldNum(JTextField jTextFieldNum) {
+        this.jTextFieldNum = jTextFieldNum;
+    }
+
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
-        try {
-           // Date utilDate = jDateChooser.getDate();
-           // LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            
+        /*try {
             LocalDate date;
             if(jCheckBoxFuture.isSelected())
                 date = LocalDate.now();
@@ -279,6 +400,10 @@ public class TerminForm extends javax.swing.JFrame {
             Instruktor i = (Instruktor) jComboInstruktor.getSelectedItem();
             TipTermina t = (TipTermina) jComboTipTermina.getSelectedItem();
             
+            if(i==null && t==null && numText.isEmpty() && !jCheckBoxFuture.isSelected()){
+                JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            }
+            
             Termin ter = new Termin();
             ter.setDatum(date);
             ter.setInstruktor(i);
@@ -286,31 +411,30 @@ public class TerminForm extends javax.swing.JFrame {
             ter.setTipTermina(t);
 
             
-            List<Termin> list = Controller.getInstance().vratiListuTermin(ter);
+            List<Termin> list = Communication.getInstance().vratiListuTermin(ter);
             fillTable(list);
             
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom filtriranja termina.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonFilterActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        jComboInstruktor.setSelectedItem(null);
-        jComboTipTermina.setSelectedItem(null);
-        jDateChooser.setDate(null);
-        jTextFieldNum.setText("");
-        jCheckBoxFuture.setSelected(false);
-        fillTable(null);
+        //jComboInstruktor.setSelectedItem(null);
+        //jComboTipTermina.setSelectedItem(null);
+        //jTextFieldNum.setText("");
+        //jCheckBoxFuture.setSelected(false);
+        //fillTable(null);
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        TerminDialog ktf = new TerminDialog(this,true,ulogovan);
-        ktf.setVisible(true);
+        //TerminDialog ktf = new TerminDialog(this,true,ulogovan);
+        //ktf.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
-        int row = jTableTermin.getSelectedRow();
+        /*int row = jTableTermin.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Morate izabrati termin!", "Greška", JOptionPane.WARNING_MESSAGE);
             return;
@@ -320,11 +444,11 @@ public class TerminForm extends javax.swing.JFrame {
         List<Termin> list = ttm.getList();
 
         Termin t = list.get(row);
-        TerminDetaljiDialog tdd = new TerminDetaljiDialog(this, rootPaneCheckingEnabled, t);
+        TerminDetaljiDialog tdd = new TerminDetaljiDialog(this, rootPaneCheckingEnabled, t);*/
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
@@ -341,22 +465,20 @@ public class TerminForm extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBoxFuture;
     private javax.swing.JComboBox<Instruktor> jComboInstruktor;
     private javax.swing.JComboBox<TipTermina> jComboTipTermina;
-    private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableTermin;
     private javax.swing.JTextField jTextFieldNum;
     // End of variables declaration//GEN-END:variables
-
+    /*
     public void fillTable(List<Termin> list) {
         try {
             if(list==null)
-                list = Controller.getInstance().vratiListuSviTermin();
+                list = Communication.getInstance().vratiListuSviTermin();
             TerminTableModel ttm = new TerminTableModel(list);
             jTableTermin.setModel(ttm);
         }catch (Exception ex) {
@@ -366,13 +488,13 @@ public class TerminForm extends javax.swing.JFrame {
 
     private void fillComboBoxes() {
         try {
-            List<Instruktor> listIns = Controller.getInstance().vratiListuSviInstruktor();
+            List<Instruktor> listIns = Communication.getInstance().vratiListuSviInstruktor();
             for(Instruktor i : listIns){
                 jComboInstruktor.addItem(i);
             }
             jComboInstruktor.setSelectedItem(null);
             
-            List<TipTermina> listTip = Controller.getInstance().vratiListuSviTipTermina();
+            List<TipTermina> listTip = Communication.getInstance().vratiListuSviTipTermina();
             for(TipTermina t : listTip){
                 jComboTipTermina.addItem(t);
             }
@@ -380,5 +502,25 @@ public class TerminForm extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    */
+    public void searchActionsListener(ActionListener actionListener) {
+        jButtonFilter.addActionListener(actionListener);
+    }
+
+    public void clearFilterActionsListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void addActionsListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void detailsActionsListener(ActionListener actionListener) {
+        jButtonDetails.addActionListener(actionListener);
+    }
+
+    public void backActionsListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
 }

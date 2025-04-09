@@ -197,7 +197,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonAdd" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonDetails" alignment="0" pref="115" max="32767" attributes="0"/>
-                      <Component id="Back" alignment="1" pref="115" max="32767" attributes="0"/>
+                      <Component id="jButtonBack" alignment="1" pref="115" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -211,7 +211,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButtonDetails" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="112" max="32767" attributes="0"/>
-                  <Component id="Back" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonBack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -238,14 +238,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDetailsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Back">
+        <Component class="javax.swing.JButton" name="jButtonBack">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nazad"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -9,7 +9,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.TipTermina;
-import uicontroller.Controller;
+import communication.Communication;
+import formController.TipTerminaFormController;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import uiform.TipTerminaForm;
 
 /**
@@ -23,13 +29,16 @@ public class TipTerminaDialog extends javax.swing.JDialog {
      */
     private TipTermina tt;
     private TipTerminaForm parent;
-    public TipTerminaDialog(java.awt.Frame parent, boolean modal, TipTermina tt) {
+    private TipTerminaFormController controller;
+    public TipTerminaDialog(java.awt.Frame parent, boolean modal, TipTermina tt, TipTerminaFormController controller) {
         super(parent, modal);
+        initComponents();
         this.tt=tt;
         this.parent=(TipTerminaForm) parent;
-        initComponents();
-        fillFields();
-        setLocationRelativeTo(null);
+        this.controller=controller;
+       // fillFields();
+       // setLocationRelativeTo(null);
+       // setVisible(true);
     }
 
     /**
@@ -41,158 +50,289 @@ public class TipTerminaDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
-        jTextFieldPrice = new javax.swing.JTextField();
-        jButtonAdd = new javax.swing.JButton();
-        jButtonBack = new javax.swing.JButton();
-        jLabelName = new javax.swing.JLabel();
-        jLabelPrice = new javax.swing.JLabel();
-        jButtonChange = new javax.swing.JButton();
-        jButtonDelete = new javax.swing.JButton();
-        jButtonSaveChanges = new javax.swing.JButton();
         jLabelNameValidation = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldPrice = new javax.swing.JTextField();
         jLabelPriceValidation = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonChange = new javax.swing.JButton();
+        jButtonSaveChanges = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tip termina");
+        setTitle("Podešavanja tipa termina");
         setResizable(false);
-        getContentPane().setLayout(null);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Naziv:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 40, 80, 20);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 130, 20));
+
+        jLabelNameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelNameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 140, 20));
 
         jLabel2.setText("Cena sata:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 80, 80, 20);
-        getContentPane().add(jTextFieldName);
-        jTextFieldName.setBounds(150, 40, 120, 20);
-        getContentPane().add(jTextFieldPrice);
-        jTextFieldPrice.setBounds(150, 80, 120, 20);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 20));
+        jPanel1.add(jTextFieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 130, 20));
 
-        jButtonAdd.setText("Dodaj");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonAdd);
-        jButtonAdd.setBounds(110, 120, 100, 25);
+        jLabelPriceValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPriceValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPriceValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 140, 20));
 
-        jButtonBack.setText("Nazad");
-        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonBack);
-        jButtonBack.setBounds(110, 180, 100, 25);
-        getContentPane().add(jLabelName);
-        jLabelName.setBounds(149, 65, 81, 0);
-        getContentPane().add(jLabelPrice);
-        jLabelPrice.setBounds(149, 105, 81, 0);
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonChange.setText("Izmeni");
+        jButtonChange.setFocusPainted(false);
+        jButtonChange.setFocusable(false);
         jButtonChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonChangeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonChange);
-        jButtonChange.setBounds(110, 120, 100, 25);
-
-        jButtonDelete.setText("Obriši");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonDelete);
-        jButtonDelete.setBounds(110, 150, 100, 25);
+        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
 
         jButtonSaveChanges.setText("Sačuvaj ");
+        jButtonSaveChanges.setFocusPainted(false);
+        jButtonSaveChanges.setFocusable(false);
         jButtonSaveChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveChangesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSaveChanges);
-        jButtonSaveChanges.setBounds(110, 120, 100, 25);
+        jPanel2.add(jButtonSaveChanges, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
 
-        jLabelNameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelNameValidation.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabelNameValidation);
-        jLabelNameValidation.setBounds(150, 60, 120, 20);
+        jButtonAdd.setText("Dodaj");
+        jButtonAdd.setFocusPainted(false);
+        jButtonAdd.setFocusable(false);
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
 
-        jLabelPriceValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelPriceValidation.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabelPriceValidation);
-        jLabelPriceValidation.setBounds(150, 100, 120, 20);
+        jButtonDelete.setText("Obriši");
+        jButtonDelete.setFocusPainted(false);
+        jButtonDelete.setFocusable(false);
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 100, 25));
+
+        jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 100, 25));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public TipTermina getTt() {
+        return tt;
+    }
+
+    public void setTt(TipTermina tt) {
+        this.tt = tt;
+    }
+
+    public TipTerminaForm getParent() {
+        return parent;
+    }
+
+    public void setParent(TipTerminaForm parent) {
+        this.parent = parent;
+    }
+
+    public TipTerminaFormController getController() {
+        return controller;
+    }
+
+    public void setController(TipTerminaFormController controller) {
+        this.controller = controller;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonChange() {
+        return jButtonChange;
+    }
+
+    public void setjButtonChange(JButton jButtonChange) {
+        this.jButtonChange = jButtonChange;
+    }
+
+    public JButton getjButtonDelete() {
+        return jButtonDelete;
+    }
+
+    public void setjButtonDelete(JButton jButtonDelete) {
+        this.jButtonDelete = jButtonDelete;
+    }
+
+    public JButton getjButtonSaveChanges() {
+        return jButtonSaveChanges;
+    }
+
+    public void setjButtonSaveChanges(JButton jButtonSaveChanges) {
+        this.jButtonSaveChanges = jButtonSaveChanges;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabelNameValidation() {
+        return jLabelNameValidation;
+    }
+
+    public void setjLabelNameValidation(JLabel jLabelNameValidation) {
+        this.jLabelNameValidation = jLabelNameValidation;
+    }
+
+    public JLabel getjLabelPriceValidation() {
+        return jLabelPriceValidation;
+    }
+
+    public void setjLabelPriceValidation(JLabel jLabelPriceValidation) {
+        this.jLabelPriceValidation = jLabelPriceValidation;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldPrice() {
+        return jTextFieldPrice;
+    }
+
+    public void setjTextFieldPrice(JTextField jTextFieldPrice) {
+        this.jTextFieldPrice = jTextFieldPrice;
+    }
+
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        boolean valid = true;
-        TipTermina tt = new TipTermina();
-        jLabelPrice.setText("");
-        jLabelName.setText("");
-        
+        /*if(!validation())
+            return;
         String name = jTextFieldName.getText();
         String priceString = jTextFieldPrice.getText();
-        Double price = Double.parseDouble(priceString);
-        
-        if(name.isEmpty()){
-            valid=false;
-            jLabelName.setText("Popunite polje.");
-        }
-        if(priceString.isEmpty()){
-            valid=false;
-            jLabelPrice.setText("Popunite polje");
-        }
-       
-       if(!valid){
-           return;
-       }
-       
-       tt.setCenaSata(price);
-       tt.setNazivTipa(name);
-        
-       
+        double price = Double.parseDouble(priceString);
+        TipTermina tt = new TipTermina();
+        tt.setCenaSata(price);
+        tt.setNazivTipa(name);
+
         try {
-            boolean b = Controller.getInstance().kreirajTipTermina(tt);
+            boolean b = Communication.getInstance().kreirajTipTermina(tt);
             if(b){
                 JOptionPane.showMessageDialog(this, "Uspešno kreiran tip termina.","Kreiranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 parent.fillTable();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja tipa termina.","Kreiranje tipa termina",JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja tipa termina.\n"+ex.getMessage(),"Kreiranje tipa termina",JOptionPane.ERROR_MESSAGE);
+        }*/
        
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-       this.dispose();
+      // this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        
-            jButtonChange.setVisible(false);
+        /*jButtonChange.setVisible(false);
             jButtonDelete.setVisible(false);
             jButtonSaveChanges.setEnabled(true);
             jTextFieldName.setEnabled(true);
-            jTextFieldPrice.setEnabled(true);
+            jTextFieldPrice.setEnabled(true);*/
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete tip termina?","Brisanje tipa termina",JOptionPane.YES_NO_OPTION);
+        /*int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete tip termina?","Brisanje tipa termina",JOptionPane.YES_NO_OPTION);
         
         if(i == JOptionPane.YES_OPTION){
         try {
-            boolean b = Controller.getInstance().obrisiTipTermina(tt);
+            boolean b = Communication.getInstance().obrisiTipTermina(tt);
             if(b){
                 JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan tip termina.","Brisanje tipa termina",JOptionPane.INFORMATION_MESSAGE);
                 parent.fillTable();
@@ -201,50 +341,28 @@ public class TipTerminaDialog extends javax.swing.JDialog {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja tipa termina. \n"+ex.getMessage(),"Brisanje tipa termina",JOptionPane.ERROR_MESSAGE);
         }
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
 
-            jLabelNameValidation.setText("");
-            jLabelPriceValidation.setText("");
-            
-            String name = jTextFieldName.getText();
-            String priceString = jTextFieldPrice.getText();
-            double price = Double.parseDouble(priceString);
-            
-            boolean valid = true;
-            if(name.isEmpty()){
-                valid=false;
-                jLabelNameValidation.setText("Popunite polje.");
-            }
-            if(priceString.isEmpty()){
-                valid=false;
-                jLabelPriceValidation.setText("Popunite polje.");
-            }
-            if(name.equals(tt.getNazivTipa()) && price==tt.getCenaSata()){
-                jLabelNameValidation.setText("Niste izvršili izmenu.");
-                jLabelPriceValidation.setText("Niste izvršili izmenu.");
-                valid=false;
-            }
-            
-            if(!valid){
+            /*if(!validation() || !isEdited())
                 return;
-            }
+            
             try{
+                String name = jTextFieldName.getText();
+                double price = Double.parseDouble(jTextFieldPrice.getText());
                 tt.setNazivTipa(name);
                 tt.setCenaSata(price);
-             boolean b = Controller.getInstance().promeniTipTermina(tt);
-             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Uspešno izmenjen tip termina.","Izmena tipa termina",JOptionPane.INFORMATION_MESSAGE);
-                parent.fillTable();
-                this.dispose();
-             }
-             else
-                 JOptionPane.showMessageDialog(rootPane, "Greška prilikom izmene tipa termina. \n","Izmena tipa termina",JOptionPane.ERROR_MESSAGE);
+                boolean b = Communication.getInstance().promeniTipTermina(tt);
+                if(b){
+                    JOptionPane.showMessageDialog(rootPane, "Uspešno ažuriran tip termina.","Ažuriranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
+                    parent.fillTable();
+                    this.dispose();
+                }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom izmene tipa termina. \n"+ex.getMessage(),"Izmena tipa termina",JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom ažuriranja tipa termina. \n"+ex.getMessage(),"Ažuriranje tipa termina",JOptionPane.ERROR_MESSAGE);
+        }*/
     }//GEN-LAST:event_jButtonSaveChangesActionPerformed
 
     /**
@@ -260,15 +378,15 @@ public class TipTerminaDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonSaveChanges;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelNameValidation;
-    private javax.swing.JLabel jLabelPrice;
     private javax.swing.JLabel jLabelPriceValidation;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPrice;
     // End of variables declaration//GEN-END:variables
 
-    private void fillFields() {
+    /*private void fillFields() {
         if(tt==null){
             jButtonDelete.setVisible(false);
             jButtonChange.setVisible(false);
@@ -281,5 +399,67 @@ public class TipTerminaDialog extends javax.swing.JDialog {
             jTextFieldName.setEnabled(false);
             jTextFieldPrice.setEnabled(false);
         }
+    }
+    
+    private boolean validation(){
+        String name = jTextFieldName.getText();
+        String priceString = jTextFieldPrice.getText();
+        double price = 0;
+        
+        boolean valid = true;
+        if(name.isEmpty()){
+            valid=false;
+            jLabelNameValidation.setText("Unesite naziv");
+        }else if(!name.matches("^[a-zA-Z ]+$")){
+            jLabelNameValidation.setText("Naziv mora sadržati slova");
+            valid=false;
+        }
+        if(priceString.isEmpty()){
+            valid=false;
+            jLabelPriceValidation.setText("Popunite polje.");
+        }else {
+            try {
+                price = Double.parseDouble(priceString);
+                if (price < 0) {
+                    valid = false;
+                    jLabelPriceValidation.setText("Cena mora biti pozitivan broj");
+                } else {
+                    jLabelPriceValidation.setText("");
+                }
+            } catch (NumberFormatException e) {
+                valid = false;
+                jLabelPriceValidation.setText("Unesite validan broj");
+            }
+        }
+        return true;
+    }
+
+    private boolean isEdited() {
+        if(tt.getNazivTipa().equals(jTextFieldName.getText()) && tt.getCenaSata()==Double.parseDouble(jTextFieldPrice.getText())){
+            jLabelNameValidation.setText("Niste izvršili izmenu");
+            jLabelPriceValidation.setText("Niste izvršili izmenu");
+            return false;
+        }
+        return true;
+    }*/
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
+
+    public void changeActionListener(ActionListener actionListener) {
+        jButtonChange.addActionListener(actionListener);
+    }
+
+    public void saveActionListener(ActionListener actionListener) {
+        jButtonSaveChanges.addActionListener(actionListener);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void deleteActionListener(ActionListener actionListener) {
+        jButtonDelete.addActionListener(actionListener);
     }
 }

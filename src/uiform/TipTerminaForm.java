@@ -4,14 +4,24 @@
  */
 package uiform;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import model.TipTermina;
 import table_model.TipTerminaTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import uidialog.TipTerminaDialog;
 
 /**
@@ -26,7 +36,7 @@ public class TipTerminaForm extends javax.swing.JFrame {
     public TipTerminaForm() {
         initComponents();
         setLocationRelativeTo(null);
-        fillTable();
+        //fillTable();
     }
 
     /**
@@ -154,6 +164,8 @@ public class TipTerminaForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonDetails.setText("Detalji");
+        jButtonDetails.setFocusPainted(false);
+        jButtonDetails.setFocusable(false);
         jButtonDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDetailsActionPerformed(evt);
@@ -161,6 +173,8 @@ public class TipTerminaForm extends javax.swing.JFrame {
         });
 
         jButtonAdd.setText("Dodaj");
+        jButtonAdd.setFocusPainted(false);
+        jButtonAdd.setFocusable(false);
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);
@@ -168,6 +182,8 @@ public class TipTerminaForm extends javax.swing.JFrame {
         });
 
         jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
@@ -227,65 +243,214 @@ public class TipTerminaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonSearch() {
+        return jButtonSearch;
+    }
+
+    public void setjButtonSearch(JButton jButtonSearch) {
+        this.jButtonSearch = jButtonSearch;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableTipTermina() {
+        return jTableTipTermina;
+    }
+
+    public void setjTableTipTermina(JTable jTableTipTermina) {
+        this.jTableTipTermina = jTableTipTermina;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldPriceFrom() {
+        return jTextFieldPriceFrom;
+    }
+
+    public void setjTextFieldPriceFrom(JTextField jTextFieldPriceFrom) {
+        this.jTextFieldPriceFrom = jTextFieldPriceFrom;
+    }
+
+    public JTextField getjTextFieldPriceTo() {
+        return jTextFieldPriceTo;
+    }
+
+    public void setjTextFieldPriceTo(JTextField jTextFieldPriceTo) {
+        this.jTextFieldPriceTo = jTextFieldPriceTo;
+    }
+
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        try {
+        /*try {
+            defaultBorders();
+
             String name = jTextFieldName.getText();
             String priceFromString = jTextFieldPriceFrom.getText();
             String priceToString = jTextFieldPriceTo.getText();
+            double priceFrom=-1;
+            double priceTo=-1;
+            boolean valid = true;
             
             if(name.isEmpty() && priceFromString.isEmpty() && priceToString.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
-                return;
+            JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            return;
             }
             
-            double priceFrom = -1;
-            double priceTo = -1;
-            if(!priceFromString.isEmpty())
-                priceFrom=Double.parseDouble(priceFromString);
-            if(!priceToString.isEmpty())
-                priceTo = Double.parseDouble(priceToString);
+            if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
+                jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                valid = false;
+            }
+
+            if(!priceFromString.isEmpty()){
+                try{
+                    priceFrom=Double.parseDouble(priceFromString);
+                }catch(NumberFormatException ex){
+                    jTextFieldPriceFrom.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    valid=false;
+                }
+            }
+            if(!priceToString.isEmpty()){
+                try{
+                    priceTo=Double.parseDouble(priceToString);
+                }catch(NumberFormatException ex){
+                    jTextFieldPriceTo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    valid=false;
+                }
+            }
+            if(!valid){
+                JOptionPane.showMessageDialog(rootPane, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             
             TipTermina tt = new TipTermina();
             tt.setNazivTipa(name);
             tt.filter(priceFrom, priceTo);
-            List<TipTermina> list = Controller.getInstance().vratiListuTipTermina(tt);
+            List<TipTermina> list = Communication.getInstance().vratiListuTipTermina(tt);
             
             TipTerminaTableModel tttm = new TipTerminaTableModel(list);
             jTableTipTermina.setModel(tttm);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom pretrage","Pretraga",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-    jTextFieldName.setText("");
-    jTextFieldPriceFrom.setText("");
-    jTextFieldPriceTo.setText("");
-    fillTable();
+        /*jTextFieldName.setText("");
+        jTextFieldPriceFrom.setText("");
+        jTextFieldPriceTo.setText("");
+        defaultBorders();
+        fillTable();*/
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        TipTerminaDialog ttd = new TipTerminaDialog(this, rootPaneCheckingEnabled, null);
-        ttd.setSize(320,250);
-        ttd.setVisible(true);
+        //TipTerminaDialog ttd = new TipTerminaDialog(this, rootPaneCheckingEnabled, null);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-    this.dispose();        
+        //this.dispose();        
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
-    int row = jTableTipTermina.getSelectedRow();
-    if(row==-1){
-            JOptionPane.showMessageDialog(rootPane, "Izaberite tip termina iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-    
-    TipTerminaTableModel tttm = (TipTerminaTableModel) jTableTipTermina.getModel();
-    TipTermina tt = tttm.getList().get(row);
-    TipTerminaDialog ttd = new TipTerminaDialog(this, rootPaneCheckingEnabled, tt);
-    ttd.setSize(320,250);
-    ttd.setVisible(true);
+        /*int row = jTableTipTermina.getSelectedRow();
+        if(row==-1){
+                JOptionPane.showMessageDialog(rootPane, "Izaberite tip termina iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+        TipTerminaTableModel tttm = (TipTerminaTableModel) jTableTipTermina.getModel();
+        TipTermina tt = tttm.getList().get(row);
+        TipTerminaDialog ttd = new TipTerminaDialog(this, rootPaneCheckingEnabled, tt);*/
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     /**
@@ -311,15 +476,64 @@ public class TipTerminaForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPriceFrom;
     private javax.swing.JTextField jTextFieldPriceTo;
     // End of variables declaration//GEN-END:variables
-
+    /*
     public void fillTable() {
         try {
-            List<TipTermina> list = Controller.getInstance().vratiListuSviTipTermina();
+            List<TipTermina> list = Communication.getInstance().vratiListuSviTipTermina();
             TipTerminaTableModel tttm = new TipTerminaTableModel(list);
             jTableTipTermina.setModel(tttm);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greška prilikom učitavanja tipova termina.","Učitavanje tipova termina",JOptionPane.ERROR_MESSAGE);
             
         }
+    }
+
+    private void defaultBorders() {
+        jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        jTextFieldPriceFrom.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        jTextFieldPriceTo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    }
+
+    private boolean validation() {
+        String name = jTextFieldName.getText();
+        String priceFromString = jTextFieldPriceFrom.getText();
+        String priceToString = jTextFieldPriceTo.getText();
+        boolean valid = true;
+            
+        if(name.isEmpty() && priceFromString.isEmpty() && priceToString.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+            
+        if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
+            jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            valid = false;
+        }
+        
+        if(!valid){
+            JOptionPane.showMessageDialog(rootPane, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }*/
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
+
+    public void detailsActionListener(ActionListener actionListener) {
+        jButtonDetails.addActionListener(actionListener);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void clearFilterActionListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void searchActionListener(ActionListener actionListener) {
+        jButtonSearch.addActionListener(actionListener);
     }
 }

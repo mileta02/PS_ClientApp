@@ -4,6 +4,8 @@
  */
 package uiform;
 
+import cordinator.Cordinator;
+import java.awt.event.ActionListener;
 import model.Instruktor;
 
 /**
@@ -42,9 +44,9 @@ public class GlavnaForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButtonTermin = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuAccount = new javax.swing.JMenu();
         jMenuItemEditProfile = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemLogOut = new javax.swing.JMenuItem();
         Podešavanja = new javax.swing.JMenu();
         jMenuItemLicenca = new javax.swing.JMenuItem();
         jMenuItemNivo = new javax.swing.JMenuItem();
@@ -156,7 +158,7 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jMenu3.setText("Nalog");
+        jMenuAccount.setText("Nalog");
 
         jMenuItemEditProfile.setText("Moj nalog");
         jMenuItemEditProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -164,17 +166,17 @@ public class GlavnaForm extends javax.swing.JFrame {
                 jMenuItemEditProfileActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItemEditProfile);
+        jMenuAccount.add(jMenuItemEditProfile);
 
-        jMenuItem2.setText("Odjavi se");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLogOut.setText("Odjavi se");
+        jMenuItemLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemLogOutActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenuAccount.add(jMenuItemLogOut);
 
-        jMenuBar2.add(jMenu3);
+        jMenuBar2.add(jMenuAccount);
 
         Podešavanja.setText("Podešavanja");
 
@@ -234,45 +236,37 @@ public class GlavnaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditProfileActionPerformed
-        InstruktorNalogForm epd = new InstruktorNalogForm(this,ulogovan);
-        epd.setVisible(true);
-        
+          
     }//GEN-LAST:event_jMenuItemEditProfileActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        new LoginForm().setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMenuItemLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogOutActionPerformed
+       
+    }//GEN-LAST:event_jMenuItemLogOutActionPerformed
 
     private void jMenuItemNivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNivoActionPerformed
-        NivoSkijanjaForm nsf = new NivoSkijanjaForm();
-        nsf.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItemNivoActionPerformed
 
     private void jMenuItemLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLicencaActionPerformed
-        LicencaForm lf = new LicencaForm(ulogovan);
-        lf.setVisible(true);
+        
            
     }//GEN-LAST:event_jMenuItemLicencaActionPerformed
 
     private void jMenuItemTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTipActionPerformed
-        TipTerminaForm ttf = new TipTerminaForm();
-        ttf.setVisible(true);
+
     }//GEN-LAST:event_jMenuItemTipActionPerformed
 
     private void jButtonTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminActionPerformed
-        TerminForm tf = new TerminForm(ulogovan);
-        tf.setVisible(true);
+        
     }//GEN-LAST:event_jButtonTerminActionPerformed
 
     private void jButtonSkijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSkijasActionPerformed
-        SkijasForm sf = new SkijasForm();
-        sf.setVisible(true);
+        
+
     }//GEN-LAST:event_jButtonSkijasActionPerformed
 
     private void jButtonInstruktorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInstruktorActionPerformed
-        InstruktoriForm ild = new InstruktoriForm(this, rootPaneCheckingEnabled);
-        ild.setVisible(true);
+        
     }//GEN-LAST:event_jButtonInstruktorActionPerformed
 
     /**
@@ -288,15 +282,47 @@ public class GlavnaForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenuAccount;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemEditProfile;
     private javax.swing.JMenuItem jMenuItemLicenca;
+    private javax.swing.JMenuItem jMenuItemLogOut;
     private javax.swing.JMenuItem jMenuItemNivo;
     private javax.swing.JMenuItem jMenuItemTip;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    public void terminActionListener(ActionListener actionListener) {
+        jButtonTermin.addActionListener(actionListener);
+    }
+
+    public void instruktorActionListener(ActionListener actionListener) {
+        jButtonInstruktor.addActionListener(actionListener);
+    }
+
+    public void skijasActionListener(ActionListener actionListener) {
+        jButtonSkijas.addActionListener(actionListener);
+    }
+
+    public void accountActionListener(ActionListener actionListener) {
+        jMenuItemEditProfile.addActionListener(actionListener);
+    }
+
+    public void logOutActionListener(ActionListener actionListener) {
+        jMenuItemLogOut.addActionListener(actionListener);
+    }
+
+    public void licencaActionListener(ActionListener actionListener) {
+        jMenuItemLicenca.addActionListener(actionListener);
+    }
+
+    public void tipTerminaActionListener(ActionListener actionListener) {
+        jMenuItemTip.addActionListener(actionListener);
+    }
+
+    public void nivoSkijanjaActionListener(ActionListener actionListener) {
+        jMenuItemNivo.addActionListener(actionListener);
+    }
 }

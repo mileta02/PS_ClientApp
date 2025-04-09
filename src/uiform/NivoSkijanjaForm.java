@@ -4,14 +4,24 @@
  */
 package uiform;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import model.NivoSkijanja;
 import table_model.NivoSkijanjaTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import uidialog.NivoSkijanjaDialog;
 
 /**
@@ -25,7 +35,7 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
      */
     public NivoSkijanjaForm() {
         initComponents();
-        fillTable();
+       // fillTable();
         setLocationRelativeTo(null);
     }
 
@@ -126,6 +136,8 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonAdd.setText("Dodaj");
+        jButtonAdd.setFocusPainted(false);
+        jButtonAdd.setFocusable(false);
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);
@@ -133,6 +145,8 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
         });
 
         jButtonDetails.setText("Detalji");
+        jButtonDetails.setFocusPainted(false);
+        jButtonDetails.setFocusable(false);
         jButtonDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDetailsActionPerformed(evt);
@@ -140,6 +154,8 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
         });
 
         jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
@@ -199,8 +215,104 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonSearch() {
+        return jButtonSearch;
+    }
+
+    public void setjButtonSearch(JButton jButtonSearch) {
+        this.jButtonSearch = jButtonSearch;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableNivoSkijanja() {
+        return jTableNivoSkijanja;
+    }
+
+    public void setjTableNivoSkijanja(JTable jTableNivoSkijanja) {
+        this.jTableNivoSkijanja = jTableNivoSkijanja;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
     private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
-        int row = jTableNivoSkijanja.getSelectedRow();
+        /*int row = jTableNivoSkijanja.getSelectedRow();
         if(row==-1){
             JOptionPane.showMessageDialog(rootPane, "Izaberite nivo skijanja iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -208,39 +320,41 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
             NivoSkijanjaTableModel nstm = (NivoSkijanjaTableModel) jTableNivoSkijanja.getModel();
             NivoSkijanja ns = nstm.getList().get(row);
             NivoSkijanjaDialog nsd = new NivoSkijanjaDialog(this, rootPaneCheckingEnabled, ns);
-            nsd.setVisible(true);
+            nsd.setVisible(true);*/
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        NivoSkijanjaDialog nsd = new NivoSkijanjaDialog(this, rootPaneCheckingEnabled, null);
-        nsd.setVisible(true);
+        //NivoSkijanjaDialog nsd = new NivoSkijanjaDialog(this, rootPaneCheckingEnabled, null);
+       // nsd.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        try {
-            String name = jTextFieldName.getText();
-            if(name.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Unesite naziv");
+        /*try {
+            defaultBorders();
+            if(!validation())
                 return;
-            }
+            String name = jTextFieldName.getText();
+           
             NivoSkijanja ns = new NivoSkijanja();
             ns.setNazivNivoa(name);
-            List<NivoSkijanja> list = Controller.getInstance().vratiListuNivoSkijanja(ns);
+            List<NivoSkijanja> list = Communication.getInstance().vratiListuNivoSkijanja(ns);
             NivoSkijanjaTableModel nstm = new NivoSkijanjaTableModel(list);
             jTableNivoSkijanja.setModel(nstm);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja nivoa skijanja. \n"+ex.getMessage(),"Ucitavanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
 
-        }
+        }*/
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        jTextFieldName.setText("");
-        fillTable();
+        //jTextFieldName.setText("");
+       // defaultBorders();
+        //fillTable();
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     /**
@@ -262,14 +376,51 @@ public class NivoSkijanjaForm extends javax.swing.JFrame {
     private javax.swing.JTable jTableNivoSkijanja;
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
-
+    /*
     public void fillTable() {
         try {
-            List<NivoSkijanja> list = Controller.getInstance().vratiListuSviNivoSkijanja();
+            List<NivoSkijanja> list = Communication.getInstance().vratiListuSviNivoSkijanja();
             NivoSkijanjaTableModel nstm = new NivoSkijanjaTableModel(list);
             jTableNivoSkijanja.setModel(nstm);
         } catch (Exception ex) {
             Logger.getLogger(NivoSkijanjaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void defaultBorders() {
+        jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    }
+
+    private boolean validation() {
+        String name = jTextFieldName.getText();
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }else if(!name.matches("^[a-zA-Z ]+$")){
+            jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            JOptionPane.showMessageDialog(rootPane, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }*/
+
+    public void detailsActionListener(ActionListener actionListener) {
+        jButtonDetails.addActionListener(actionListener);
+    }
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void clearFilterActionListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void searchActionListener(ActionListener actionListener) {
+        jButtonSearch.addActionListener(actionListener);
     }
 }

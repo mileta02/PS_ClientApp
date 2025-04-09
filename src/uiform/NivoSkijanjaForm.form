@@ -200,6 +200,8 @@
         <Component class="javax.swing.JButton" name="jButtonAdd">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dodaj"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddActionPerformed"/>
@@ -208,6 +210,8 @@
         <Component class="javax.swing.JButton" name="jButtonDetails">
           <Properties>
             <Property name="text" type="java.lang.String" value="Detalji"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDetailsActionPerformed"/>
@@ -216,6 +220,8 @@
         <Component class="javax.swing.JButton" name="jButtonBack">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nazad"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackActionPerformed"/>

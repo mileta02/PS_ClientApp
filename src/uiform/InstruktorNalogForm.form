@@ -382,7 +382,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="136" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonDelete2" min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="jButtonDeleteLicence" min="-2" pref="106" max="-2" attributes="0"/>
                       <Component id="jButtonAdd" min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
@@ -394,7 +394,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -406,10 +406,10 @@
                       </Group>
                       <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jButtonAdd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonDelete2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonDeleteLicence" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -452,14 +452,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonDelete2">
+        <Component class="javax.swing.JButton" name="jButtonDeleteLicence">
           <Properties>
             <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDelete2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteLicenceActionPerformed"/>
           </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">

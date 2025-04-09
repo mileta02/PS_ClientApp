@@ -4,15 +4,25 @@
  */
 package uiform;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import model.Instruktor;
 import model.Licenca;
 import table_model.LicenceTableModel;
-import uicontroller.Controller;
+import communication.Communication;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import uidialog.LicencaDialog;
 
 /**
@@ -30,8 +40,144 @@ public class LicencaForm extends javax.swing.JFrame {
     public LicencaForm(Instruktor ulogovan) {
         this.ulogovan = ulogovan;
         initComponents();
-        fillTable();
         setLocationRelativeTo(null);
+        
+    }
+
+    public List<Licenca> getList() {
+        return list;
+    }
+
+    public void setList(List<Licenca> list) {
+        this.list = list;
+    }
+
+    public Instruktor getUlogovan() {
+        return ulogovan;
+    }
+
+    public void setUlogovan(Instruktor ulogovan) {
+        this.ulogovan = ulogovan;
+    }
+
+    public JButton getjButtonAddLicence() {
+        return jButtonAddLicence;
+    }
+
+    public void setjButtonAddLicence(JButton jButtonAddLicence) {
+        this.jButtonAddLicence = jButtonAddLicence;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonClearFilter() {
+        return jButtonClearFilter;
+    }
+
+    public void setjButtonClearFilter(JButton jButtonClearFilter) {
+        this.jButtonClearFilter = jButtonClearFilter;
+    }
+
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonFilter() {
+        return jButtonFilter;
+    }
+
+    public void setjButtonFilter(JButton jButtonFilter) {
+        this.jButtonFilter = jButtonFilter;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTableLicence() {
+        return jTableLicence;
+    }
+
+    public void setjTableLicence(JTable jTableLicence) {
+        this.jTableLicence = jTableLicence;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldZvanje() {
+        return jTextFieldZvanje;
+    }
+
+    public void setjTextFieldZvanje(JTextField jTextFieldZvanje) {
+        this.jTextFieldZvanje = jTextFieldZvanje;
     }
 
     /**
@@ -85,6 +231,10 @@ public class LicencaForm extends javax.swing.JFrame {
         jLabel4.setText("Naziv licence:");
 
         jLabel5.setText("Zvanje instruktora:");
+
+        jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTextFieldZvanje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButtonFilter.setText("Pretraži");
         jButtonFilter.setFocusPainted(false);
@@ -148,6 +298,8 @@ public class LicencaForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonAddLicence.setText("Dodaj");
+        jButtonAddLicence.setFocusPainted(false);
+        jButtonAddLicence.setFocusable(false);
         jButtonAddLicence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddLicenceActionPerformed(evt);
@@ -155,6 +307,8 @@ public class LicencaForm extends javax.swing.JFrame {
         });
 
         jButtonDetails.setText("Detalji");
+        jButtonDetails.setFocusPainted(false);
+        jButtonDetails.setFocusable(false);
         jButtonDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDetailsActionPerformed(evt);
@@ -162,6 +316,8 @@ public class LicencaForm extends javax.swing.JFrame {
         });
 
         jButtonBack.setText("Nazad");
+        jButtonBack.setFocusPainted(false);
+        jButtonBack.setFocusable(false);
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
@@ -222,7 +378,7 @@ public class LicencaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
-        
+        /*
         int row = jTableLicence.getSelectedRow();
         if(row==-1){
             JOptionPane.showMessageDialog(rootPane, "Izaberite licencu iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
@@ -231,44 +387,45 @@ public class LicencaForm extends javax.swing.JFrame {
         Licenca l = ltm.getList().get(row);
         
         LicencaDialog ld = new LicencaDialog(this, rootPaneCheckingEnabled, l);
-        fillTable();
+        fillTable();*/
     }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+       // this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddLicenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddLicenceActionPerformed
-        LicencaDialog ld = new LicencaDialog(this, rootPaneCheckingEnabled, null);
-        fillTable();
+       // LicencaDialog ld = new LicencaDialog(this, rootPaneCheckingEnabled, null);
+       // fillTable();
     }//GEN-LAST:event_jButtonAddLicenceActionPerformed
 
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
-        try {
+        /*try {
+            defaultBorders();
+            if(!validation())
+                return;
+            
             String name = jTextFieldName.getText();
             String zvanje = jTextFieldZvanje.getText();
-            if(name.isEmpty() && zvanje.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Unesite kriterijum pretrage.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-
             Licenca l = new Licenca();
             l.setNazivLicence(name);
             l.setZvanjeInstruktora(zvanje);
-            List<Licenca> list = Controller.getInstance().vratiListuLicenca(l);
+            
+            List<Licenca> list = Communication.getInstance().vratiListuLicenca(l);
             LicenceTableModel ltm = new LicenceTableModel(list);
             jTableLicence.setModel(ltm);
-            System.out.println(list);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
         }
-
+        */
     }//GEN-LAST:event_jButtonFilterActionPerformed
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        jTextFieldName.setText("");
+        /*jTextFieldName.setText("");
         jTextFieldZvanje.setText("");
-        fillTable();
+        defaultBorders();
+        fillTable();*/
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     /**
@@ -293,15 +450,65 @@ public class LicencaForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldZvanje;
     // End of variables declaration//GEN-END:variables
-
+/*
     private void fillTable() {
         try {
-            list = Controller.getInstance().vratiListuSviLicenca();
+            list = Communication.getInstance().vratiListuSviLicenca();
             LicenceTableModel ltm = new LicenceTableModel(list);
             jTableLicence.setModel(ltm);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR_MESSAGE);
             
         }
+    }
+    
+    public void defaultBorders() {
+        jTextFieldName.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        jTextFieldZvanje.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));    
+    }
+
+    private boolean validation() {
+        boolean valid = true;
+        String name = jTextFieldName.getText();
+        String zvanje = jTextFieldZvanje.getText();
+        if(name.isEmpty() && zvanje.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+            
+        if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
+            jTextFieldName.setBorder(new LineBorder(Color.red,2));
+            valid = false;
+        }
+        if(!zvanje.isEmpty() && !zvanje.matches("^[a-zA-Z ]+$")){
+            jTextFieldZvanje.setBorder(new LineBorder(Color.red,2));
+            valid = false;
+        }
+        if(!valid){
+            JOptionPane.showMessageDialog(rootPane, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return valid;
+    }
+*/
+
+    public void searchActionListener(ActionListener actionListener) {
+        jButtonFilter.addActionListener(actionListener);
+    }
+
+    public void clearFilterActionListener(ActionListener actionListener) {
+        jButtonClearFilter.addActionListener(actionListener);
+    }
+
+    public void detailsActionListener(ActionListener actionListener) {
+        jButtonDetails.addActionListener(actionListener);
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAddLicence.addActionListener(actionListener);
+    }
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
     }
 }

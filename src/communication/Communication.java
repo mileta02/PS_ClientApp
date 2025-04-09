@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package uicontroller;
+package communication;
 
 import communication.Operation;
 import communication.Receiver;
@@ -27,21 +27,21 @@ import model.TipTermina;
  *
  * @author milan
  */
-public class Controller {
-    private static Controller instance;
+public class Communication {
+    private static Communication instance;
     private Sender sender;
     private Receiver receiver;
     private Socket socket;
     
-    private Controller() throws IOException{
+    private Communication() throws IOException{
         socket = new Socket("localhost",9000);
         sender = new Sender(socket);
         receiver = new Receiver(socket);
     }
 
-    public static Controller getInstance() throws IOException {
+    public static Communication getInstance() throws IOException {
         if(instance==null)
-            instance = new Controller();
+            instance = new Communication();
         return instance;
     }
 
@@ -58,13 +58,13 @@ public class Controller {
             throw response.getException();
     }
 
-    public Instruktor kreirajInstruktor(Instruktor i) throws Exception {
+    public boolean kreirajInstruktor(Instruktor i) throws Exception {
         Request request = new Request(Operation.KREIRAJ_INSTRUKTOR, i);
         sender.send(request);
         
         Response response = (Response) receiver.receive();
         if(response.getException()==null){
-            return (Instruktor) response.getResult();
+            return (boolean) response.getResult();
         }
         throw response.getException();
         

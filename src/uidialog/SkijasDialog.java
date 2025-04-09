@@ -11,7 +11,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.NivoSkijanja;
 import model.Skijas;
-import uicontroller.Controller;
+import communication.Communication;
+import formController.SkijasFormController;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import uiform.SkijasForm;
 
 /**
@@ -25,14 +32,24 @@ public class SkijasDialog extends javax.swing.JDialog {
      */
     private Skijas s;
     private SkijasForm parent;
-    public SkijasDialog(java.awt.Frame parent, boolean modal, Skijas s) {
+    private SkijasFormController controller;
+    public SkijasDialog(java.awt.Frame parent, boolean modal, Skijas s, SkijasFormController controller) {
         super(parent, modal);
         initComponents();
-        fillComboBox();
         this.s=s;
-        this.parent=(SkijasForm) parent;
-        fillFields();
-        setLocationRelativeTo(null);
+        this.parent=(SkijasForm) parent;   
+        this.controller = controller;
+        //fillComboBox();
+        //fillFields();
+        //setLocationRelativeTo(null);
+    }
+
+    public SkijasFormController getController() {
+        return controller;
+    }
+
+    public void setController(SkijasFormController controller) {
+        this.controller = controller;
     }
 
     /**
@@ -65,7 +82,7 @@ public class SkijasDialog extends javax.swing.JDialog {
         jButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Skijas");
+        setTitle("Podešavanja skijaša");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -192,8 +209,176 @@ public class SkijasDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Skijas getS() {
+        return s;
+    }
+
+    public void setS(Skijas s) {
+        this.s = s;
+    }
+
+    public SkijasForm getParent() {
+        return parent;
+    }
+
+    public void setParent(SkijasForm parent) {
+        this.parent = parent;
+    }
+
+    public JButton getjButtonAdd() {
+        return jButtonAdd;
+    }
+
+    public void setjButtonAdd(JButton jButtonAdd) {
+        this.jButtonAdd = jButtonAdd;
+    }
+
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonChange() {
+        return jButtonChange;
+    }
+
+    public void setjButtonChange(JButton jButtonChange) {
+        this.jButtonChange = jButtonChange;
+    }
+
+    public JButton getjButtonDelete() {
+        return jButtonDelete;
+    }
+
+    public void setjButtonDelete(JButton jButtonDelete) {
+        this.jButtonDelete = jButtonDelete;
+    }
+
+    public JButton getjButtonSave() {
+        return jButtonSave;
+    }
+
+    public void setjButtonSave(JButton jButtonSave) {
+        this.jButtonSave = jButtonSave;
+    }
+
+    public JComboBox<NivoSkijanja> getjComboBoxNivo() {
+        return jComboBoxNivo;
+    }
+
+    public void setjComboBoxNivo(JComboBox<NivoSkijanja> jComboBoxNivo) {
+        this.jComboBoxNivo = jComboBoxNivo;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabelName() {
+        return jLabelName;
+    }
+
+    public void setjLabelName(JLabel jLabelName) {
+        this.jLabelName = jLabelName;
+    }
+
+    public JLabel getjLabelNivo() {
+        return jLabelNivo;
+    }
+
+    public void setjLabelNivo(JLabel jLabelNivo) {
+        this.jLabelNivo = jLabelNivo;
+    }
+
+    public JLabel getjLabelNum() {
+        return jLabelNum;
+    }
+
+    public void setjLabelNum(JLabel jLabelNum) {
+        this.jLabelNum = jLabelNum;
+    }
+
+    public JLabel getjLabelSurname() {
+        return jLabelSurname;
+    }
+
+    public void setjLabelSurname(JLabel jLabelSurname) {
+        this.jLabelSurname = jLabelSurname;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JTextField getjTextFieldName() {
+        return jTextFieldName;
+    }
+
+    public void setjTextFieldName(JTextField jTextFieldName) {
+        this.jTextFieldName = jTextFieldName;
+    }
+
+    public JTextField getjTextFieldPhoneNum() {
+        return jTextFieldPhoneNum;
+    }
+
+    public void setjTextFieldPhoneNum(JTextField jTextFieldPhoneNum) {
+        this.jTextFieldPhoneNum = jTextFieldPhoneNum;
+    }
+
+    public JTextField getjTextFieldSurname() {
+        return jTextFieldSurname;
+    }
+
+    public void setjTextFieldSurname(JTextField jTextFieldSurname) {
+        this.jTextFieldSurname = jTextFieldSurname;
+    }
+
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        try {
+        /*try {
             
             String name = jTextFieldName.getText();
             String surname = jTextFieldSurname.getText();
@@ -208,23 +393,28 @@ public class SkijasDialog extends javax.swing.JDialog {
             
             if(name.isEmpty()){
                 validate=false;
-                jLabelName.setText("Unesite ime.");
+                jLabelName.setText("Unesite ime");
+            }else if(!name.matches("^[a-zA-Z ]+$")){
+                validate=false;
+                jLabelName.setText("Ime mora sadržati slova");
             }
             if(surname.isEmpty()){
                 validate=false;
-                jLabelSurname.setText("Unesite prezime.");
+                jLabelSurname.setText("Unesite prezime");
+            }else if(!surname.matches("^[a-zA-Z ]+$")){
+                validate=false;
+                jLabelSurname.setText("Prezime mora sadržati slova");
             }
             if(num.isEmpty()){
                 validate=false;
-                jLabelNum.setText("Unesite broj.");
-            }
-            else if (!num.matches("\\+?[0-9]{9,15}")) {
-            jLabelNum.setText("Broj mora imati 9-15 cifara!");
+                jLabelNum.setText("Unesite broj");
+            }else if (!num.matches("\\+?[0-9]{9,15}")) {
+                jLabelNum.setText("Broj mora sadržati 9-15 cifara");
                 validate = false;
             }
             if(ns==null){
                 validate=false;
-                jLabelNivo.setText("Unesite nivo skijanja.");
+                jLabelNivo.setText("Unesite nivo skijanja");
             }
             
             if(!validate){
@@ -234,72 +424,109 @@ public class SkijasDialog extends javax.swing.JDialog {
             
             
             Skijas s = new Skijas(0, name, surname, num, ns);
-            boolean b = Controller.getInstance().kreirajSkijas(s);
+            boolean b = Communication.getInstance().kreirajSkijas(s);
             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Skijaš uspešno kreiran.\n","Kreiranje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Uspešno kreiranje Skijaš.\n","Kreiranje skijaša",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 parent.fillTable(null);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom kreiranja skijaša.\n"+ex.getMessage(),"Kreiranje skijaša",JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        jButtonChange.setVisible(false);
+        /*jButtonChange.setVisible(false);
         jButtonSave.setVisible(true);
         jButtonDelete.setVisible(false);
         jTextFieldName.setEnabled(true);
         jTextFieldPhoneNum.setEnabled(true);
         jTextFieldSurname.setEnabled(true);
-        jComboBoxNivo.setEnabled(true);
+        jComboBoxNivo.setEnabled(true);*/
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        try {
+        /*try {
             String name = jTextFieldName.getText();
             String surname = jTextFieldSurname.getText();
             String num = jTextFieldPhoneNum.getText();
             NivoSkijanja ns = (NivoSkijanja) jComboBoxNivo.getSelectedItem();
             Skijas sk = new Skijas(s.getIdSkijas(), name, surname, num, ns);
             
-            if(name.equals(s.getIme()) && surname.equals(s.getPrezime()) && num.equals(s.getBrojTelefona()) && ns==null){
-                JOptionPane.showMessageDialog(rootPane, "Niste izmenili podatke.\n","Izmena podataka.",JOptionPane.INFORMATION_MESSAGE);
+             boolean validate = true;
+            jLabelName.setText("");
+            jLabelSurname.setText("");
+            jLabelNum.setText("");
+            jLabelNivo.setText("");
+            
+            if(name.isEmpty()){
+                validate=false;
+                jLabelName.setText("Unesite ime");
+            }else if(!name.matches("^[a-zA-Z ]+$")){
+                validate=false;
+                jLabelName.setText("Ime mora sadržati slova");
+            }
+            if(surname.isEmpty()){
+                validate=false;
+                jLabelSurname.setText("Unesite prezime");
+            }else if(!surname.matches("^[a-zA-Z ]+$")){
+                validate=false;
+                jLabelSurname.setText("Prezime mora sadržati slova");
+            }
+            if(num.isEmpty()){
+                validate=false;
+                jLabelNum.setText("Unesite broj");
+            }else if (!num.matches("\\+?[0-9]{9,15}")) {
+                jLabelNum.setText("Broj mora sadržati 9-15 cifara");
+                validate = false;
+            }
+            if(ns==null){
+                validate=false;
+                jLabelNivo.setText("Unesite nivo skijanja");
+            }
+            
+            if(!validate){
                 return;
             }
-            System.out.println(sk);
-            boolean b = Controller.getInstance().promeniSkijas(sk);
+            
+            
+            if(name.equals(s.getIme()) && surname.equals(s.getPrezime()) && num.equals(s.getBrojTelefona()) && ns.getIdNivoSkijanja()==s.getNivoSkijanja().getIdNivoSkijanja()){
+                JOptionPane.showMessageDialog(rootPane, "Niste izmenili podatke.\n","Ažuriranje skijaša.",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            boolean b = Communication.getInstance().promeniSkijas(sk);
             if(b){
-                JOptionPane.showMessageDialog(rootPane, "Skijaš uspešno izmenjen.\n","Izmena podataka.",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Uspešno ažuriran skijaš.\n","Ažuriranje skijaša",JOptionPane.INFORMATION_MESSAGE);
                 parent.fillTable(null);
+                this.dispose();
                 return;
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greska prilikom izmene skijaša.\n"+ex.getMessage(),"Izmena podataka",JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(rootPane, "Greska prilikom ažuriranja skijaša.\n"+ex.getMessage(),"Ažuriranje skijaša",JOptionPane.ERROR_MESSAGE);
+        }*/
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         
-        int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete skijaša?","Brisanje skijaša",JOptionPane.YES_NO_OPTION);
+        /*int i =JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da želite da obrišete skijaša?","Brisanje skijaša",JOptionPane.YES_NO_OPTION);
         
         if(i == JOptionPane.YES_OPTION){
             try {
 
-                boolean b = Controller.getInstance().obrisiSkijas(s);
+                boolean b = Communication.getInstance().obrisiSkijas(s);
                 if(b){
-                    JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan skijaša.","Uspešno brisanje",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Uspešno obrisan skijaš.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
                     parent.fillTable(null);
                     this.dispose();
                     }
             } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja skijaša.","Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Greška prilikom brisanja skijaša.","Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
             }
-        }
+        }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jTextFieldPhoneNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNumActionPerformed
@@ -332,14 +559,19 @@ public class SkijasDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldPhoneNum;
     private javax.swing.JTextField jTextFieldSurname;
     // End of variables declaration//GEN-END:variables
-
+/*
     private void fillComboBox() {
         List<NivoSkijanja> list;
         try {
-            list = Controller.getInstance().vratiListuSviNivoSkijanja();
-            for(NivoSkijanja ns : list)
+            list = Communication.getInstance().vratiListuSviNivoSkijanja();
+            for(NivoSkijanja ns : list){
                 jComboBoxNivo.addItem(ns);
-            jComboBoxNivo.setSelectedItem(null);
+                if(s==null)
+                    jComboBoxNivo.setSelectedItem(null);
+                else if(ns.getIdNivoSkijanja()==s.getNivoSkijanja().getIdNivoSkijanja())
+                    jComboBoxNivo.setSelectedItem(ns);
+            }
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
         }
@@ -364,6 +596,26 @@ public class SkijasDialog extends javax.swing.JDialog {
             jTextFieldSurname.setEnabled(false);
             jComboBoxNivo.setEnabled(false);
         }
+    }*/
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonAdd.addActionListener(actionListener);
+    }
+
+    public void backActionListener(ActionListener actionListener) {
+        jButtonBack.addActionListener(actionListener);
+    }
+
+    public void deleteActionListener(ActionListener actionListener) {
+        jButtonDelete.addActionListener(actionListener);
+    }
+
+    public void saveActionListener(ActionListener actionListener) {
+        jButtonSave.addActionListener(actionListener);
+    }
+
+    public void changeActionListener(ActionListener actionListener) {
+        jButtonChange.addActionListener(actionListener);
     }
 
 }
