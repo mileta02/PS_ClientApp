@@ -35,42 +35,54 @@ public class SkijasFormController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String name = sf.getjTextFieldName().getText();
-                    String surname = sf.getjTextFieldSurname().getText();
+                    defaultBorders();
+                    String name = sf.getjTextFieldName().getText().trim();
+                    String surname = sf.getjTextFieldSurname().getText().trim();
                     NivoSkijanja ns = (NivoSkijanja) sf.getjComboNivo().getSelectedItem();
-                    sf.getjTextFieldName().setBorder(new LineBorder(Color.black,1));
-                    sf.getjTextFieldSurname().setBorder(new LineBorder(Color.black,1));
-
-                    if(name.isEmpty() && surname.isEmpty() && ns==null){
-                        JOptionPane.showMessageDialog(sf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
-                        return;
-                    }
-
-                    boolean valid = true;
-
-                    if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
-                        valid = false;
-                        sf.getjTextFieldName().setBorder(new LineBorder(Color.red,2));
-                    }
-                    if(!surname.isEmpty() && !surname.matches("^[a-zA-Z ]+$")){
-                        valid = false;
-                        sf.getjTextFieldSurname().setBorder(new LineBorder(Color.red,2));
-                    }
-                    if(!valid){
-                        JOptionPane.showMessageDialog(sf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-
                     Skijas s = new Skijas();
                     s.setIme(name);
                     s.setPrezime(surname);
                     s.setNivoSkijanja(ns);
+                    
+                    if(!validation(s))
+                        return;
+                    
                     List<Skijas> list = Communication.getInstance().vratiListuSkijas(s);
+                     if(list.isEmpty()){
+                        JOptionPane.showMessageDialog(sf, "Sistem ne može da nadje skijaše po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(sf, "Sistem je našao skijaše po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
+
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(sf, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
                 }
             }
+
+            private boolean validation(Skijas s) {
+                boolean valid = true;
+                if(s.getIme().isBlank()&& s.getPrezime().isBlank() && s.getNivoSkijanja()==null){
+                    JOptionPane.showMessageDialog(sf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    return false;
+                }
+
+                if(!s.getIme().isBlank() && !s.getIme().matches("^[a-zA-Z ]+$")){
+                    valid = false;
+                    sf.getjTextFieldName().setBorder(new LineBorder(Color.red,2));
+                }
+                if(!s.getPrezime().isBlank() && !s.getPrezime().matches("^[a-zA-Z ]+$")){
+                    valid = false;
+                    sf.getjTextFieldSurname().setBorder(new LineBorder(Color.red,2));
+                }
+                if(!valid){
+                    JOptionPane.showMessageDialog(sf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+                return valid;
+            }
+
+            
         });
         
         sf.clearFilterActionsListener(new ActionListener() {
@@ -78,9 +90,8 @@ public class SkijasFormController {
             public void actionPerformed(ActionEvent e) {
                 sf.getjTextFieldName().setText("");
                 sf.getjTextFieldSurname().setText("");
-                sf.getjTextFieldName().setBorder(new LineBorder(Color.black,1));
-                sf.getjTextFieldSurname().setBorder(new LineBorder(Color.black,1));
                 sf.getjComboNivo().setSelectedIndex(-1);
+                defaultBorders();
                 fillTable(null);
             }
         });
@@ -142,5 +153,10 @@ public class SkijasFormController {
             JOptionPane.showMessageDialog(sf, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    private void defaultBorders() {
+        sf.getjTextFieldName().setBorder(new LineBorder(Color.black,1));
+        sf.getjTextFieldSurname().setBorder(new LineBorder(Color.black,1));
     }
 }

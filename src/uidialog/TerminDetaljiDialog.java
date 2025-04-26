@@ -90,6 +90,11 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         jButtonChange = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
+        jLabelDate = new javax.swing.JLabel();
+        jLabelVremeOd = new javax.swing.JLabel();
+        jLabelVremeDo = new javax.swing.JLabel();
+        jLabelTip = new javax.swing.JLabel();
+        jLabelNum = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonBack = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -105,30 +110,46 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Datum:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 80, 25));
 
         jLabel3.setText("Vreme do:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 80, 25));
 
         jLabel4.setText("Vreme od:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 80, 25));
 
         jLabel5.setText("Tip termina:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 80, 25));
 
         jLabel6.setText("Broj skijaša:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 80, 25));
+        jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 170, 25));
 
         SpinnerDateModel modelOd = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeOd.setModel(modelOd);
         JSpinner.DateEditor editorOd = new JSpinner.DateEditor(jSpinnerVremeOd, "HH:mm");
         jSpinnerVremeOd.setEditor(editorOd);
+        jPanel1.add(jSpinnerVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 170, 25));
 
         SpinnerDateModel modelDo = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeDo.setModel(modelDo);
         JSpinner.DateEditor editorDo = new JSpinner.DateEditor(jSpinnerVremeDo, "HH:mm");
         jSpinnerVremeDo.setEditor(editorDo);
+        jPanel1.add(jSpinnerVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 170, 25));
+
+        jPanel1.add(jComboBoxTipTermina, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 25));
+        jPanel1.add(jSpinnerBrojSkijasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 170, 25));
 
         jLabel7.setText("Podaci o terminu");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 20, 145, 25));
 
         jLabel8.setText("Instruktor:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 25));
+
+        jPanel1.add(jComboBoxInstruktor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 170, 25));
 
         jButtonChange.setText("Izmeni");
         jButtonChange.setFocusPainted(false);
@@ -138,8 +159,9 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 jButtonChangeActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 95, -1));
 
-        jButtonSave.setText("Sacuvaj");
+        jButtonSave.setText("Sačuvaj");
         jButtonSave.setFocusPainted(false);
         jButtonSave.setFocusable(false);
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +169,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 jButtonSaveActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 95, -1));
 
         jButtonDelete.setText("Obriši");
         jButtonDelete.setFocusPainted(false);
@@ -156,86 +179,27 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 jButtonDeleteActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 95, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerVremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerVremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxTipTermina, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerBrojSkijasa))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonChange, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerVremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerVremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTipTermina, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerBrojSkijasa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonChange)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDelete)
-                .addContainerGap())
-        );
+        jLabelDate.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelDate.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 125, 170, -1));
+
+        jLabelVremeOd.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelVremeOd.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 165, 170, -1));
+
+        jLabelVremeDo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelVremeDo.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 205, 70, -1));
+
+        jLabelTip.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelTip.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 245, 170, -1));
+
+        jLabelNum.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNum.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 285, 170, 20));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -253,7 +217,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(423, Short.MAX_VALUE)
                 .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(403, 403, 403))
         );
@@ -307,11 +271,11 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                            .addComponent(jComboBoxSkijas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSkijas, 0, 145, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAddSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -342,8 +306,8 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
@@ -362,6 +326,46 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getjLabelDate() {
+        return jLabelDate;
+    }
+
+    public void setjLabelDate(JLabel jLabelDate) {
+        this.jLabelDate = jLabelDate;
+    }
+
+    public JLabel getjLabelNum() {
+        return jLabelNum;
+    }
+
+    public void setjLabelNum(JLabel jLabelNum) {
+        this.jLabelNum = jLabelNum;
+    }
+
+    public JLabel getjLabelTip() {
+        return jLabelTip;
+    }
+
+    public void setjLabelTip(JLabel jLabelTip) {
+        this.jLabelTip = jLabelTip;
+    }
+
+    public JLabel getjLabelVremeDo() {
+        return jLabelVremeDo;
+    }
+
+    public void setjLabelVremeDo(JLabel jLabelVremeDo) {
+        this.jLabelVremeDo = jLabelVremeDo;
+    }
+
+    public JLabel getjLabelVremeOd() {
+        return jLabelVremeOd;
+    }
+
+    public void setjLabelVremeOd(JLabel jLabelVremeOd) {
+        this.jLabelVremeOd = jLabelVremeOd;
+    }
+    
     public Termin getT() {
         return t;
     }
@@ -760,6 +764,11 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelNum;
+    private javax.swing.JLabel jLabelTip;
+    private javax.swing.JLabel jLabelVremeDo;
+    private javax.swing.JLabel jLabelVremeOd;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

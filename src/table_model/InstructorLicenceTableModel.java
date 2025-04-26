@@ -15,7 +15,7 @@ import model.Licenca;
  */
 public class InstructorLicenceTableModel extends AbstractTableModel {
     
-    private String[] columns={"Naziv licence","Zvanje instruktora","Datum sticanja"};
+    private String[] columns={"Naziv licence","Zvanje instruktora","Godina sticanja"};
     private List<InstruktorLicenca> list;
 
     public List<InstruktorLicenca> getList() {
@@ -47,7 +47,7 @@ public class InstructorLicenceTableModel extends AbstractTableModel {
             case 1:
                 return l.getLicenca().getZvanjeInstruktora();
             case 2:
-                return l.getDatumSticanja();
+                return l.getGodinaSticanja();
             default: 
                 return "";
         }

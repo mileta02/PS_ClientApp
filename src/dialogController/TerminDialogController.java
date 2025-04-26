@@ -41,18 +41,10 @@ public class TerminDialogController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-            
+                    if(!validation())
+                        return;
                     Date utilDate = td.getjDateChooser().getDate();
-                    LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-                    if (date == null) {
-                        JOptionPane.showMessageDialog(td, "Molimo izaberite datum!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }   
-                    if (date.isBefore(LocalDate.now())) {
-                        JOptionPane.showMessageDialog(td, "Ne možete zakazati termin u prošlosti!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
+                    LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                     Date vremeOdDate = (Date) td.getjSpinnerVremeOd().getValue();
                     LocalTime vremeOd = vremeOdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
@@ -60,30 +52,10 @@ public class TerminDialogController {
                     Date vremeDoDate = (Date) td.getjSpinnerVremeDo().getValue();
                     LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 
-                    if (vremeDo.isBefore(vremeOd)) {
-                        JOptionPane.showMessageDialog(td, "Vreme završetka ne može biti pre početka!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    System.out.println("Vreme od: " + vremeOd);
-                    System.out.println("Vreme do: " + vremeDo);
-
                     int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
-                    System.out.println("Broj sati: " + brojSati);
-
                     int maxBrojSkijasa = (int) td.getjSpinnerBrojSkijasa().getValue();
 
-                    if (maxBrojSkijasa<=0) {
-                        JOptionPane.showMessageDialog(td, "Broj skijaša mora biti veći od 0!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
                     TipTermina tip = (TipTermina) td.getjComboBoxTipTermina().getSelectedItem();
-                    if(tip==null){
-                        JOptionPane.showMessageDialog(td, "Izaberite tip termina!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
 
                     Termin t = new Termin();
                     t.setBrojSati(brojSati);
@@ -96,15 +68,60 @@ public class TerminDialogController {
 
                     boolean b = Communication.getInstance().kreirajTermin(t);
                     if(b){
-                        JOptionPane.showMessageDialog(td, "Termin uspešno kreiran!","Kreiranje termina",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(td, "Sistem je kreirao termin","Kreiranje termina",JOptionPane.INFORMATION_MESSAGE);
                         td.dispose();
                         td.getController().fillTable(null);
                     }
 
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(td, "Termin nije kreiran!"+ex.getMessage(),"Kreiranje termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(td, ex.getMessage(),"Kreiranje termina",JOptionPane.ERROR_MESSAGE);
                 }
+            }
+
+            private boolean validation() {
+                td.getjLabelDate().setText("");                
+                td.getjLabelTip().setText("");
+                td.getjLabelVremeDo().setText("");
+                td.getjLabelVremeOd().setText("");
+                td.getjLabelBroj().setText("");
+
+                Date utilDate = td.getjDateChooser().getDate();
+                LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                boolean valid = true;
+                if (date == null) {
+                    valid = false;
+                    td.getjLabelDate().setText("Unesite datum");
+                }else if (date.isBefore(LocalDate.now())) {
+                    valid = false;
+                    td.getjLabelDate().setText("Datum se mora odnositi na budućnost");
+                }
+                
+                Date vremeOdDate = (Date) td.getjSpinnerVremeOd().getValue();
+                LocalTime vremeOd = vremeOdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
+                Date vremeDoDate = (Date) td.getjSpinnerVremeDo().getValue();
+                LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+                
+                if (vremeDo.isBefore(vremeOd)) {
+                    valid = false;
+                    td.getjLabelVremeDo().setText("Vreme do mora biti nakon vremena od");
+                }
+
+                int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
+                int maxBrojSkijasa = (int) td.getjSpinnerBrojSkijasa().getValue();
+
+                if (maxBrojSkijasa<=0) {
+                    td.getjLabelBroj().setText("Broj skijaša mora biti veći od 0");
+                    valid = false;
+                }
+
+                TipTermina tip = (TipTermina) td.getjComboBoxTipTermina().getSelectedItem();
+                if(tip==null){
+                    valid = false;
+                    td.getjLabelTip().setText("Unesite tip termina");
+                }
+                return valid;
             }
         });
         td.backActionListener(new ActionListener() {

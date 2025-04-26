@@ -14,6 +14,8 @@ import model.Instruktor;
 import communication.Communication;
 import cordinator.Cordinator;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -31,6 +33,70 @@ public class LoginForm extends javax.swing.JFrame {
         setTitle("Login"); 
         setLocationRelativeTo(null); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+    }
+
+    public JButton getjButtonRegister() {
+        return jButtonRegister;
+    }
+
+    public void setjButtonRegister(JButton jButtonRegister) {
+        this.jButtonRegister = jButtonRegister;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabePassword() {
+        return jLabelPassword;
+    }
+
+    public void setjLabelPassword(JLabel jLabel4) {
+        this.jLabelPassword = jLabel4;
+    }
+
+    public JLabel getjLabelUsername() {
+        return jLabelUsername;
+    }
+
+    public void setjLabelUsername(JLabel jLabel5) {
+        this.jLabelUsername = jLabel5;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
     }
 
     public JButton getjButtonExit() {
@@ -86,9 +152,9 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldKorisnickoIme = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelUsername = new javax.swing.JLabel();
         jPasswordFieldSifra = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
         jButtonExit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -119,11 +185,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
         jPanel1.add(jTextFieldKorisnickoIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 150, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, 20));
+        jLabelUsername.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, 20));
 
-        jPasswordFieldSifra.setText("admin02");
+        jPasswordFieldSifra.setText("admin0202");
         jPasswordFieldSifra.setBorder(null);
         jPasswordFieldSifra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,9 +198,9 @@ public class LoginForm extends javax.swing.JFrame {
         });
         jPanel1.add(jPasswordFieldSifra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 150, 20));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 200, 20));
+        jLabelPassword.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPassword.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 200, 20));
 
         jButtonLogin.setText("Uloguj se");
         jButtonLogin.setFocusPainted(false);
@@ -274,8 +340,8 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelUsername;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSifra;

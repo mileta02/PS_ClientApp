@@ -40,12 +40,12 @@ public class NivoSkijanjaDialogController {
                     ns.setNazivNivoa(nsd.getjTextFieldName().getText());
                     boolean b = Communication.getInstance().kreirajNivoSkijanja(ns);
                     if(b){
-                        JOptionPane.showMessageDialog(nsd, "Uspešno kreiran nivo skijanja.","Kreiranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(nsd, "Sistem je kreirao nivo skijanja.","Kreiranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                         nsd.getController().fillTable(null);
                         nsd.dispose();
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, "Greška prilikom kreiranja nivoa skijanja. \n"+ex.getMessage(),"Kreiranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Kreiranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -70,12 +70,12 @@ public class NivoSkijanjaDialogController {
                     nsd.getNs().setNazivNivoa(nsd.getjTextFieldName().getText());
                     boolean b = Communication.getInstance().promeniNivoSkijanja(nsd.getNs());
                     if(b){
-                        JOptionPane.showMessageDialog(nsd, "Uspešno ažuriran nivo skijanja.","Ažuriranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(nsd, "Sistem je zapamtio nivo skijanja.","Ažuriranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                         nsd.getController().fillTable(null);
                         nsd.dispose();
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, "Greška prilikom ažuriranja nivoa skijanja. \n"+ex.getMessage(),"Ažuriranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Ažuriranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -88,12 +88,12 @@ public class NivoSkijanjaDialogController {
                     try {
                         boolean b = Communication.getInstance().obrisiNivoSkijanja(nsd.getNs());
                         if(b){
-                            JOptionPane.showMessageDialog(nsd, "Uspešno obrisan nivo skijanja.","Brisanje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(nsd, "Sistem je obrisao nivo skijanja.","Brisanje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
                             nsd.getController().fillTable(null);
                             nsd.dispose();
                         }
                     } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, "Greška prilikom brisanja nivoa skijanja."+ex.getMessage(),"Brisanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Brisanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

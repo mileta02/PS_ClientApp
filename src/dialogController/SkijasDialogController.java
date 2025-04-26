@@ -49,12 +49,12 @@ public class SkijasDialogController {
                     }
                     boolean b = Communication.getInstance().kreirajSkijas(s);
                     if(b){
-                        JOptionPane.showMessageDialog(sd, "Uspešno kreiranje Skijaš.\n","Kreiranje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, "Sistem je kreirao skijaša.\n","Kreiranje skijaša",JOptionPane.INFORMATION_MESSAGE);
                         sd.dispose();
                         sd.getController().fillTable(null);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, "Greska prilikom kreiranja skijaša.\n"+ex.getMessage(),"Kreiranje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(sd, ex.getMessage(),"Kreiranje skijaša",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -93,13 +93,13 @@ public class SkijasDialogController {
                     }
                     boolean b = Communication.getInstance().promeniSkijas(sk);
                     if(b){
-                        JOptionPane.showMessageDialog(sd, "Uspešno ažuriran skijaš.\n","Ažuriranje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, "Sistem je zapamtio skijaša.\n","Ažuriranje skijaša",JOptionPane.INFORMATION_MESSAGE);
                         sd.getController().fillTable(null);
                         sd.dispose();
                         return;
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, "Greska prilikom ažuriranja skijaša.\n"+ex.getMessage(),"Ažuriranje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(sd, ex.getMessage(),"Ažuriranje skijaša",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -114,12 +114,12 @@ public class SkijasDialogController {
 
                         boolean b = Communication.getInstance().obrisiSkijas(sd.getS());
                         if(b){
-                            JOptionPane.showMessageDialog(sd, "Uspešno obrisan skijaš.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(sd, "Sistem je obrisao skijaša.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
                             sd.getController().fillTable(null);
                             sd.dispose();
                             }
                     } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, "Greška prilikom brisanja skijaša.","Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -171,37 +171,37 @@ public class SkijasDialogController {
     }
     
     private boolean validation(Skijas sk) {
-                boolean validate = true;
-                    sd.getjLabelName().setText("");
-                    sd.getjLabelSurname().setText("");
-                    sd.getjLabelNum().setText("");
-                    sd.getjLabelNivo().setText("");
+        boolean validate = true;
+        sd.getjLabelName().setText("");
+        sd.getjLabelSurname().setText("");
+        sd.getjLabelNum().setText("");
+        sd.getjLabelNivo().setText("");
 
-                    if(sk.getIme().isEmpty()){
-                        validate=false;
-                        sd.getjLabelName().setText("Unesite ime");
-                    }else if(!sk.getIme().matches("^[a-zA-Z ]+$")){
-                        validate=false;
-                        sd.getjLabelName().setText("Ime mora sadržati slova");
-                    }
-                    if(sk.getPrezime().isEmpty()){
-                        validate=false;
-                        sd.getjLabelSurname().setText("Unesite prezime");
-                    }else if(!sk.getPrezime().matches("^[a-zA-Z ]+$")){
-                        validate=false;
-                        sd.getjLabelSurname().setText("Prezime mora sadržati slova");
-                    }
-                    if(sk.getBrojTelefona().isEmpty()){
-                        validate=false;
-                        sd.getjLabelNum().setText("Unesite broj");
-                    }else if (!sk.getBrojTelefona().matches("\\+?[0-9]{9,15}")) {
-                        sd.getjLabelNum().setText("Broj mora sadržati 9-15 cifara");
-                        validate = false;
-                    }
-                    if(sk.getNivoSkijanja()==null){
-                        validate=false;
-                        sd.getjLabelNivo().setText("Unesite nivo skijanja");
-                    }
-                    return validate;
-            }
+        if(sk.getIme().isEmpty()){
+            validate=false;
+            sd.getjLabelName().setText("Unesite ime");
+        }else if(!sk.getIme().matches("^[a-zA-Z ]+$")){
+            validate=false;
+            sd.getjLabelName().setText("Ime mora sadržati slova");
+        }
+        if(sk.getPrezime().isEmpty()){
+            validate=false;
+            sd.getjLabelSurname().setText("Unesite prezime");
+        }else if(!sk.getPrezime().matches("^[a-zA-Z ]+$")){
+            validate=false;
+            sd.getjLabelSurname().setText("Prezime mora sadržati slova");
+        }
+        if(sk.getBrojTelefona().isEmpty()){
+            validate=false;
+            sd.getjLabelNum().setText("Unesite broj");
+        }else if (!sk.getBrojTelefona().matches("\\+?[0-9]{9,15}")) {
+            sd.getjLabelNum().setText("Broj mora sadržati 9-15 cifara");
+            validate = false;
+        }
+        if(sk.getNivoSkijanja()==null){
+            validate=false;
+            sd.getjLabelNivo().setText("Unesite nivo skijanja");
+        }
+        return validate;
+    }
 }

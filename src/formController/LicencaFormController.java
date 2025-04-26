@@ -34,20 +34,26 @@ public class LicencaFormController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     defaultBorders();
-                    if(!validation())
-                        return;
-
-                    String name = lf.getjTextFieldName().getText();
-                    String zvanje = lf.getjTextFieldZvanje().getText();
+                    
+                    String name = lf.getjTextFieldName().getText().trim();
+                    String zvanje = lf.getjTextFieldZvanje().getText().trim();
                     Licenca l = new Licenca();
                     l.setNazivLicence(name);
                     l.setZvanjeInstruktora(zvanje);
-
+                    
+                    if(!validation(l))
+                        return;
+                    
                     List<Licenca> list = Communication.getInstance().vratiListuLicenca(l);
+                    if(list.isEmpty()){
+                        JOptionPane.showMessageDialog(lf, "Sistem ne može da nadje licence po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(lf, "Sistem je našao licence po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(lf, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(lf, ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -106,20 +112,19 @@ public class LicencaFormController {
         }
     }
     
-     private boolean validation() {
+     private boolean validation(Licenca l) {
         boolean valid = true;
-        String name = lf.getjTextFieldName().getText();
-        String zvanje = lf.getjTextFieldZvanje().getText();
-        if(name.isEmpty() && zvanje.isEmpty()){
+
+        if(l.getNazivLicence().isBlank() && l.getZvanjeInstruktora().isBlank()){
             JOptionPane.showMessageDialog(lf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
 
-        if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
+        if(!l.getNazivLicence().isBlank() && !l.getNazivLicence().matches("^[a-zA-Z ]+$")){
             lf.getjTextFieldName().setBorder(new LineBorder(Color.red,2));
             valid = false;
         }
-        if(!zvanje.isEmpty() && !zvanje.matches("^[a-zA-Z ]+$")){
+        if(!l.getZvanjeInstruktora().isBlank() && !l.getZvanjeInstruktora().matches("^[a-zA-Z ]+$")){
             lf.getjTextFieldZvanje().setBorder(new LineBorder(Color.red,2));
             valid = false;
         }

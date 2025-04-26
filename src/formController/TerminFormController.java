@@ -6,11 +6,13 @@ package formController;
 
 import communication.Communication;
 import cordinator.Cordinator;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import model.Instruktor;
 import model.Termin;
 import model.TipTermina;
@@ -42,43 +44,57 @@ public class TerminFormController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    LocalDate date;
-                    if(tf.getjCheckBoxFuture().isSelected())
-                        date = LocalDate.now();
-                    else
-                        date=null;
-
-                    int num = 0;
-                    String numText = tf.getjTextFieldNum().getText().trim();
-                    if(!numText.isEmpty()){
-                         try {
-                            num = Integer.parseInt(numText);
-                        } catch (NumberFormatException ex) {
-                            JOptionPane.showMessageDialog(tf, "Broj skijaša mora biti validan broj!", "Greška", JOptionPane.WARNING_MESSAGE);
-                            return;
-                        }
-                    }
-                    Instruktor i = (Instruktor) tf.getjComboInstruktor().getSelectedItem();
-                    TipTermina t = (TipTermina) tf.getjComboTipTermina().getSelectedItem();
-
-                    if(i==null && t==null && numText.isEmpty() && !tf.getjCheckBoxFuture().isSelected()){
-                        JOptionPane.showMessageDialog(tf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
-                    }
-
+                    defaultBorders();
                     Termin ter = new Termin();
-                    ter.setDatum(date);
-                    ter.setInstruktor(i);
-                    ter.setMaxBrojSkijasa(num);
-                    ter.setTipTermina(t);
-
+                    if(!validation(ter))
+                        return;
 
                     List<Termin> list = Communication.getInstance().vratiListuTermin(ter);
+                    if(list.isEmpty()){
+                        JOptionPane.showMessageDialog(tf, "Sistem ne može da nadje termine po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(tf, "Sistem je našao termine po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(tf, "Greska prilikom filtriranja termina.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
                 }
+            }
+
+            private boolean validation(Termin ter) {
+                boolean valid = true;
+                String numText = tf.getjTextFieldNum().getText().trim();
+                Instruktor i = (Instruktor) tf.getjComboInstruktor().getSelectedItem();
+                TipTermina t = (TipTermina) tf.getjComboTipTermina().getSelectedItem();
+                
+                if(i==null && t==null && numText.isBlank() && !tf.getjCheckBoxFuture().isSelected()){
+                    JOptionPane.showMessageDialog(tf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    return false;
+                }
+                LocalDate date = (tf.getjCheckBoxFuture().isSelected()) ? LocalDate.now() : null;;
+                int num = 0;
+                if(!numText.isBlank()){
+                         try {
+                            num = Integer.parseInt(numText);
+                            if(num<=0)
+                                throw new Exception("Broj manji od 0");
+                        } catch (Exception ex) {
+                            tf.getjTextFieldNum().setBorder(new LineBorder(Color.RED,2));
+                            valid = false;
+                        }
+                    }
+
+                if(!valid){
+                    JOptionPane.showMessageDialog(tf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+                ter.setDatum(date);
+                ter.setInstruktor(i);
+                ter.setMaxBrojSkijasa(num);
+                ter.setTipTermina(t);
+                return valid;
             }
         });
         
@@ -89,6 +105,7 @@ public class TerminFormController {
                 tf.getjComboTipTermina().setSelectedItem(null);
                 tf.getjTextFieldNum().setText("");
                 tf.getjCheckBoxFuture().setSelected(false);
+                defaultBorders();
                 fillTable(null);
             }
         });
@@ -111,7 +128,6 @@ public class TerminFormController {
 
                 TerminTableModel ttm = (TerminTableModel) tf.getjTableTermin().getModel();
                 List<Termin> list = ttm.getList();
-
                 Termin t = list.get(row);
                 Cordinator.getInstance().openTerminDetaljiDialog(tf, t);
             }
@@ -152,6 +168,10 @@ public class TerminFormController {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(tf, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void defaultBorders() {
+        tf.getjTextFieldNum().setBorder(new LineBorder(Color.black,1));
     }
     
 }

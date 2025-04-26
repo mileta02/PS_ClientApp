@@ -46,7 +46,7 @@ public class GlavnaFormController {
         gf.accountActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cordinator.getInstance().openInstruktorNalogForm(gf);   
+                Cordinator.getInstance().openInstruktorNalogForm(gf, Cordinator.getInstance().getLogged());   
             }
         });
         

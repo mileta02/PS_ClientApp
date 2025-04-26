@@ -37,14 +37,20 @@ public class NivoSkijanjaFormController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     defaultBorders();
-                    if(!validation())
-                        return;
-                    String name = nsf.getjTextFieldName().getText();
-
+                    
+                    String name = nsf.getjTextFieldName().getText().trim();
                     NivoSkijanja ns = new NivoSkijanja();
                     ns.setNazivNivoa(name);
                     
+                    if(!validation(ns))
+                        return;
+                    
                     List<NivoSkijanja> list = Communication.getInstance().vratiListuNivoSkijanja(ns);
+                    if(list.isEmpty()){
+                        JOptionPane.showMessageDialog(nsf, "Sistem ne može da nadje nivoe skijanja po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(nsf, "Sistem je našao nivoe skijanja po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
                 } catch (Exception ex) {
@@ -112,12 +118,11 @@ public class NivoSkijanjaFormController {
         nsf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     }
 
-    private boolean validation() {
-        String name = nsf.getjTextFieldName().getText();
-        if(name.isEmpty()){
+    private boolean validation(NivoSkijanja ns) {
+        if(ns.getNazivNivoa().isBlank()){
             JOptionPane.showMessageDialog(nsf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
             return false;
-        }else if(!name.matches("^[a-zA-Z ]+$")){
+        }else if(!ns.getNazivNivoa().matches("^[a-zA-Z ]+$")){
             nsf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             JOptionPane.showMessageDialog(nsf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
             return false;

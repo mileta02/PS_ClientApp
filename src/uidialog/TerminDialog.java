@@ -76,6 +76,11 @@ public class TerminDialog extends javax.swing.JDialog {
         jSpinnerVremeDo = new javax.swing.JSpinner();
         jSpinnerBrojSkijasa = new javax.swing.JSpinner();
         jComboBoxTipTermina = new javax.swing.JComboBox<>();
+        jLabelDate = new javax.swing.JLabel();
+        jLabelVremeOd = new javax.swing.JLabel();
+        jLabelVremeDo = new javax.swing.JLabel();
+        jLabelBroj = new javax.swing.JLabel();
+        jLabelTip = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
@@ -85,90 +90,61 @@ public class TerminDialog extends javax.swing.JDialog {
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Kreiraj termin");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 13, 100, 20));
 
         jLabel2.setText("Datum:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 51, 100, 20));
 
         jLabel3.setText("Vreme od:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 100, 20));
 
         jLabel4.setText("Vreme do:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 100, 20));
 
         jLabel5.setText("Broj skijaša:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 100, 20));
 
         jLabel7.setText("Tip termina:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 100, 20));
+        jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 161, 20));
 
         SpinnerDateModel modelOd = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeOd.setModel(modelOd);
         JSpinner.DateEditor editorOd = new JSpinner.DateEditor(jSpinnerVremeOd, "HH:mm");
         jSpinnerVremeOd.setEditor(editorOd);
+        jPanel1.add(jSpinnerVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 161, 20));
 
         SpinnerDateModel modelDo = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeDo.setModel(modelDo);
         JSpinner.DateEditor editorDo = new JSpinner.DateEditor(jSpinnerVremeDo, "HH:mm");
         jSpinnerVremeDo.setEditor(editorDo);
+        jPanel1.add(jSpinnerVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 161, 20));
+        jPanel1.add(jSpinnerBrojSkijasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 161, 20));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerVremeOd))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerVremeDo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerBrojSkijasa))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxTipTermina, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerVremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerVremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerBrojSkijasa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTipTermina, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
+        jPanel1.add(jComboBoxTipTermina, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 161, 20));
+
+        jLabelDate.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelDate.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 190, 20));
+
+        jLabelVremeOd.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelVremeOd.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 140, 20));
+
+        jLabelVremeDo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelVremeDo.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 140, -1));
+
+        jLabelBroj.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelBroj.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelBroj, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 200, -1));
+
+        jLabelTip.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelTip.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 140, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -214,22 +190,62 @@ public class TerminDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JLabel getjLabelBroj() {
+        return jLabelBroj;
+    }
+
+    public void setjLabelBroj(JLabel jLabelBroj) {
+        this.jLabelBroj = jLabelBroj;
+    }
+
+    public JLabel getjLabelDate() {
+        return jLabelDate;
+    }
+
+    public void setjLabelDate(JLabel jLabelDate) {
+        this.jLabelDate = jLabelDate;
+    }
+
+    public JLabel getjLabelTip() {
+        return jLabelTip;
+    }
+
+    public void setjLabelTip(JLabel jLabelTip) {
+        this.jLabelTip = jLabelTip;
+    }
+
+    public JLabel getjLabelVremeDo() {
+        return jLabelVremeDo;
+    }
+
+    public void setjLabelVremeDo(JLabel jLabelVremeDo) {
+        this.jLabelVremeDo = jLabelVremeDo;
+    }
+
+    public JLabel getjLabelVremeOd() {
+        return jLabelVremeOd;
+    }
+
+    public void setjLabelVremeOd(JLabel jLabelVremeOd) {
+        this.jLabelVremeOd = jLabelVremeOd;
+    }
 
     public Instruktor getUlogovan() {
         return ulogovan;
@@ -463,6 +479,11 @@ public class TerminDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelBroj;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelTip;
+    private javax.swing.JLabel jLabelVremeDo;
+    private javax.swing.JLabel jLabelVremeOd;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSpinner jSpinnerBrojSkijasa;

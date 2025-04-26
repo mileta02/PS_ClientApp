@@ -21,6 +21,12 @@ public class InstructorTableModel extends AbstractTableModel {
     public InstructorTableModel(List<Instruktor> list){
         this.list=list;
     }
+
+    public List<Instruktor> getList() {
+        return list;
+    }
+    
+    
     @Override
     public int getRowCount() {
         return list.size();

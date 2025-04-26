@@ -30,12 +30,12 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="788" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="919" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,19 +96,19 @@
                       <Component id="jLabel4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jCheckBoxFuture" max="32767" attributes="0"/>
-                      <Component id="jTextFieldNum" max="32767" attributes="0"/>
-                      <Component id="jComboTipTermina" max="32767" attributes="0"/>
-                      <Component id="jComboInstruktor" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jCheckBoxFuture" max="32767" attributes="0"/>
+                          <Component id="jTextFieldNum" max="32767" attributes="0"/>
+                          <Component id="jComboTipTermina" max="32767" attributes="0"/>
+                          <Component id="jComboInstruktor" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jLabelNum" min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                  <EmptySpace min="168" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jButtonClearFilter" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jButtonFilter" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonFilter" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
@@ -144,7 +144,9 @@
                       <Component id="jTextFieldNum" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabelNum" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -209,6 +211,16 @@
         <Component class="javax.swing.JCheckBox" name="jCheckBoxFuture">
           <Properties>
             <Property name="text" type="java.lang.String" value="Predstoje&#x107;i termini"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelNum">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="10" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

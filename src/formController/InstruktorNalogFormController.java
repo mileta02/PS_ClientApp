@@ -5,14 +5,20 @@
 package formController;
 
 import communication.Communication;
+import cordinator.Cordinator;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
 import table_model.InstructorLicenceTableModel;
@@ -31,11 +37,17 @@ public class InstruktorNalogFormController {
         addActionListener();
     }
     public void openForm(){
-        fillTable();
+        if(!inf.getLogged().equals(Cordinator.getInstance().getLogged())){
+            configureVisibilityViewOnly();
+        } else{
+            configureVisibility(false);
+        }
+        fillLabels();
         fillComboBox();
         fillTextFields();
-        configureVisibility(false);
-        fillLabels();
+        fillTable();
+        fillZvanje();
+        fillStatus();
         inf.setVisible(true);
     }
     
@@ -48,6 +60,8 @@ public class InstruktorNalogFormController {
     
     private void fillTable() {
         try {
+            fillStatus();
+            fillZvanje();
             List<InstruktorLicenca> list = Communication.getInstance().vratiListuInstruktorLicenca(inf.getLogged());
             InstructorLicenceTableModel iltm = new InstructorLicenceTableModel(list);
             inf.getjTableInstruktorLicence().setModel(iltm);
@@ -79,6 +93,17 @@ public class InstruktorNalogFormController {
         inf.getjPasswordFieldRepeatPass().setVisible(b);
     }
     
+    private void configureVisibilityViewOnly() {
+        configureVisibility(false);
+        inf.getjButtonEdit().setEnabled(false);
+        inf.getjButtonDelete().setEnabled(false);
+        inf.getjButtonDeleteLicence().setEnabled(false);
+        inf.getjButtonAdd().setEnabled(false);
+        inf.getjTableInstruktorLicence().setEnabled(false);
+        inf.getjDateChooser1().setEnabled(false);
+        inf.getjComboBoxLicence().setEnabled(false);
+    }
+    
     private void fillLabels() {
         inf.getjLabel6().setText("Unesite ime!"); 
         inf.getjLabel7().setText("Unesite prezime!"); 
@@ -98,37 +123,45 @@ public class InstruktorNalogFormController {
             @Override
             public void actionPerformed(ActionEvent e) {
                     try{
-                        Date utilDate = inf.getjDateChooser1().getDate();                       
-                        if(utilDate==null){
-                            JOptionPane.showMessageDialog(inf, "Izaberite datum.","Dodavanje licence",JOptionPane.WARNING_MESSAGE);
+                        if(!validation())
                             return;
-                        }
+                        
+                        Date utilDate = inf.getjDateChooser1().getDate();
                         LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        
-                        if(date.isAfter(LocalDate.now())){
-                            JOptionPane.showMessageDialog(inf, "Datum se mora odnositi na prošlost.","Dodavanje licence",JOptionPane.WARNING_MESSAGE);
-                            return;
-                        }
-                        
+                       
                         InstruktorLicenca il = new InstruktorLicenca();
-                        il.setDatumSticanja(date);
+                        il.setGodinaSticanja(date.getYear());
                         il.setLicenca((Licenca) inf.getjComboBoxLicence().getSelectedItem());
                         il.setInstruktor(inf.getLogged());
 
                         boolean b = Communication.getInstance().kreirajInstruktorLicenca(il);
                         if(b){
-                            JOptionPane.showMessageDialog(inf, "Uspešno uneta licenca.","Dodavanje licence",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(inf, "Sistem je dodao licencu za instruktora","Dodavanje licence",JOptionPane.INFORMATION_MESSAGE);
                             fillTable();
                         }
-                    }catch(SQLIntegrityConstraintViolationException ex){
-                        JOptionPane.showMessageDialog(inf, "Greška prilikom dodavanja licence.\n Već postoji.","Dodavanje licence",JOptionPane.ERROR_MESSAGE);
-                        return;
                     }catch (Exception ex) {
-                        JOptionPane.showMessageDialog(inf, "Greška prilikom dodavanja licence.\n"+ex.getMessage(),"Dodavanje licence",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(inf,ex.getMessage(),"Dodavanje licence",JOptionPane.ERROR_MESSAGE);
                         return;
 
                     }
                 }
+
+            private boolean validation() {
+                boolean valid = true;
+                inf.getjLabelDate().setText("");
+                Date utilDate = inf.getjDateChooser1().getDate();                       
+                if(utilDate==null){
+                    inf.getjLabelDate().setText("Izaberite datum");
+                    return false;
+                }
+                LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                if(date.isAfter(LocalDate.now())){
+                    inf.getjLabelDate().setText("Datum se mora odnositi na prošlost");
+                    valid = false;
+                }
+                return valid;
+            }
             });
         
         inf.deleteLicenceActionListener(new ActionListener() {
@@ -148,18 +181,18 @@ public class InstruktorNalogFormController {
                     try {
                         b = Communication.getInstance().obrisiInstruktorLicenca(il);
                         if(b){
-                            JOptionPane.showMessageDialog(inf, "Uspešno obrisana licenca.","Uspešno brisanje",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(inf, "Sistem je obrisao licencu.","Uspešno brisanje",JOptionPane.INFORMATION_MESSAGE);
                             fillTable();
                         }
                         else
-                        return;
+                            return;
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(inf, "Greška prilikom brisanja licence.","Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(inf, ex.getMessage(),"Neuspešno brisanje",JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
                 else
-                return;
+                    return;
             }
         });
         
@@ -197,63 +230,13 @@ public class InstruktorNalogFormController {
                 try {
                     String pass = String.valueOf(inf.getjPasswordFieldPass().getPassword());
                     String repeatPass = String.valueOf(inf.getjPasswordFieldRepeatPass().getPassword());
-                    String user = inf.getjTextFieldUsername().getText();
-                    String name = inf.getjTextFieldName().getText();
-                    String contact = inf.getjTextFieldContact().getText();
-                    String surname = inf.getjTextFieldSurname().getText();
+                    String user = inf.getjTextFieldUsername().getText().trim();
+                    String name = inf.getjTextFieldName().getText().trim();
+                    String contact = inf.getjTextFieldContact().getText().trim();
+                    String surname = inf.getjTextFieldSurname().getText().trim();
 
-                    fillLabels();
-                    boolean valid = true;
-
-                    if (name.isEmpty()) {
-                        inf.getjLabel6().setVisible(true);
-                        valid=false;
-                    }   
-                    if (surname.isEmpty()) {
-                        inf.getjLabel7().setVisible(true);
-                        valid=false;
-                    }
-                    if (contact.isEmpty()) {
-                        inf.getjLabel8().setVisible(true);
-                        valid=false;
-                    }else if (!contact.matches("\\+?[0-9]{9,15}")) {
-                        inf.getjLabel8().setText("Kontakt mora imati 9-15 cifara!");
-                        inf.getjLabel8().setVisible(true);
-                        valid = false;
-                    }
-                    if (user.isEmpty()) {
-                        inf.getjLabel9().setVisible(true);
-                        valid=false;
-                    }else if (user.length() < 5) {
-                        inf.getjLabel9().setText("Korisničko ime mora imati bar 5 karaktera!");
-                        inf.getjLabel9().setVisible(true);
-                        valid = false;
-                    }
-                    if (pass.isEmpty()) {
-                        inf.getjLabel10().setVisible(true);
-                        valid=false;
-                    }else if (pass.length() < 5) {
-                    inf.getjLabel10().setText("Šifra mora imati bar 5 karaktera!");
-                    inf.getjLabel10().setVisible(true);
-                    valid = false;
-                    } else if (!pass.matches(".*\\d.*")) { 
-                        inf.getjLabel10().setText("Šifra mora sadržati bar jedan broj!");
-                        inf.getjLabel10().setVisible(true);
-                        valid = false;
-                    }
-                     if (repeatPass.isEmpty()) {
-                        inf.getjLabel12().setVisible(true);
-                        valid=false;
-                    }else if (!pass.equals(repeatPass)) {
-                        inf.getjLabel10().setText("Šifre se ne poklapaju!");
-                        inf.getjLabel12().setText("Šifre se ne poklapaju!");
-                        inf.getjLabel10().setVisible(true);
-                        inf.getjLabel12().setVisible(true);
-                        valid = false;
-                    }
-                     if(!valid){
-                         return;
-                     }   
+                    if(!validation())
+                        return;
 
                     if(name.equals(inf.getLogged().getIme()) && pass.equals(inf.getLogged().getSifra()) && surname.equals(inf.getLogged().getPrezime()) && 
                             contact.equals(inf.getLogged().getKontakt()) && user.equals(inf.getLogged().getKorisnickoIme())){
@@ -278,6 +261,66 @@ public class InstruktorNalogFormController {
 
                 }
             }
+
+            private boolean validation() {
+                String pass = String.valueOf(inf.getjPasswordFieldPass().getPassword());
+                String repeatPass = String.valueOf(inf.getjPasswordFieldRepeatPass().getPassword());
+                String user = inf.getjTextFieldUsername().getText();
+                String name = inf.getjTextFieldName().getText();
+                String contact = inf.getjTextFieldContact().getText();
+                String surname = inf.getjTextFieldSurname().getText();
+
+                fillLabels();
+                boolean valid = true;
+
+                if (name.isBlank()) {
+                    inf.getjLabel6().setVisible(true);
+                    valid=false;
+                }   
+                if (surname.isBlank()) {
+                    inf.getjLabel7().setVisible(true);
+                    valid=false;
+                }
+                if (contact.isBlank()) {
+                    inf.getjLabel8().setVisible(true);
+                    valid=false;
+                }else if (!contact.matches("\\+?[0-9]{9,15}")) {
+                    inf.getjLabel8().setText("Kontakt mora imati 9-15 cifara!");
+                    inf.getjLabel8().setVisible(true);
+                    valid = false;
+                }
+                if (user.isBlank()) {
+                    inf.getjLabel9().setVisible(true);
+                    valid=false;
+                }else if (user.length() < 5) {
+                    inf.getjLabel9().setText("Korisničko ime mora imati bar 5 karaktera!");
+                    inf.getjLabel9().setVisible(true);
+                    valid = false;
+                }
+                if (pass.isBlank()) {
+                    inf.getjLabel10().setVisible(true);
+                    valid=false;
+                }else if (pass.length() < 5) {
+                inf.getjLabel10().setText("Šifra mora imati bar 8 karaktera!");
+                inf.getjLabel10().setVisible(true);
+                valid = false;
+                } else if (!pass.matches(".*\\d.*")) { 
+                    inf.getjLabel10().setText("Šifra mora sadržati bar jedan broj!");
+                    inf.getjLabel10().setVisible(true);
+                    valid = false;
+                }
+                 if (repeatPass.isBlank()) {
+                    inf.getjLabel12().setVisible(true);
+                    valid=false;
+                }else if (!pass.equals(repeatPass)) {
+                    inf.getjLabel10().setText("Šifre se ne poklapaju!");
+                    inf.getjLabel12().setText("Šifre se ne poklapaju!");
+                    inf.getjLabel10().setVisible(true);
+                    inf.getjLabel12().setVisible(true);
+                    valid = false;
+                }
+                 return valid;
+            }
         });
         
         inf.backActionListener(new ActionListener() {
@@ -287,4 +330,56 @@ public class InstruktorNalogFormController {
             }
         });
 }
+
+    private void fillZvanje() {
+        try {
+            List<InstruktorLicenca> list = Communication.getInstance().vratiListuInstruktorLicenca(inf.getLogged());
+            int maxStepen = 0;
+            for(InstruktorLicenca il : list){
+                int stepen = vratiStepen(il.getLicenca());
+                if(stepen>maxStepen)
+                    maxStepen=stepen;
+            }
+            if(maxStepen==0){
+                inf.getjLabelZvanje().setForeground(Color.RED);
+                inf.getjLabelZvanje().setText("Instruktor nema zvanje.");
+                return;
+            }
+            inf.getjLabelZvanje().setForeground(new Color(0,204,0));
+            inf.getjLabelZvanje().setText("Instruktor skijanja "+maxStepen+". stepena.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(inf, "Greška prilikom učitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private int vratiStepen(Licenca licenca) {
+        if(licenca.getNazivLicence().contains("IV"))
+            return 4;
+        if(licenca.getNazivLicence().contains("III"))
+            return 3;
+        if(licenca.getNazivLicence().contains("II"))
+            return 2;
+        if(licenca.getNazivLicence().contains("I"))
+            return 1;
+        return 0;
+    }
+
+    private void fillStatus() {
+        try {
+            List<InstruktorLicenca> list = Communication.getInstance().vratiListuInstruktorLicenca(inf.getLogged());
+            int god = LocalDate.now().getYear();
+            for(InstruktorLicenca il : list){
+                if(god==il.getGodinaSticanja()){
+                    inf.getjLabelStatus().setText("Licenciran");
+                    inf.getjLabelStatus().setForeground(new Color(0,204,0));
+                    return;
+                }
+            }
+            inf.getjLabelStatus().setForeground(Color.RED);
+            inf.getjLabelStatus().setText("Nije licenciran");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(inf, "Greška prilikom učitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

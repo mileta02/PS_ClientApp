@@ -34,10 +34,12 @@ public class LoginController {
             }
 
             private void login(ActionEvent e) {
+
                 String username = lf.getjTextFieldKorisnickoIme().getText().trim();
-                String pass = String.valueOf(lf.getjPasswordFieldSifra().getPassword());
-                Instruktor i = new Instruktor(username,pass);
-                
+                String password = String.valueOf(lf.getjPasswordFieldSifra().getPassword()).trim();
+                Instruktor i = new Instruktor(username,password);
+                if(!validation(i))
+                    return;
                 try {
                     Instruktor ins = Communication.getInstance().login(i);
                     JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra su ispravni", "Login", JOptionPane.INFORMATION_MESSAGE);
@@ -47,6 +49,32 @@ public class LoginController {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(lf, ex.getMessage(), "Login", JOptionPane.ERROR_MESSAGE);
                 } 
+            }
+
+            private boolean validation(Instruktor i) {
+                lf.getjLabelUsername().setText("");
+                lf.getjLabePassword().setText("");
+                boolean valid = true;
+
+                if (i.getKorisnickoIme().isBlank()) {
+                    lf.getjLabelUsername().setText("Unesite korisničko ime!");
+                    valid = false;
+                } else if (i.getKorisnickoIme().length() < 5) {
+                    lf.getjLabelUsername().setText("Korisničko ime mora imati bar 5 karaktera!");
+                    valid = false;
+                }
+                if (i.getSifra().isBlank()) {
+                    lf.getjLabePassword().setText("Unesite šifru!");
+                    valid = false;
+                } else if (i.getSifra().length() < 8) {
+                    lf.getjLabePassword().setText("Šifra mora imati bar 8 karaktera!");
+                    valid = false;
+                } else if (!i.getSifra().matches(".*\\d.*")) { 
+                    lf.getjLabePassword().setText("Šifra mora sadržati bar jedan broj!");
+                    valid = false;
+                }
+
+                return valid;
             }
         });
         

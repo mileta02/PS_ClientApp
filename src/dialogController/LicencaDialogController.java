@@ -44,12 +44,12 @@ public class LicencaDialogController {
 
                 try {
                     if(Communication.getInstance().kreirajLicenca(l)){
-                        JOptionPane.showMessageDialog(ld, "Uspešno kreirana licenca.","Kreiranje licence",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, "Sistem je kreirao licencu.","Kreiranje licence",JOptionPane.INFORMATION_MESSAGE);
                         ld.getController().fillTable(null);
                         ld.dispose();
                     }
                 } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(ld, "Greška prilikom kreiranja licence. \n"+ex.getMessage(),"Kreiranje licence",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, ex.getMessage(),"Kreiranje licence",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -75,12 +75,12 @@ public class LicencaDialogController {
                 ld.getL().setZvanjeInstruktora(ld.getjTextFieldZvanje().getText());
                 try {
                     if(Communication.getInstance().promeniLicenca(ld.getL())){
-                        JOptionPane.showMessageDialog(ld, "Uspešno ažurirana licenca.","Ažuriranje licence",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, "Sistem je zapamtio licencu.","Ažuriranje licence",JOptionPane.INFORMATION_MESSAGE);
                         ld.getController().fillTable(null);
                         ld.dispose();
                     }
                 } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(ld, "Greška prilikom ažuriranja licence. \n"+ex.getMessage(),"Ažuriranje licence",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, ex.getMessage(),"Ažuriranje licence",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -93,12 +93,12 @@ public class LicencaDialogController {
                     try{
                     boolean b = Communication.getInstance().obrisiLicenca(ld.getL());
                     if(b){
-                        JOptionPane.showMessageDialog(ld, "Uspešno obrisana licenca.","Brisanje licence",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, "Sistem je obrisao licencu.","Brisanje licence",JOptionPane.INFORMATION_MESSAGE);
                         ld.getController().fillTable(null);
                         ld.dispose();
                     }
                     }catch(Exception ex){
-                        JOptionPane.showMessageDialog(ld, "Greška prilikom brisanja licence. \n"+ex.getMessage(),"Brisanje licence",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ld, ex.getMessage(),"Brisanje licence",JOptionPane.ERROR_MESSAGE);
                     }
                     }else{
                     return;

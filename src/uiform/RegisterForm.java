@@ -385,7 +385,7 @@ public class RegisterForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
 
-    private void fillLabels() {
+    /*private void fillLabels() {
         jLabelName.setText("Unesite ime!"); 
         jLabelSurname.setText("Unesite prezime!"); 
         jLabelContact.setText("Unesite kontakt telefon!"); 
@@ -398,7 +398,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jLabelSurname.setVisible(false);
         jLabelPass.setVisible(false);
         jLabelRepeatPass.setVisible(false);
-    }
+    }*/
 
     public void registerActionListener(ActionListener actionListener) {
         jButtonRegister.addActionListener(actionListener);

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Instruktor;
 import model.Skijas;
+import model.Termin;
 import model.TerminSkijas;
 import model.TipTermina;
 import table_model.TerminSkijasTableModel;
@@ -58,16 +59,38 @@ public class TerminDetaljiDialogController {
         tdd.saveActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!validation(tdd.getT()))
+                    return;
+
+            try {
+                boolean b = Communication.getInstance().promeniTermin(tdd.getT());
+                JOptionPane.showMessageDialog(tdd, "Sistem je zapamtio termin.","Ažuriranje termina",JOptionPane.INFORMATION_MESSAGE);
+                tdd.getController().fillTable(null);
+                
+                tdd.getjButtonChange().setVisible(true);
+                tdd.getjButtonSave().setVisible(false);
+                configureFields(false);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(tdd, ex.getMessage(),"Ažuriranje termina",JOptionPane.ERROR_MESSAGE);
+            }
+                }
+
+            private boolean validation(Termin t) {
+                tdd.getjLabelDate().setText("");
+                tdd.getjLabelVremeOd().setText("");
+                tdd.getjLabelVremeDo().setText("");
+                tdd.getjLabelNum().setText("");
+                tdd.getjLabelTip().setText("");
+                boolean valid = true;
                 Date utilDate = tdd.getjDateChooser().getDate();
                 LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                 if (date == null) {
-                    JOptionPane.showMessageDialog(tdd, "Molimo izaberite datum!", "Greška", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (date.isBefore(LocalDate.now())) {
-                    JOptionPane.showMessageDialog(tdd, "Ne možete zakazati termin u prošlosti!", "Greška", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    valid = false;
+                    tdd.getjLabelDate().setText("Unesite datum");
+                }else if (date.isBefore(LocalDate.now())) {
+                    valid = false;
+                    tdd.getjLabelDate().setText("Datum se mora odnositi na budućnost");
                 }
 
                 Date vremeOdDate = (Date) tdd.getjSpinnerVremeOd().getValue();
@@ -77,30 +100,40 @@ public class TerminDetaljiDialogController {
                 LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 
                 if (vremeDo.isBefore(vremeOd)) {
-                    JOptionPane.showMessageDialog(tdd, "Vreme završetka ne može biti pre početka!", "Greška", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    valid = false;
+                    tdd.getjLabelVremeDo().setText("Vreme do mora biti nakon vremena od");
                 }
 
 
                 int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
 
                 int maxBrojSkijasa = (int) tdd.getjSpinnerBrojSkijasa().getValue();
-
+                
                 if (maxBrojSkijasa<=0) {
-                    JOptionPane.showMessageDialog(tdd, "Broj skijaša mora biti veći od 0!", "Greška", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    valid = false;
+                    tdd.getjLabelNum().setText("Broj skijaša mora biti veći od 0");
+                } else if (maxBrojSkijasa<brojSkijasa()){
+                    valid = false;
+                    tdd.getjLabelNum().setText("Broj skijaša mora biti veći od ["+brojSkijasa()+"]");
                 }
 
                 TipTermina tip = (TipTermina) tdd.getjComboBoxTipTermina().getSelectedItem();
                 if(tip==null){
-                    JOptionPane.showMessageDialog(tdd, "Izaberite tip termina!", "Greška", JOptionPane.ERROR_MESSAGE);
-                    return;
+                    valid = false;
+                    tdd.getjLabelTip().setText("Izaberite tip termina");
                 }
 
                 TerminSkijasTableModel stm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
                 int brojSkijasa = stm.getList().size();
                 double ukupanIznos = brojSkijasa*brojSati*tip.getCenaSata();
-
+                
+                if(!valid)
+                    return valid;
+                if(tdd.getT().getBrojSati() == brojSati && tdd.getT().getMaxBrojSkijasa() == maxBrojSkijasa && tdd.getT().getDatum().isEqual(date) &&
+                        tdd.getT().getVremeDo().equals(vremeDo) && tdd.getT().getVremeOd().equals(vremeOd) && tdd.getT().getTipTermina().equals(tip)){
+                    JOptionPane.showMessageDialog(tdd, "Niste izmenili podatke");
+                    return false;
+            }
                 tdd.getT().setBrojSati(brojSati);
                 tdd.getT().setMaxBrojSkijasa(maxBrojSkijasa);
                 tdd.getT().setDatum(date);
@@ -108,15 +141,9 @@ public class TerminDetaljiDialogController {
                 tdd.getT().setVremeDo(vremeDo);
                 tdd.getT().setTipTermina(tip);
                 tdd.getT().setUkupanIznos(ukupanIznos);
-
-            try {
-                boolean b = Communication.getInstance().promeniTermin(tdd.getT());
-                JOptionPane.showMessageDialog(tdd, "Termin uspešno izmenjen!","Ažuriranje termina",JOptionPane.INFORMATION_MESSAGE);
-                tdd.getController().fillTable(null);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(tdd, "Termin nije izmenjen!"+ex.getMessage(),"Ažuriranje termina",JOptionPane.ERROR_MESSAGE);
-            }
-                }
+                
+                return valid;
+        }
         });
         
         tdd.deleteActionListener(new ActionListener() {
@@ -128,12 +155,12 @@ public class TerminDetaljiDialogController {
                     try {
                         boolean b = Communication.getInstance().obrisiTermin(tdd.getT());
                         if(b){
-                            JOptionPane.showMessageDialog(tdd, "Uspešno obrisan termin.","Brisanje termina",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(tdd, "Sistem je obrisao termin..","Brisanje termina",JOptionPane.INFORMATION_MESSAGE);
                             tdd.getController().fillTable(null);
                             tdd.dispose();
                             }
                     } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tdd, "Greška prilikom brisanja termina.\n"+ex.getMessage(),"Brisanje termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(tdd, ex.getMessage(),"Brisanje termina",JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -142,27 +169,24 @@ public class TerminDetaljiDialogController {
         tdd.addSkijasActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TerminSkijas ts = new TerminSkijas((Skijas) tdd.getjComboBoxSkijas().getSelectedItem(), tdd.getT(), LocalDate.now());
-        
-                TerminSkijasTableModel tstm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
-                List<TerminSkijas> list = tstm.getList();
-                int num = list.size();
+                int num = brojSkijasa();
                 if(num==tdd.getT().getMaxBrojSkijasa()){
-                    JOptionPane.showMessageDialog(tdd, "Dostigli se maksimalan kapacitet skijaša za izabrani termin.","Dodavanje skijaša",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tdd, "Dostigli se maksimalan broj skijaša za izabrani termin","Dodavanje skijaša",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
+                
+                TerminSkijas ts = new TerminSkijas((Skijas) tdd.getjComboBoxSkijas().getSelectedItem(), tdd.getT(), LocalDate.now());
                 try {
                     boolean b = Communication.getInstance().kreirajTerminSkijas(ts);
                     if(b){
-                        JOptionPane.showMessageDialog(tdd, "Uspešno dodat skijaš.","Dodavanje skijaša",JOptionPane.INFORMATION_MESSAGE);
-                        fillTable();
-                        double cena = tdd.getT().getBrojSati() * tdd.getT().getTipTermina().getCenaSata();
-                        tdd.getT().setUkupanIznos(tdd.getT().getUkupanIznos()+cena);
+                        updateTerminPrice(num + 1);
                         Communication.getInstance().promeniTermin(tdd.getT());
+                        JOptionPane.showMessageDialog(tdd, "Sistem je zapamtio skijaša.","Dodavanje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                        fillTable();
                         tdd.getController().fillTable(null);
                     }
                 }catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tdd, "Greška prilikom dodavanja skijaša."+ex.getMessage(),"Dodavanje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(tdd, "Sistem ne može da zapamti skijaša."+ex.getMessage(),"Dodavanje skijaša",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -170,9 +194,16 @@ public class TerminDetaljiDialogController {
         tdd.deleteSkijasActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int num = brojSkijasa();
+                System.out.println(num);
+                if(num==0){
+                    JOptionPane.showMessageDialog(tdd, "Ne postoji skijaš za izabrani termin","Brisanje skijaša",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
                 int row = tdd.getjTableSkijasi().getSelectedRow();
                 if (row == -1) {
-                    JOptionPane.showMessageDialog(tdd, "Morate izabrati skijaša!", "Greška", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tdd, "Morate izabrati skijaša", "Greška", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
@@ -180,15 +211,17 @@ public class TerminDetaljiDialogController {
                 List<TerminSkijas> list = tstm.getList();
                 TerminSkijas ts = list.get(row);
 
-
                 try {
                     boolean b = Communication.getInstance().obrisiTerminSkijas(ts);
                     if(b){
-                        JOptionPane.showMessageDialog(tdd, "Uspešno obrisan skijaš.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                        updateTerminPrice(num - 1);
+                        Communication.getInstance().promeniTermin(tdd.getT());
+                        JOptionPane.showMessageDialog(tdd, "Sistem je obrisao skijaša","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
                         fillTable();
+                        tdd.getController().fillTable(null);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tdd, "Greška prilikom brisanja skijaša."+ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(tdd, ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -268,10 +301,26 @@ public class TerminDetaljiDialogController {
         boolean visible = true;
             if(!my || date)
                 visible = false;
-        tdd.getjButtonDelete().setVisible(visible);
-        tdd.getjButtonAddSkijas().setVisible(visible);
-        tdd.getjButtonChange().setVisible(visible);
-        tdd.getjButtonDeleteSkijas().setVisible(visible);
-        tdd.getjComboBoxSkijas().setVisible(visible);
+//        tdd.getjButtonDelete().setVisible(visible);
+//        tdd.getjButtonAddSkijas().setVisible(visible);
+//        tdd.getjButtonChange().setVisible(visible);
+//        tdd.getjButtonDeleteSkijas().setVisible(visible);
+//        tdd.getjComboBoxSkijas().setVisible(visible);
+        tdd.getjButtonDelete().setEnabled(visible);
+        tdd.getjButtonAddSkijas().setEnabled(visible);
+        tdd.getjButtonChange().setEnabled(visible);
+        tdd.getjButtonDeleteSkijas().setEnabled(visible);
+        tdd.getjComboBoxSkijas().setEnabled(visible);
+        tdd.getjTableSkijasi().setEnabled(visible);
+    }
+    
+    private void updateTerminPrice(int num){
+        double cena = tdd.getT().getBrojSati() * tdd.getT().getTipTermina().getCenaSata() * num;
+        tdd.getT().setUkupanIznos(cena);
+    }
+    private int brojSkijasa() {
+        TerminSkijasTableModel tstm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
+        List<TerminSkijas> list = tstm.getList();
+        return list.size();
     }
 }

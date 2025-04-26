@@ -44,25 +44,16 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
      */
     private Instruktor logged;
     private GlavnaForm parent;
-    
     public InstruktorNalogForm(GlavnaForm parent, Instruktor ulogovan) {
         initComponents();
-        this.parent=parent;
         logged=ulogovan;
+        this.parent=parent;
         //fillTextFields();
         //fillComboBox();
         //fillTable();
         //configureVisibility(false);
         setLocationRelativeTo(null);
         
-    }
-
-    public Instruktor getLogged() {
-        return logged;
-    }
-
-    public void setLogged(Instruktor logged) {
-        this.logged = logged;
     }
 
     public GlavnaForm getParent() {
@@ -73,6 +64,56 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         this.parent = parent;
     }
 
+    public JLabel getjLabelStatus() {
+        return jLabelStatus;
+    }
+
+    public void setjLabelStatus(JLabel jLabelStatus) {
+        this.jLabelStatus = jLabelStatus;
+    }
+
+    public JLabel getjLabelZvanje() {
+        return jLabelZvanje;
+    }
+
+    public void setjLabelZvanje(JLabel jLabelZvanje) {
+        this.jLabelZvanje = jLabelZvanje;
+    }
+
+    public JLabel getjLabel16() {
+        return jLabel16;
+    }
+
+    public void setjLabel16(JLabel jLabel16) {
+        this.jLabel16 = jLabel16;
+    }
+
+    public JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    public void setjLabel17(JLabel jLabel17) {
+        this.jLabel17 = jLabel17;
+    }
+
+    
+    
+    public JLabel getjLabelDate() {
+        return jLabelDate;
+    }
+
+    public void setjLabelDate(JLabel jLabelDate) {
+        this.jLabelDate = jLabelDate;
+    }
+
+    public Instruktor getLogged() {
+        return logged;
+    }
+
+    public void setLogged(Instruktor logged) {
+        this.logged = logged;
+    }
+    
     public JButton getjButtonAdd() {
         return jButtonAdd;
     }
@@ -97,17 +138,18 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         this.jButtonDelete = jButtonDelete;
     }
 
-    public JButton getjButtonDelete2() {
-        return jButtonDeleteLicence;
-    }
-
-    public void setjButtonDelete2(JButton jButtonDelete2) {
-        this.jButtonDeleteLicence = jButtonDelete2;
-    }
-
     public JButton getjButtonEdit() {
         return jButtonEdit;
     }
+
+    public JButton getjButtonDeleteLicence() {
+        return jButtonDeleteLicence;
+    }
+
+    public void setjButtonDeleteLicence(JButton jButtonDeleteLicence) {
+        this.jButtonDeleteLicence = jButtonDeleteLicence;
+    }
+    
 
     public void setjButtonEdit(JButton jButtonEdit) {
         this.jButtonEdit = jButtonEdit;
@@ -386,6 +428,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         jButtonAdd = new javax.swing.JButton();
         jButtonDeleteLicence = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabelDate = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabelZvanje = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInstruktorLicence = new javax.swing.JTable();
 
@@ -539,27 +586,41 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             }
         });
 
+        jLabelDate.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelDate.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabel16.setText("Status:");
+
+        jLabel17.setText("Zvanje:");
+
+        jLabelZvanje.setForeground(new java.awt.Color(0, 204, 0));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxLicence, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(136, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonDeleteLicence, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(132, 132, 132))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxLicence, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelZvanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,11 +636,21 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(1, 1, 1)
+                .addComponent(jLabelDate)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabelStatus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabelZvanje))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButtonAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDeleteLicence)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         jTableInstruktorLicence.setModel(new javax.swing.table.DefaultTableModel(
@@ -620,11 +691,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -729,7 +800,6 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             if(Communication.getInstance().obrisiInstruktor(logged))
                 JOptionPane.showMessageDialog(this, "Uspesno ste obrisali nalog.");
                 this.dispose();
-                parent.dispose();
                 new LoginForm().setVisible(true);
         }
         
@@ -846,6 +916,8 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -854,6 +926,9 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JLabel jLabelZvanje;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

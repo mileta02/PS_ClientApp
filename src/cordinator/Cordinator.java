@@ -34,7 +34,7 @@ import uidialog.TerminDialog;
 import uidialog.TipTerminaDialog;
 import uiform.GlavnaForm;
 import uiform.InstruktorNalogForm;
-import uiform.InstruktoriForm;
+import uiform.InstruktorForm;
 import uiform.LicencaForm;
 import uiform.LoginForm;
 import uiform.NivoSkijanjaForm;
@@ -113,12 +113,12 @@ public class Cordinator {
     }
     
     public void openInstruktorForm(GlavnaForm parent){
-        instruktorController = new InstruktorFormController(new InstruktoriForm(parent,true));
+        instruktorController = new InstruktorFormController(new InstruktorForm(parent,true));
         instruktorController.openForm();
     }
     
-    public void openInstruktorNalogForm(GlavnaForm parent){
-        instruktorNalogController = new InstruktorNalogFormController(new InstruktorNalogForm(parent, logged));
+    public void openInstruktorNalogForm(GlavnaForm parent, Instruktor i){
+        instruktorNalogController = new InstruktorNalogFormController(new InstruktorNalogForm(parent, i));
         instruktorNalogController.openForm();
     }
     

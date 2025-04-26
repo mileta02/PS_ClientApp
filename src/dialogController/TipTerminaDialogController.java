@@ -45,12 +45,12 @@ public class TipTerminaDialogController {
                 try {
                     boolean b = Communication.getInstance().kreirajTipTermina(tt);
                     if(b){
-                        JOptionPane.showMessageDialog(ttd, "Uspešno kreiran tip termina.","Kreiranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ttd, "Sistem je kreirao tip termina.","Kreiranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
                         ttd.dispose();
                         ttd.getController().fillTable(null);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, "Greška prilikom kreiranja tipa termina.\n"+ex.getMessage(),"Kreiranje tipa termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),"Kreiranje tipa termina",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -79,12 +79,12 @@ public class TipTerminaDialogController {
                     ttd.getTt().setCenaSata(price);
                     boolean b = Communication.getInstance().promeniTipTermina(ttd.getTt());
                     if(b){
-                        JOptionPane.showMessageDialog(ttd, "Uspešno ažuriran tip termina.","Ažuriranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ttd, "Sistem je zapamtio tip termina.","Ažuriranje tipa termina",JOptionPane.INFORMATION_MESSAGE);
                         ttd.getController().fillTable(null);
                         ttd.dispose();
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, "Greška prilikom ažuriranja tipa termina. \n"+ex.getMessage(),"Ažuriranje tipa termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),"Ažuriranje tipa termina",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -98,12 +98,12 @@ public class TipTerminaDialogController {
                 try {
                     boolean b = Communication.getInstance().obrisiTipTermina(ttd.getTt());
                     if(b){
-                        JOptionPane.showMessageDialog(ttd, "Uspešno obrisan tip termina.","Brisanje tipa termina",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(ttd, "Sistem je obrisao tip termina.","Brisanje tipa termina",JOptionPane.INFORMATION_MESSAGE);
                         ttd.getController().fillTable(null);
                         ttd.dispose();
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, "Greška prilikom brisanja tipa termina. \n"+ex.getMessage(),"Brisanje tipa termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),"Brisanje tipa termina",JOptionPane.ERROR_MESSAGE);
                 }
                 }
             }

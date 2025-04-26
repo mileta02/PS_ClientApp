@@ -33,54 +33,63 @@ public class TipTerminaFormController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     defaultBorders();
-
-                    String name = ttf.getjTextFieldName().getText();
-                    String priceFromString = ttf.getjTextFieldPriceFrom().getText();
-                    String priceToString = ttf.getjTextFieldPriceTo().getText();
-                    double priceFrom=-1;
-                    double priceTo=-1;
-                    boolean valid = true;
-
-                    if(name.isEmpty() && priceFromString.isEmpty() && priceToString.isEmpty()){
-                    JOptionPane.showMessageDialog(ttf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                    }
-
-                    if(!name.isEmpty() && !name.matches("^[a-zA-Z ]+$")){
-                        ttf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                        valid = false;
-                    }
-
-                    if(!priceFromString.isEmpty()){
-                        try{
-                            priceFrom=Double.parseDouble(priceFromString);
-                        }catch(NumberFormatException ex){
-                            ttf.getjTextFieldPriceFrom().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                            valid=false;
-                        }
-                    }
-                    if(!priceToString.isEmpty()){
-                        try{
-                            priceTo=Double.parseDouble(priceToString);
-                        }catch(NumberFormatException ex){
-                            ttf.getjTextFieldPriceTo().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                            valid=false;
-                        }
-                    }
-                    if(!valid){
-                        JOptionPane.showMessageDialog(ttf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-
                     TipTermina tt = new TipTermina();
-                    tt.setNazivTipa(name);
-                    tt.filter(priceFrom, priceTo);
+                    if(!validation(tt))
+                        return;
                     
                     List<TipTermina> list = Communication.getInstance().vratiListuTipTermina(tt);
+                    if(list.isEmpty()){
+                        JOptionPane.showMessageDialog(ttf, "Sistem ne može da nadje tipove termina po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(ttf, "Sistem je našao tipove termina po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(ttf, "Greska prilikom pretrage","Pretraga",JOptionPane.ERROR_MESSAGE);
                 }
+            }
+
+            private boolean validation(TipTermina tt) {
+                String name = ttf.getjTextFieldName().getText().trim();
+                String priceFromString = ttf.getjTextFieldPriceFrom().getText().trim();
+                String priceToString = ttf.getjTextFieldPriceTo().getText().trim();
+                double priceFrom=-1;
+                double priceTo=-1;
+                boolean valid = true;
+
+                if(name.isBlank()&& priceFromString.isBlank() && priceToString.isBlank()){
+                    JOptionPane.showMessageDialog(ttf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    return false;
+                }
+
+                if(!name.isBlank() && !name.matches("^[a-zA-Z ]+$")){
+                    ttf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    valid = false;
+                }
+
+                if(!priceFromString.isBlank()){
+                    try{
+                        priceFrom=Double.parseDouble(priceFromString);
+                    }catch(NumberFormatException ex){
+                        ttf.getjTextFieldPriceFrom().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                        valid=false;
+                    }
+                }
+                if(!priceToString.isBlank()){
+                    try{
+                        priceTo=Double.parseDouble(priceToString);
+                    }catch(NumberFormatException ex){
+                        ttf.getjTextFieldPriceTo().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                        valid=false;
+                    }
+                }
+                if(!valid){
+                    JOptionPane.showMessageDialog(ttf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    return false;
+                }
+                tt.setNazivTipa(name);
+                tt.filter(priceFrom, priceTo);
+                return valid;
             }
         });
         
