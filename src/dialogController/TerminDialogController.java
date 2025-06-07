@@ -4,9 +4,11 @@
  */
 package dialogController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,6 +34,7 @@ public class TerminDialogController {
     
     public void openForm(){
         fillComboBox();
+        setLanguage();
         td.setLocationRelativeTo(null);
         td.setVisible(true);
     }
@@ -68,14 +71,14 @@ public class TerminDialogController {
 
                     boolean b = Communication.getInstance().kreirajTermin(t);
                     if(b){
-                        JOptionPane.showMessageDialog(td, "Sistem je kreirao termin","Kreiranje termina",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(td, LanguageSupport.getText("create_appointment_success"),LanguageSupport.getText("create_appointment_title"),JOptionPane.INFORMATION_MESSAGE);
                         td.dispose();
                         td.getController().fillTable(null);
                     }
 
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(td, ex.getMessage(),"Kreiranje termina",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(td, ex.getMessage(),LanguageSupport.getText("create_appointment_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -91,10 +94,10 @@ public class TerminDialogController {
                 boolean valid = true;
                 if (date == null) {
                     valid = false;
-                    td.getjLabelDate().setText("Unesite datum");
+                    td.getjLabelDate().setText(LanguageSupport.getText("choose_date"));
                 }else if (date.isBefore(LocalDate.now())) {
                     valid = false;
-                    td.getjLabelDate().setText("Datum se mora odnositi na budućnost");
+                    td.getjLabelDate().setText(LanguageSupport.getText("choose_date_future_invalid"));
                 }
                 
                 Date vremeOdDate = (Date) td.getjSpinnerVremeOd().getValue();
@@ -103,23 +106,30 @@ public class TerminDialogController {
                 Date vremeDoDate = (Date) td.getjSpinnerVremeDo().getValue();
                 LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
                 
-                if (vremeDo.isBefore(vremeOd)) {
+                if (!vremeDo.isAfter(vremeOd)) {
                     valid = false;
-                    td.getjLabelVremeDo().setText("Vreme do mora biti nakon vremena od");
+                    td.getjLabelVremeDo().setText(LanguageSupport.getText("appointment_time_from_validation"));
                 }
 
                 int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
-                int maxBrojSkijasa = (int) td.getjSpinnerBrojSkijasa().getValue();
 
-                if (maxBrojSkijasa<=0) {
-                    td.getjLabelBroj().setText("Broj skijaša mora biti veći od 0");
+                int maxBrojSkijasa = 0;
+                try {
+                    td.getjSpinnerBrojSkijasa().commitEdit();
+                    maxBrojSkijasa = (int) td.getjSpinnerBrojSkijasa().getValue();
+
+                    if (maxBrojSkijasa <= 0) {
+                        td.getjLabelBroj().setText(LanguageSupport.getText("appointment_skiers_number_validation_invalid"));
+                        valid = false;
+                    }
+                } catch (ParseException | ClassCastException e) {
+                    td.getjLabelBroj().setText(LanguageSupport.getText("appointment_skiers_number_validation_invalid"));
                     valid = false;
                 }
-
                 TipTermina tip = (TipTermina) td.getjComboBoxTipTermina().getSelectedItem();
                 if(tip==null){
                     valid = false;
-                    td.getjLabelTip().setText("Unesite tip termina");
+                    td.getjLabelTip().setText(LanguageSupport.getText("appointment_type_validation_empty"));
                 }
                 return valid;
             }
@@ -141,9 +151,21 @@ public class TerminDialogController {
             }
             td.getjComboBoxTipTermina().setSelectedItem(null);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(td, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(td, LanguageSupport.getText("loading_appointment")+"\n"+ex.getMessage(),LanguageSupport.getText("error_loading_appointment"),JOptionPane.ERROR_MESSAGE);
         }
             
+    }
+
+    private void setLanguage() {
+        td.getjLabel1().setText(LanguageSupport.getText("create_appointment_dialog_title"));
+        td.getjLabel2().setText(LanguageSupport.getText("date"));
+        td.getjLabel3().setText(LanguageSupport.getText("time_from"));
+        td.getjLabel4().setText(LanguageSupport.getText("time_to"));
+        td.getjLabel5().setText(LanguageSupport.getText("skiers_num"));
+        td.getjLabel7().setText(LanguageSupport.getText("type_of_appointment"));
+        td.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        td.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        td.setTitle(LanguageSupport.getText("create_appointment_title"));
     }
     
     

@@ -116,20 +116,20 @@ public class LicencaForm extends javax.swing.JFrame {
         this.jLabel3 = jLabel3;
     }
 
-    public JLabel getjLabel4() {
-        return jLabel4;
+    public JLabel getjLabelName() {
+        return jLabelNameLicence;
     }
 
-    public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
+    public void setjLabelName(JLabel jLabel4) {
+        this.jLabelNameLicence = jLabel4;
     }
 
-    public JLabel getjLabel5() {
-        return jLabel5;
+    public JLabel getjLabelZvanje() {
+        return jLabelZvanjeLicence;
     }
 
-    public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
+    public void setjLabelZvanje(JLabel jLabel5) {
+        this.jLabelZvanjeLicence = jLabel5;
     }
 
     public JPanel getjPanel1() {
@@ -194,8 +194,8 @@ public class LicencaForm extends javax.swing.JFrame {
         jTableLicence = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelNameLicence = new javax.swing.JLabel();
+        jLabelZvanjeLicence = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
         jTextFieldZvanje = new javax.swing.JTextField();
         jButtonFilter = new javax.swing.JButton();
@@ -228,9 +228,9 @@ public class LicencaForm extends javax.swing.JFrame {
 
         jLabel3.setText("Kriterijum pretrage");
 
-        jLabel4.setText("Naziv licence:");
+        jLabelNameLicence.setText("Naziv licence:");
 
-        jLabel5.setText("Zvanje instruktora:");
+        jLabelZvanjeLicence.setText("Zvanje instruktora:");
 
         jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -263,8 +263,8 @@ public class LicencaForm extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                            .addComponent(jLabelNameLicence, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelZvanjeLicence, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -284,12 +284,12 @@ public class LicencaForm extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabelNameLicence)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFilter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabelZvanjeLicence)
                     .addComponent(jTextFieldZvanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonClearFilter))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -441,8 +441,8 @@ public class LicencaForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelNameLicence;
+    private javax.swing.JLabel jLabelZvanjeLicence;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

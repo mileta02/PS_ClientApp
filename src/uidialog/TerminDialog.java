@@ -93,58 +93,58 @@ public class TerminDialog extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Kreiraj termin");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 13, 100, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 13, 160, 20));
 
         jLabel2.setText("Datum:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 51, 100, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, 20));
 
         jLabel3.setText("Vreme od:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 100, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 20));
 
         jLabel4.setText("Vreme do:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 100, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, 20));
 
         jLabel5.setText("Broj skijaša:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 100, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, 20));
 
         jLabel7.setText("Tip termina:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 100, 20));
-        jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 161, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 130, 20));
+        jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 161, 20));
 
         SpinnerDateModel modelOd = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeOd.setModel(modelOd);
         JSpinner.DateEditor editorOd = new JSpinner.DateEditor(jSpinnerVremeOd, "HH:mm");
         jSpinnerVremeOd.setEditor(editorOd);
-        jPanel1.add(jSpinnerVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 161, 20));
+        jPanel1.add(jSpinnerVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 161, 20));
 
         SpinnerDateModel modelDo = new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE);
         jSpinnerVremeDo.setModel(modelDo);
         JSpinner.DateEditor editorDo = new JSpinner.DateEditor(jSpinnerVremeDo, "HH:mm");
         jSpinnerVremeDo.setEditor(editorDo);
-        jPanel1.add(jSpinnerVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 161, 20));
-        jPanel1.add(jSpinnerBrojSkijasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 161, 20));
+        jPanel1.add(jSpinnerVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 161, 20));
+        jPanel1.add(jSpinnerBrojSkijasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 161, 20));
 
-        jPanel1.add(jComboBoxTipTermina, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 161, 20));
+        jPanel1.add(jComboBoxTipTermina, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 161, 20));
 
         jLabelDate.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelDate.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 190, 20));
+        jPanel1.add(jLabelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 210, 20));
 
         jLabelVremeOd.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelVremeOd.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 140, 20));
+        jPanel1.add(jLabelVremeOd, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 210, 20));
 
         jLabelVremeDo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelVremeDo.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 140, -1));
+        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 190, 20));
 
         jLabelBroj.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelBroj.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelBroj, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 200, -1));
+        jPanel1.add(jLabelBroj, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, 20));
 
         jLabelTip.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelTip.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 140, -1));
+        jPanel1.add(jLabelTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 140, 20));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -191,8 +191,8 @@ public class TerminDialog extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

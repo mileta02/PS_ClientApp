@@ -4,6 +4,7 @@
  */
 package dialogController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class NivoSkijanjaDialogController {
     
     public void openForm(){
         fillFields();
+        setLanguage();
         nsd.setLocationRelativeTo(null);
         nsd.setVisible(true);
     }
@@ -40,12 +42,12 @@ public class NivoSkijanjaDialogController {
                     ns.setNazivNivoa(nsd.getjTextFieldName().getText());
                     boolean b = Communication.getInstance().kreirajNivoSkijanja(ns);
                     if(b){
-                        JOptionPane.showMessageDialog(nsd, "Sistem je kreirao nivo skijanja.","Kreiranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("create_ski_level_success"),LanguageSupport.getText("create_ski_level_title"),JOptionPane.INFORMATION_MESSAGE);
                         nsd.getController().fillTable(null);
                         nsd.dispose();
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Kreiranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("create_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -66,16 +68,20 @@ public class NivoSkijanjaDialogController {
                 try {        
                     if(!validation() || !isEdited())
                         return;
-
-                    nsd.getNs().setNazivNivoa(nsd.getjTextFieldName().getText());
-                    boolean b = Communication.getInstance().promeniNivoSkijanja(nsd.getNs());
-                    if(b){
-                        JOptionPane.showMessageDialog(nsd, "Sistem je zapamtio nivo skijanja.","Ažuriranje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
-                        nsd.getController().fillTable(null);
-                        nsd.dispose();
+                   
+                    int i =JOptionPane.showConfirmDialog(nsd, LanguageSupport.getText("update_ski_level_confirm"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.YES_NO_OPTION);
+                    if(i == JOptionPane.YES_OPTION){
+                        nsd.getNs().setNazivNivoa(nsd.getjTextFieldName().getText());
+                        if(Communication.getInstance().promeniNivoSkijanja(nsd.getNs())){
+                            JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("update_ski_level_success"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.INFORMATION_MESSAGE);
+                            nsd.getController().fillTable(null);
+                            nsd.dispose();
+                        }
                     }
+                    else
+                        return;
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Ažuriranje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("update_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -83,17 +89,17 @@ public class NivoSkijanjaDialogController {
         nsd.deleteActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int i =JOptionPane.showConfirmDialog(nsd, "Da li ste sigurni da želite da obrišete nivo skijanja?","Brisanje nivoa skijanja",JOptionPane.YES_NO_OPTION);
+                int i =JOptionPane.showConfirmDialog(nsd, LanguageSupport.getText("delete_ski_level_confirm"),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.YES_NO_OPTION);
                 if(i == JOptionPane.YES_OPTION){
                     try {
                         boolean b = Communication.getInstance().obrisiNivoSkijanja(nsd.getNs());
                         if(b){
-                            JOptionPane.showMessageDialog(nsd, "Sistem je obrisao nivo skijanja.","Brisanje nivoa skijanja",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("delete_ski_level_success"),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.INFORMATION_MESSAGE);
                             nsd.getController().fillTable(null);
                             nsd.dispose();
                         }
                     } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),"Brisanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -130,9 +136,9 @@ public class NivoSkijanjaDialogController {
             boolean valid = true;
             if(name.isEmpty()){
                 valid=false;
-                nsd.getjLabelValidation().setText("Unesite naziv");
+                nsd.getjLabelValidation().setText(LanguageSupport.getText("licence_name_validation_empty"));
             }else if(!name.matches("^[a-zA-Z ]+$")){
-                nsd.getjLabelValidation().setText("Naziv mora sadržati slova");
+                nsd.getjLabelValidation().setText(LanguageSupport.getText("licence_name_validation_invalid"));
                 valid=false;
             }   
             return valid;
@@ -140,9 +146,19 @@ public class NivoSkijanjaDialogController {
 
     private boolean isEdited() {
         if(nsd.getNs().getNazivNivoa().equals(nsd.getjTextFieldName().getText())){
-            nsd.getjLabelValidation().setText("Niste izvršili izmenu");
+            nsd.getjLabelValidation().setText(LanguageSupport.getText("no_changes"));
             return false;
         }
         return true;
+    }
+
+    private void setLanguage() {
+        nsd.getjLabel1().setText(LanguageSupport.getText("ski_level_name"));
+        nsd.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        nsd.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        nsd.getjButtonDelete().setText(LanguageSupport.getText("delete_btn"));
+        nsd.getjButtonChange().setText(LanguageSupport.getText("change_btn"));
+        nsd.getjButtonSave().setText(LanguageSupport.getText("save_changes_btn"));
+        nsd.setTitle(LanguageSupport.getText("ski_level_dialog_title"));
     }
 }

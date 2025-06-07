@@ -4,6 +4,7 @@
  */
 package dialogController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +27,7 @@ public class SkijasDialogController {
     }
     public void openForm(){
         sd.setLocationRelativeTo(null);
+        setLanguage();
         fillComboBox();
         fillFields();
         sd.setVisible(true);
@@ -49,12 +51,12 @@ public class SkijasDialogController {
                     }
                     boolean b = Communication.getInstance().kreirajSkijas(s);
                     if(b){
-                        JOptionPane.showMessageDialog(sd, "Sistem je kreirao skijaša.\n","Kreiranje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText("create_skier_success"),LanguageSupport.getText("create_skier_title"),JOptionPane.INFORMATION_MESSAGE);
                         sd.dispose();
                         sd.getController().fillTable(null);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, ex.getMessage(),"Kreiranje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -88,18 +90,23 @@ public class SkijasDialogController {
 
 
                     if(name.equals(sd.getS().getIme()) && surname.equals(sd.getS().getPrezime()) && num.equals(sd.getS().getBrojTelefona()) && ns.getIdNivoSkijanja()==sd.getS().getNivoSkijanja().getIdNivoSkijanja()){
-                        JOptionPane.showMessageDialog(sd, "Niste izmenili podatke.\n","Ažuriranje skijaša.",JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText("skier_no_changes"),LanguageSupport.getText("update_skier_title"),JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    boolean b = Communication.getInstance().promeniSkijas(sk);
-                    if(b){
-                        JOptionPane.showMessageDialog(sd, "Sistem je zapamtio skijaša.\n","Ažuriranje skijaša",JOptionPane.INFORMATION_MESSAGE);
-                        sd.getController().fillTable(null);
-                        sd.dispose();
-                        return;
+                    int i =JOptionPane.showConfirmDialog(sd, LanguageSupport.getText("update_skier_confirm"),LanguageSupport.getText("update_skier_title"),JOptionPane.YES_NO_OPTION);
+                    if(i == JOptionPane.YES_OPTION){
+                        boolean b = Communication.getInstance().promeniSkijas(sk);
+                        if(b){
+                            JOptionPane.showMessageDialog(sd, LanguageSupport.getText("update_skier_success"),LanguageSupport.getText("update_skier_title"),JOptionPane.INFORMATION_MESSAGE);
+                            sd.getController().fillTable(null);
+                            sd.dispose();
+                            return;
+                        }
                     }
+                    else
+                        return;
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, ex.getMessage(),"Ažuriranje skijaša",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("update_skier_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -107,19 +114,19 @@ public class SkijasDialogController {
         sd.deleteActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int i =JOptionPane.showConfirmDialog(sd, "Da li ste sigurni da želite da obrišete skijaša?","Brisanje skijaša",JOptionPane.YES_NO_OPTION);
+                int i =JOptionPane.showConfirmDialog(sd, LanguageSupport.getText("delete_skier_confirm"),LanguageSupport.getText("delete_skier_title"),JOptionPane.YES_NO_OPTION);
         
                 if(i == JOptionPane.YES_OPTION){
                     try {
 
                         boolean b = Communication.getInstance().obrisiSkijas(sd.getS());
                         if(b){
-                            JOptionPane.showMessageDialog(sd, "Sistem je obrisao skijaša.","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(sd, LanguageSupport.getText("delete_skier_success"),LanguageSupport.getText("delete_skier_title"),JOptionPane.INFORMATION_MESSAGE);
                             sd.getController().fillTable(null);
                             sd.dispose();
                             }
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(sd, ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("delete_skier_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -145,7 +152,7 @@ public class SkijasDialogController {
             }
             
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(sd, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(sd, LanguageSupport.getText("loading_skier")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_skier"),JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -179,29 +186,42 @@ public class SkijasDialogController {
 
         if(sk.getIme().isEmpty()){
             validate=false;
-            sd.getjLabelName().setText("Unesite ime");
+            sd.getjLabelName().setText(LanguageSupport.getText("skier_name_validation_empty"));
         }else if(!sk.getIme().matches("^[a-zA-Z ]+$")){
             validate=false;
-            sd.getjLabelName().setText("Ime mora sadržati slova");
+            sd.getjLabelName().setText(LanguageSupport.getText("skier_name_validation_invalid"));
         }
         if(sk.getPrezime().isEmpty()){
             validate=false;
-            sd.getjLabelSurname().setText("Unesite prezime");
+            sd.getjLabelSurname().setText(LanguageSupport.getText("skier_surname_validation_empty"));
         }else if(!sk.getPrezime().matches("^[a-zA-Z ]+$")){
             validate=false;
-            sd.getjLabelSurname().setText("Prezime mora sadržati slova");
+            sd.getjLabelSurname().setText(LanguageSupport.getText("skier_surname_validation_invalid"));
         }
         if(sk.getBrojTelefona().isEmpty()){
             validate=false;
-            sd.getjLabelNum().setText("Unesite broj");
+            sd.getjLabelNum().setText(LanguageSupport.getText("skier_phone_validation_empty"));
         }else if (!sk.getBrojTelefona().matches("\\+?[0-9]{9,15}")) {
-            sd.getjLabelNum().setText("Broj mora sadržati 9-15 cifara");
+            sd.getjLabelNum().setText(LanguageSupport.getText("skier_phone_validation_invalid"));
             validate = false;
         }
         if(sk.getNivoSkijanja()==null){
             validate=false;
-            sd.getjLabelNivo().setText("Unesite nivo skijanja");
+            sd.getjLabelNivo().setText(LanguageSupport.getText("skier_level_validation_empty"));
         }
         return validate;
+    }
+
+    private void setLanguage() {
+        sd.getjLabel1().setText(LanguageSupport.getText("name"));
+        sd.getjLabel2().setText(LanguageSupport.getText("surname"));
+        sd.getjLabel3().setText(LanguageSupport.getText("contact"));
+        sd.getjLabel5().setText(LanguageSupport.getText("ski_level"));
+        sd.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        sd.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        sd.getjButtonDelete().setText(LanguageSupport.getText("delete_btn"));
+        sd.getjButtonChange().setText(LanguageSupport.getText("change_btn"));
+        sd.getjButtonSave().setText(LanguageSupport.getText("save_btn"));
+        sd.setTitle(LanguageSupport.getText("skier_dialog_title"));
     }
 }

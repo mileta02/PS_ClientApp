@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package formController;
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -46,14 +47,14 @@ public class LicencaFormController {
                     
                     List<Licenca> list = Communication.getInstance().vratiListuLicenca(l);
                     if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(lf, "Sistem ne može da nadje licence po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, LanguageSupport.getText("search_licence_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(lf, "Sistem je našao licence po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(lf, LanguageSupport.getText("search_licence_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(lf, ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(lf, ex.getMessage(),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -73,7 +74,8 @@ public class LicencaFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = lf.getjTableLicence().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(lf, "Izaberite licencu iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(lf, LanguageSupport.getText("choose_licence"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }
                 LicenceTableModel ltm = (LicenceTableModel) lf.getjTableLicence().getModel();
                 Licenca l = ltm.getList().get(row);
@@ -97,6 +99,7 @@ public class LicencaFormController {
     }
     public void openForm(){
         fillTable(null);
+        setLanguage();
         lf.setVisible(true);
     }
 
@@ -107,7 +110,7 @@ public class LicencaFormController {
             LicenceTableModel ltm = new LicenceTableModel(list);
             lf.getjTableLicence().setModel(ltm);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(lf, "Greska prilikom ucitavanja licenci. \n"+ex.getMessage(),"Ucitavanje licenci",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(lf, LanguageSupport.getText("error_loading_licence")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_licence"),JOptionPane.ERROR_MESSAGE);
             
         }
     }
@@ -116,7 +119,7 @@ public class LicencaFormController {
         boolean valid = true;
 
         if(l.getNazivLicence().isBlank() && l.getZvanjeInstruktora().isBlank()){
-            JOptionPane.showMessageDialog(lf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(lf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
 
@@ -129,7 +132,7 @@ public class LicencaFormController {
             valid = false;
         }
         if(!valid){
-            JOptionPane.showMessageDialog(lf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(lf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return valid;
@@ -138,5 +141,17 @@ public class LicencaFormController {
     private void defaultBorders() {
         lf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         lf.getjTextFieldZvanje().setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    }
+
+    private void setLanguage() {
+        lf.getjButtonAddLicence().setText(LanguageSupport.getText("add_btn"));
+        lf.getjButtonFilter().setText(LanguageSupport.getText("search_btn"));
+        lf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        lf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        lf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        lf.getjLabelName().setText(LanguageSupport.getText("licence_name"));
+        lf.getjLabelZvanje().setText(LanguageSupport.getText("licence_title"));
+        lf.getjLabel3().setText(LanguageSupport.getText("search_criteria"));
+        lf.setTitle(LanguageSupport.getText("licence"));
     }
 }

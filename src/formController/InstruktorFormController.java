@@ -4,6 +4,7 @@
  */
 package formController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -32,6 +33,7 @@ public class InstruktorFormController {
     }
     public void openForm(){
         fillTable(null);
+        setLanguage();
         inf.setVisible(true);
     }
 
@@ -53,19 +55,19 @@ public class InstruktorFormController {
                     
                     List<Instruktor> list = Communication.getInstance().vratiListuInstruktor(i);
                     if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(inf, "Sistem ne može da nadje instruktore po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(inf, LanguageSupport.getText("search_instructor_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(inf, "Sistem je našao instruktore po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(inf, LanguageSupport.getText("search_instructor_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(inf, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_instructor")+"\n"+ex.getMessage(),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
             private boolean validation(Instruktor i) {
                 if(i.getIme().isBlank() && i.getPrezime().isBlank()){
-                        JOptionPane.showMessageDialog(inf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(inf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                         return false;
                     }
                 boolean valid = true;
@@ -78,7 +80,7 @@ public class InstruktorFormController {
                     valid = false;
                 }
                 if(!valid){
-                    JOptionPane.showMessageDialog(inf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(inf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
                     return false;
                 }
                 return valid;
@@ -107,7 +109,7 @@ public class InstruktorFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = inf.getjTableInstructor().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(inf, "Izaberite instruktora iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(inf, LanguageSupport.getText("choose_instructor"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
                 InstructorTableModel itm = (InstructorTableModel) inf.getjTableInstructor().getModel();
@@ -128,7 +130,18 @@ public class InstruktorFormController {
             InstructorTableModel itm = new InstructorTableModel(list);
             inf.getjTableInstructor().setModel(new InstructorTableModel(list));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(inf, "Greska prilikom ucitavanja podataka.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_instructor")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_instructor"),JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void setLanguage() {
+        inf.getjButtonFilter().setText(LanguageSupport.getText("search_btn"));
+        inf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        inf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        inf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        inf.getjLabelName().setText(LanguageSupport.getText("name"));
+        inf.getjLabelSurname().setText(LanguageSupport.getText("surname"));
+        inf.getjLabelSearchCriteria().setText(LanguageSupport.getText("search_criteria"));
+        inf.setTitle(LanguageSupport.getText("instructors"));
     }
 }

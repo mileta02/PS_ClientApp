@@ -4,6 +4,7 @@
  */
 package formController;
 
+import Language.LanguageSupport;
 import cordinator.Cordinator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,5 +83,23 @@ public class GlavnaFormController {
     
     public void openForm(){
         gf.setVisible(true);
+        setLanguage();
+    }
+
+    private void setLanguage() {
+        gf.getjLabelSkiers().setText(LanguageSupport.getText("skiers"));
+        gf.getjLabelAppointments().setText(LanguageSupport.getText("appointments"));
+        gf.getjLabelInstructors().setText(LanguageSupport.getText("instructors"));
+        gf.getjButtonInstruktor().setText(LanguageSupport.getText("show_instructors_btn"));
+        gf.getjButtonSkijas().setText(LanguageSupport.getText("show_skiers_btn"));
+        gf.getjButtonTermin().setText(LanguageSupport.getText("show_appointments_btn"));
+        gf.getPodešavanja().setText(LanguageSupport.getText("settings"));
+        gf.getjMenuAccount().setText(LanguageSupport.getText("account"));
+        gf.getjMenuItemEditProfile().setText(LanguageSupport.getText("my_account"));
+        gf.getjMenuItemLogOut().setText(LanguageSupport.getText("logout"));
+        gf.getjMenuItemLicenca().setText(LanguageSupport.getText("licence"));
+        gf.getjMenuItemNivo().setText(LanguageSupport.getText("ski_level"));;
+        gf.getjMenuItemTip().setText(LanguageSupport.getText("type_of_appointment"));
+        gf.setTitle(LanguageSupport.getText("main_form_title"));
     }
 }

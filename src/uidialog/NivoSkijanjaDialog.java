@@ -77,12 +77,12 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Naziv nivoa:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 18, 80, 20));
-        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 18, 123, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 18, 100, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 20, 150, 20));
 
         jLabelValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelValidation.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 40, 130, 17));
+        jPanel1.add(jLabelValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 40, 160, 17));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,7 +95,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 jButtonChangeActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
+        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 130, 25));
 
         jButtonSave.setText("Sačuvaj");
         jButtonSave.setFocusPainted(false);
@@ -105,7 +105,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 jButtonSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
+        jPanel2.add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 130, 25));
 
         jButtonAdd.setText("Dodaj");
         jButtonAdd.setFocusPainted(false);
@@ -115,7 +115,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 jButtonAddActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 100, 25));
+        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 20, 130, 25));
 
         jButtonDelete.setText("Obriši");
         jButtonDelete.setFocusPainted(false);
@@ -125,7 +125,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 jButtonDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 50, 100, 25));
+        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 50, 130, 25));
 
         jButtonBack.setText("Nazad");
         jButtonBack.setFocusPainted(false);
@@ -135,18 +135,18 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 jButtonBackActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 80, 100, 25));
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 80, 130, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +155,7 @@ public class NivoSkijanjaDialog extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();

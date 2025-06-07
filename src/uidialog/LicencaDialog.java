@@ -82,11 +82,11 @@ public class LicencaDialog extends javax.swing.JDialog {
 
         jLabelNaziv.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelNaziv.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelNaziv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 150, 15));
+        jPanel1.add(jLabelNaziv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 170, 15));
 
         jLabelZvanje.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelZvanje.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelZvanje, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 150, 15));
+        jPanel1.add(jLabelZvanje, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 170, 15));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

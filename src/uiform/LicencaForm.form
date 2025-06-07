@@ -101,8 +101,8 @@
                       <Component id="jLabel3" min="-2" pref="175" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" pref="122" max="32767" attributes="0"/>
+                              <Component id="jLabelNameLicence" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabelZvanjeLicence" alignment="0" pref="122" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -130,13 +130,13 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNameLicence" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonFilter" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelZvanjeLicence" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldZvanje" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonClearFilter" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -151,12 +151,12 @@
             <Property name="text" type="java.lang.String" value="Kriterijum pretrage"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="jLabelNameLicence">
           <Properties>
             <Property name="text" type="java.lang.String" value="Naziv licence:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jLabelZvanjeLicence">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zvanje instruktora:"/>
           </Properties>

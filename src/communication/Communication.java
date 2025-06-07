@@ -423,7 +423,16 @@ public class Communication {
         throw response.getException();
     }
     
-    public boolean kreirajTerminSkijas(TerminSkijas ts) throws Exception {
+//    public boolean kreirajTerminSkijas(TerminSkijas ts) throws Exception {
+//        Request request = new Request(Operation.KREIRAJ_TERMIN_SKIJAS, ts);
+//        sender.send(request);
+//        Response response = (Response) receiver.receive();
+//        if(response.getException()==null){
+//            return (boolean) response.getResult();
+//        }
+//        throw response.getException();
+//    }
+    public boolean kreirajTerminSkijas(List<TerminSkijas> ts) throws Exception {
         Request request = new Request(Operation.KREIRAJ_TERMIN_SKIJAS, ts);
         sender.send(request);
         Response response = (Response) receiver.receive();
@@ -432,7 +441,6 @@ public class Communication {
         }
         throw response.getException();
     }
-    
     public boolean obrisiTerminSkijas(TerminSkijas ts) throws Exception {
         Request request = new Request(Operation.OBRISI_TERMIN_SKIJAS, ts);
         sender.send(request);

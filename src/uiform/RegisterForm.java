@@ -12,6 +12,7 @@ import model.Instruktor;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -31,6 +32,22 @@ public class RegisterForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+
+    public JButton getjButtonRegister() {
+        return jButtonRegister;
+    }
+
+    public void setjButtonRegister(JButton jButtonRegister) {
+        this.jButtonRegister = jButtonRegister;
+    }
+    
     public JLabel getjLabelContact() {
         return jLabelContact;
     }
@@ -47,20 +64,20 @@ public class RegisterForm extends javax.swing.JFrame {
         this.jLabelName = jLabelName;
     }
 
-    public JLabel getjLabelPass() {
-        return jLabelPass;
+    public JLabel getjLabelPassword() {
+        return jLabelPassword;
     }
 
-    public void setjLabelPass(JLabel jLabelPass) {
-        this.jLabelPass = jLabelPass;
+    public void setjLabelPassword(JLabel jLabelPassword) {
+        this.jLabelPassword = jLabelPassword;
     }
 
-    public JLabel getjLabelRepeatPass() {
-        return jLabelRepeatPass;
+    public JLabel getjLabelRepeatPassword() {
+        return jLabelRepeatPassword;
     }
 
-    public void setjLabelRepeatPass(JLabel jLabelRepeatPass) {
-        this.jLabelRepeatPass = jLabelRepeatPass;
+    public void setjLabelRepeatPassword(JLabel jLabelRepeatPassword) {
+        this.jLabelRepeatPassword = jLabelRepeatPassword;
     }
 
     public JLabel getjLabelSurname() {
@@ -77,6 +94,54 @@ public class RegisterForm extends javax.swing.JFrame {
 
     public void setjLabelUsername(JLabel jLabelUsername) {
         this.jLabelUsername = jLabelUsername;
+    }
+    
+    public JLabel getjLabelContactValidation() {
+        return jLabelContactValidation;
+    }
+
+    public void setjLabelContactValidation(JLabel jLabelContact) {
+        this.jLabelContactValidation = jLabelContact;
+    }
+
+    public JLabel getjLabelNameValidation() {
+        return jLabelNameValidation;
+    }
+
+    public void setjLabelNameValidation(JLabel jLabelName) {
+        this.jLabelNameValidation = jLabelName;
+    }
+
+    public JLabel getjLabelPasswordValidation() {
+        return jLabelPasswordValidation;
+    }
+
+    public void setjLabelPasswordValidation(JLabel jLabelPass) {
+        this.jLabelPasswordValidation = jLabelPass;
+    }
+
+    public JLabel getjLabelRepeatPasswordValidation() {
+        return jLabelRepeatPasswordValidation;
+    }
+
+    public void setjLabelRepeatPasswordValidation(JLabel jLabelRepeatPass) {
+        this.jLabelRepeatPasswordValidation = jLabelRepeatPass;
+    }
+
+    public JLabel getjLabelSurnameValidation() {
+        return jLabelSurnameValidation;
+    }
+
+    public void setjLabelSurnameValidation(JLabel jLabelSurname) {
+        this.jLabelSurnameValidation = jLabelSurname;
+    }
+
+    public JLabel getjLabelUsernameValidation() {
+        return jLabelUsernameValidation;
+    }
+
+    public void setjLabelUsernameValidation(JLabel jLabelUsername) {
+        this.jLabelUsernameValidation = jLabelUsername;
     }
 
     public JPasswordField getjPasswordFieldPass() {
@@ -137,24 +202,24 @@ public class RegisterForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldName = new javax.swing.JTextField();
         jLabelName = new javax.swing.JLabel();
-        jTextFieldSurname = new javax.swing.JTextField();
         jLabelSurname = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextFieldContact = new javax.swing.JTextField();
+        jTextFieldName = new javax.swing.JTextField();
+        jLabelNameValidation = new javax.swing.JLabel();
+        jTextFieldSurname = new javax.swing.JTextField();
+        jLabelSurnameValidation = new javax.swing.JLabel();
         jLabelContact = new javax.swing.JLabel();
+        jTextFieldContact = new javax.swing.JTextField();
+        jLabelContactValidation = new javax.swing.JLabel();
         jTextFieldUser = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabelUsername = new javax.swing.JLabel();
+        jLabelUsernameValidation = new javax.swing.JLabel();
         jPasswordFieldPass = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabelPass = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
+        jLabelPasswordValidation = new javax.swing.JLabel();
         jPasswordFieldRepeatPass = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabelRepeatPass = new javax.swing.JLabel();
+        jLabelRepeatPassword = new javax.swing.JLabel();
+        jLabelRepeatPasswordValidation = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonRegister = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
@@ -166,16 +231,16 @@ public class RegisterForm extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Ime:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 23, 100, 20));
+        jLabelName.setText("Ime:");
+        jPanel1.add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 23, 110, 20));
 
-        jLabel3.setText("Prezime:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 70, 100, 20));
+        jLabelSurname.setText("Prezime:");
+        jPanel1.add(jLabelSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 70, 110, 20));
         jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 23, 200, 20));
 
-        jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelName.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 49, 150, 15));
+        jLabelNameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelNameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 49, 150, 15));
 
         jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,41 +249,41 @@ public class RegisterForm extends javax.swing.JFrame {
         });
         jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 70, 200, 20));
 
-        jLabelSurname.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelSurname.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 96, 150, 15));
+        jLabelSurnameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelSurnameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelSurnameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 96, 150, 15));
 
-        jLabel4.setText("Kontakt telefon:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 117, 100, 20));
+        jLabelContact.setText("Kontakt telefon:");
+        jPanel1.add(jLabelContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 117, 110, 20));
         jPanel1.add(jTextFieldContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 117, 200, 20));
 
-        jLabelContact.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelContact.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 143, 150, 15));
+        jLabelContactValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelContactValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelContactValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 143, 200, 15));
         jPanel1.add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 164, 200, 20));
 
-        jLabel5.setText("Korisničko ime:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 164, 100, 20));
+        jLabelUsername.setText("Korisničko ime:");
+        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 164, 110, 20));
 
-        jLabelUsername.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelUsername.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 190, 200, 15));
+        jLabelUsernameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelUsernameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelUsernameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 190, 200, 15));
         jPanel1.add(jPasswordFieldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 211, 200, 20));
 
-        jLabel6.setText("Šifra:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 211, 100, 20));
+        jLabelPassword.setText("Šifra:");
+        jPanel1.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 211, 110, 20));
 
-        jLabelPass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelPass.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, 200, 15));
+        jLabelPasswordValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPasswordValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPasswordValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 237, 200, 15));
         jPanel1.add(jPasswordFieldRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 258, 200, 20));
 
-        jLabel2.setText("Povtrdi šifru:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 258, 100, 20));
+        jLabelRepeatPassword.setText("Povtrdi šifru:");
+        jPanel1.add(jLabelRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 258, 110, 20));
 
-        jLabelRepeatPass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelRepeatPass.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 284, 200, 15));
+        jLabelRepeatPasswordValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelRepeatPasswordValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelRepeatPasswordValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 284, 200, 15));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -279,7 +344,7 @@ public class RegisterForm extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -363,18 +428,18 @@ public class RegisterForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonRegister;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelContact;
+    private javax.swing.JLabel jLabelContactValidation;
     private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel jLabelPass;
-    private javax.swing.JLabel jLabelRepeatPass;
+    private javax.swing.JLabel jLabelNameValidation;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelPasswordValidation;
+    private javax.swing.JLabel jLabelRepeatPassword;
+    private javax.swing.JLabel jLabelRepeatPasswordValidation;
     private javax.swing.JLabel jLabelSurname;
+    private javax.swing.JLabel jLabelSurnameValidation;
     private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JLabel jLabelUsernameValidation;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldPass;

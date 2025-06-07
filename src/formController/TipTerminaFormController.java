@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package formController;
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -39,13 +40,13 @@ public class TipTerminaFormController {
                     
                     List<TipTermina> list = Communication.getInstance().vratiListuTipTermina(tt);
                     if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(ttf, "Sistem ne može da nadje tipove termina po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_type_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(ttf, "Sistem je našao tipove termina po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_type_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttf, "Greska prilikom pretrage","Pretraga",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("error_loading_type"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -58,7 +59,7 @@ public class TipTerminaFormController {
                 boolean valid = true;
 
                 if(name.isBlank()&& priceFromString.isBlank() && priceToString.isBlank()){
-                    JOptionPane.showMessageDialog(ttf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     return false;
                 }
 
@@ -84,7 +85,7 @@ public class TipTerminaFormController {
                     }
                 }
                 if(!valid){
-                    JOptionPane.showMessageDialog(ttf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
                     return false;
                 }
                 tt.setNazivTipa(name);
@@ -116,7 +117,7 @@ public class TipTerminaFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = ttf.getjTableTipTermina().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(ttf, "Izaberite tip termina iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("choose_type"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
                 
@@ -135,6 +136,7 @@ public class TipTerminaFormController {
     }
     public void openForm(){
         fillTable(null);
+        setLanguage();
         ttf.setVisible(true);
     }
     
@@ -145,7 +147,7 @@ public class TipTerminaFormController {
             TipTerminaTableModel tttm = new TipTerminaTableModel(list);
             ttf.getjTableTipTermina().setModel(tttm);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(ttf, "Greška prilikom učitavanja tipova termina.","Učitavanje tipova termina",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("error_loading_type"),LanguageSupport.getText("loading_type"),JOptionPane.ERROR_MESSAGE);
             
         }
     }
@@ -163,7 +165,7 @@ public class TipTerminaFormController {
         boolean valid = true;
             
         if(name.isEmpty() && priceFromString.isEmpty() && priceToString.isEmpty()){
-            JOptionPane.showMessageDialog(ttf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
             
@@ -173,9 +175,22 @@ public class TipTerminaFormController {
         }
         
         if(!valid){
-            JOptionPane.showMessageDialog(ttf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(ttf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
+    }
+
+    private void setLanguage() {
+        ttf.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        ttf.getjButtonSearch().setText(LanguageSupport.getText("search_btn"));
+        ttf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        ttf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        ttf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        ttf.getjLabelCriteria().setText(LanguageSupport.getText("search_criteria"));
+        ttf.getjLabelTypeName().setText(LanguageSupport.getText("type_name"));
+        ttf.getjLabelTypePrice().setText(LanguageSupport.getText("type_price"));
+        ttf.getjLabelTypeTo().setText(LanguageSupport.getText("type_to"));
+        ttf.setTitle(LanguageSupport.getText("type_of_appointment"));
     }
 }

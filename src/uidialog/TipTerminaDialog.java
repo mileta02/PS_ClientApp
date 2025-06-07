@@ -72,20 +72,20 @@ public class TipTerminaDialog extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Naziv:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 20));
-        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 130, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 130, 20));
 
         jLabelNameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelNameValidation.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelNameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 140, 20));
+        jPanel1.add(jLabelNameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 160, 20));
 
         jLabel2.setText("Cena sata:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 20));
-        jPanel1.add(jTextFieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 130, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 20));
+        jPanel1.add(jTextFieldPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 130, 20));
 
         jLabelPriceValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelPriceValidation.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelPriceValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 140, 20));
+        jPanel1.add(jLabelPriceValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 160, 20));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +98,7 @@ public class TipTerminaDialog extends javax.swing.JDialog {
                 jButtonChangeActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
+        jPanel2.add(jButtonChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 130, 25));
 
         jButtonSaveChanges.setText("Sačuvaj ");
         jButtonSaveChanges.setFocusPainted(false);
@@ -108,7 +108,7 @@ public class TipTerminaDialog extends javax.swing.JDialog {
                 jButtonSaveChangesActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSaveChanges, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
+        jPanel2.add(jButtonSaveChanges, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 130, 25));
 
         jButtonAdd.setText("Dodaj");
         jButtonAdd.setFocusPainted(false);
@@ -118,7 +118,7 @@ public class TipTerminaDialog extends javax.swing.JDialog {
                 jButtonAddActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 25));
+        jPanel2.add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 130, 25));
 
         jButtonDelete.setText("Obriši");
         jButtonDelete.setFocusPainted(false);
@@ -128,7 +128,7 @@ public class TipTerminaDialog extends javax.swing.JDialog {
                 jButtonDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 100, 25));
+        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 130, 25));
 
         jButtonBack.setText("Nazad");
         jButtonBack.setFocusPainted(false);
@@ -138,7 +138,7 @@ public class TipTerminaDialog extends javax.swing.JDialog {
                 jButtonBackActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 100, 25));
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 130, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,10 +146,10 @@ public class TipTerminaDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

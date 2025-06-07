@@ -259,6 +259,14 @@ public class SkijasForm extends javax.swing.JFrame {
         this.jButtonAdd = jButtonAdd;
     }
 
+    public JButton getjButtonBack() {
+        return jButtonBack;
+    }
+
+    public void setjButtonBack(JButton jButtonBack) {
+        this.jButtonBack = jButtonBack;
+    }
+    
     public JButton getjButtonClearFilter() {
         return jButtonClearFilter;
     }

@@ -48,11 +48,11 @@ public class InstruktorForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTextFieldName = new javax.swing.JTextField();
         jTextFieldSurname = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelName = new javax.swing.JLabel();
+        jLabelSurname = new javax.swing.JLabel();
         jButtonFilter = new javax.swing.JButton();
         jButtonClearFilter = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelSearchCriteria = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInstructor = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -64,9 +64,9 @@ public class InstruktorForm extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Ime");
+        jLabelName.setText("Ime");
 
-        jLabel2.setText("Prezime");
+        jLabelSurname.setText("Prezime");
 
         jButtonFilter.setText("Pretraži");
         jButtonFilter.setFocusPainted(false);
@@ -85,7 +85,7 @@ public class InstruktorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Kriterijum pretrage");
+        jLabelSearchCriteria.setText("Kriterijum pretrage");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,15 +94,15 @@ public class InstruktorForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelSearchCriteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(jTextFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
@@ -115,12 +115,12 @@ public class InstruktorForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel3)
+                .addComponent(jLabelSearchCriteria)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,7 +129,7 @@ public class InstruktorForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -252,28 +252,28 @@ public class InstruktorForm extends javax.swing.JFrame {
         this.jButtonFilter = jButtonFilter;
     }
 
-    public JLabel getjLabel1() {
-        return jLabel1;
+    public JLabel getjLabelName() {
+        return jLabelName;
     }
 
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+    public void setjLabelName(JLabel jLabel1) {
+        this.jLabelName = jLabel1;
     }
 
-    public JLabel getjLabel2() {
-        return jLabel2;
+    public JLabel getjLabelSurname() {
+        return jLabelSurname;
     }
 
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+    public void setjLabelSurname(JLabel jLabel2) {
+        this.jLabelSurname = jLabel2;
     }
 
-    public JLabel getjLabel3() {
-        return jLabel3;
+    public JLabel getjLabelSearchCriteria() {
+        return jLabelSearchCriteria;
     }
 
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
+    public void setjLabelSearchCriteria(JLabel jLabel3) {
+        this.jLabelSearchCriteria = jLabel3;
     }
 
     public JPanel getjPanel1() {
@@ -370,9 +370,9 @@ public class InstruktorForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonDetails;
     private javax.swing.JButton jButtonFilter;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelSearchCriteria;
+    private javax.swing.JLabel jLabelSurname;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

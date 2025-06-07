@@ -5,6 +5,7 @@ package table_model;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import Language.LanguageSupport;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,7 +16,7 @@ import model.Instruktor;
  * @author milan
  */
 public class InstructorTableModel extends AbstractTableModel {
-    private String[] columns = {"Ime","Prezime","Kontakt"};
+    private String[] columns = {LanguageSupport.getText("name"),LanguageSupport.getText("surname"),LanguageSupport.getText("contact")};
     private List<Instruktor> list = new ArrayList<>();
     
     public InstructorTableModel(List<Instruktor> list){

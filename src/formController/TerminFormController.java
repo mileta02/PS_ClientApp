@@ -4,6 +4,7 @@
  */
 package formController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -36,6 +37,7 @@ public class TerminFormController {
     public void openForm(){
         fillComboBoxes();
         fillTable(null);
+        setLanguage();
         tf.setVisible(true);
     }
 
@@ -51,15 +53,15 @@ public class TerminFormController {
 
                     List<Termin> list = Communication.getInstance().vratiListuTermin(ter);
                     if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(tf, "Sistem ne može da nadje termine po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(tf, LanguageSupport.getText("search_appointment_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(tf, "Sistem je našao termine po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("search_appointment_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tf, "Greska prilikom filtriranja termina.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("error_loading_appointment")+"\n"+ex.getMessage(),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -70,7 +72,7 @@ public class TerminFormController {
                 TipTermina t = (TipTermina) tf.getjComboTipTermina().getSelectedItem();
                 
                 if(i==null && t==null && numText.isBlank() && !tf.getjCheckBoxFuture().isSelected()){
-                    JOptionPane.showMessageDialog(tf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     return false;
                 }
                 LocalDate date = (tf.getjCheckBoxFuture().isSelected()) ? LocalDate.now() : null;;
@@ -87,7 +89,7 @@ public class TerminFormController {
                     }
 
                 if(!valid){
-                    JOptionPane.showMessageDialog(tf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
                     return false;
                 }
                 ter.setDatum(date);
@@ -122,7 +124,7 @@ public class TerminFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = tf.getjTableTermin().getSelectedRow();
                 if (row == -1) {
-                    JOptionPane.showMessageDialog(tf, "Morate izabrati termin!", "Greška", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("choose_appointment"), LanguageSupport.getText("wrong_choice"), JOptionPane.WARNING_MESSAGE);
                     return;
                 }   
 
@@ -148,7 +150,7 @@ public class TerminFormController {
             TerminTableModel ttm = new TerminTableModel(list);
             tf.getjTableTermin().setModel(ttm);
         }catch (Exception ex) {
-            JOptionPane.showMessageDialog(tf, "Greska prilikom punjenja tabele."+ex.getMessage(),"Punjenje tabele",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(tf, LanguageSupport.getText("error_loading_appointment")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_appointment"),JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -166,12 +168,26 @@ public class TerminFormController {
             }
             tf.getjComboTipTermina().setSelectedItem(null);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(tf, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(tf, LanguageSupport.getText("error_loading_appointment")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_appointment"),JOptionPane.ERROR_MESSAGE);
         }
     }
     
     private void defaultBorders() {
         tf.getjTextFieldNum().setBorder(new LineBorder(Color.black,1));
+    }
+
+    private void setLanguage() {
+        tf.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        tf.getjButtonFilter().setText(LanguageSupport.getText("search_btn"));
+        tf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        tf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        tf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        tf.getjLabel1().setText(LanguageSupport.getText("instructor"));
+        tf.getjLabel2().setText(LanguageSupport.getText("type_of_appointment"));
+        tf.getjLabel3().setText(LanguageSupport.getText("search_criteria"));
+        tf.getjLabel4().setText(LanguageSupport.getText("skiers_num"));
+        tf.getjCheckBoxFuture().setText(LanguageSupport.getText("future_appointments"));
+        tf.setTitle(LanguageSupport.getText("appointments"));
     }
     
 }

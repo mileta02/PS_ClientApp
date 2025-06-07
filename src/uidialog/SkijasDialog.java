@@ -99,17 +99,17 @@ public class SkijasDialog extends javax.swing.JDialog {
 
         jLabel5.setText("Nivo skijanja:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 161, 109, 26));
-        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 29, 137, -1));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 29, 200, -1));
 
         jTextFieldPhoneNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPhoneNumActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 117, 137, -1));
-        jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 73, 137, -1));
+        jPanel1.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 117, 200, -1));
+        jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 73, 200, -1));
 
-        jPanel1.add(jComboBoxNivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 161, 137, -1));
+        jPanel1.add(jComboBoxNivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 161, 200, -1));
 
         jLabelSurname.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelSurname.setForeground(new java.awt.Color(255, 0, 0));
@@ -117,7 +117,7 @@ public class SkijasDialog extends javax.swing.JDialog {
 
         jLabelNum.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelNum.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 142, 140, 20));
+        jPanel1.add(jLabelNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 142, 230, 20));
 
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelName.setForeground(new java.awt.Color(255, 0, 0));
@@ -183,7 +183,7 @@ public class SkijasDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(jButtonDelete);
-        jButtonDelete.setBounds(220, 25, 110, 25);
+        jButtonDelete.setBounds(270, 25, 110, 25);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,9 +192,9 @@ public class SkijasDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

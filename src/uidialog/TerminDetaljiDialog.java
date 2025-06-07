@@ -29,6 +29,7 @@ import table_model.TerminSkijasTableModel;
 import communication.Communication;
 import formController.TerminFormController;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -49,13 +50,16 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
     private Termin t;
     private TerminForm parent;
     private TerminFormController controller;
+    private List<TerminSkijas> currentList;
+    private List<TerminSkijas> originalList;
     public TerminDetaljiDialog(java.awt.Frame parent, boolean modal,Termin t, TerminFormController controller) {
         super(parent, modal);
         initComponents();
         this.t=t;
         this.parent=(TerminForm) parent;
         this.controller=controller;
-        //fillComboBoxes();
+        currentList = new ArrayList<>();
+        originalList = new ArrayList<>();
         //fillFields();
         //fillTable();
         //configureFields(false);
@@ -104,6 +108,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         jButtonDeleteSkijas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSkijasi = new javax.swing.JTable();
+        jButtonSaveSkijasi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalji termina");
@@ -144,7 +149,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         jPanel1.add(jSpinnerBrojSkijasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 170, 25));
 
         jLabel7.setText("Podaci o terminu");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 20, 145, 25));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 20, 230, 25));
 
         jLabel8.setText("Instruktor:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 25));
@@ -264,6 +269,15 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableSkijasi);
 
+        jButtonSaveSkijasi.setText("Sačuvaj");
+        jButtonSaveSkijasi.setFocusPainted(false);
+        jButtonSaveSkijasi.setFocusable(false);
+        jButtonSaveSkijasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveSkijasiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -281,6 +295,10 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDeleteSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(jButtonSaveSkijasi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,8 +311,10 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                     .addComponent(jComboBoxSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonDeleteSkijas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonSaveSkijasi)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,7 +337,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -332,6 +352,30 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
 
     public void setjLabelDate(JLabel jLabelDate) {
         this.jLabelDate = jLabelDate;
+    }
+
+    public List<TerminSkijas> getCurrentList() {
+        return currentList;
+    }
+
+    public void setCurrentList(List<TerminSkijas> currentList) {
+        this.currentList = currentList;
+    }
+
+    public List<TerminSkijas> getOriginalList() {
+        return originalList;
+    }
+
+    public void setOriginalList(List<TerminSkijas> originalList) {
+        this.originalList = originalList;
+    }
+
+    public JButton getjButtonSaveSkijasi() {
+        return jButtonSaveSkijasi;
+    }
+
+    public void setjButtonSaveSkijasi(JButton jButtonSaveSkijasi) {
+        this.jButtonSaveSkijasi = jButtonSaveSkijasi;
     }
 
     public JLabel getjLabelNum() {
@@ -740,6 +784,10 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
         }*/
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
+    private void jButtonSaveSkijasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveSkijasiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSaveSkijasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -752,6 +800,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonDeleteSkijas;
     private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonSaveSkijasi;
     private javax.swing.JComboBox<Instruktor> jComboBoxInstruktor;
     private javax.swing.JComboBox<Skijas> jComboBoxSkijas;
     private javax.swing.JComboBox<TipTermina> jComboBoxTipTermina;
@@ -877,6 +926,10 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
 
     public void deleteSkijasActionListener(ActionListener actionListener) {
         jButtonDeleteSkijas.addActionListener(actionListener);
+    }
+    
+    public void saveSkijasiActionListener(ActionListener actionListener){
+        jButtonSaveSkijasi.addActionListener(actionListener);
     }
     
 }

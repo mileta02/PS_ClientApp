@@ -4,6 +4,7 @@
  */
 package table_model;
 
+import Language.LanguageSupport;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.InstruktorLicenca;
@@ -15,7 +16,7 @@ import model.Licenca;
  */
 public class InstructorLicenceTableModel extends AbstractTableModel {
     
-    private String[] columns={"Naziv licence","Zvanje instruktora","Godina sticanja"};
+    private String[] columns={LanguageSupport.getText("licence_name_table"),LanguageSupport.getText("licence_title_table"),LanguageSupport.getText("licence_year_table")};
     private List<InstruktorLicenca> list;
 
     public List<InstruktorLicenca> getList() {

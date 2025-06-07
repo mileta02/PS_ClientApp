@@ -4,6 +4,7 @@
  */
 package table_model;
 
+import Language.LanguageSupport;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Termin;
@@ -14,7 +15,8 @@ import model.Termin;
  */
 public class TerminTableModel extends AbstractTableModel {
 
-    private String[] columns = {"Instruktor","Datum","Vreme od","Vreme do","Broj sati","Broj skijasa","Tip termina","Ukupan iznos"};
+    private String[] columns = {LanguageSupport.getText("instructor"),LanguageSupport.getText("date"),LanguageSupport.getText("time_from"),LanguageSupport.getText("time_to"),
+        LanguageSupport.getText("hours_num"),LanguageSupport.getText("skiers_num"),LanguageSupport.getText("type_of_appointment"),LanguageSupport.getText("total_price")};
     private List<Termin> list;
 
     public List<Termin> getList() {

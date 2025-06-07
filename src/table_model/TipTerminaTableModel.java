@@ -4,6 +4,7 @@
  */
 package table_model;
 
+import Language.LanguageSupport;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.TipTermina;
@@ -15,7 +16,7 @@ import model.TipTermina;
 public class TipTerminaTableModel extends AbstractTableModel {
     
     private List<TipTermina> list;
-    private String[] columns = {"Naziv","Cena sata"};
+    private String[] columns = {LanguageSupport.getText("type_name"),LanguageSupport.getText("type_price")};
     
     public TipTerminaTableModel(List<TipTermina> list){
         this.list=list;

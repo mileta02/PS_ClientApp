@@ -14,6 +14,7 @@ import model.Instruktor;
 import communication.Communication;
 import cordinator.Cordinator;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -43,44 +44,61 @@ public class LoginForm extends javax.swing.JFrame {
         this.jButtonRegister = jButtonRegister;
     }
 
-    public JLabel getjLabel1() {
-        return jLabel1;
+    public JLabel getjLabelLanguage() {
+        return jLabelLanguage;
     }
 
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+    public void setjLabelLanguage(JLabel jLabelLanguage) {
+        this.jLabelLanguage = jLabelLanguage;
     }
 
-    public JLabel getjLabel2() {
-        return jLabel2;
+    public JLabel getjLabelNoAccount() {
+        return jLabelNoAccount;
     }
 
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+    public void setjLabelNoAccount(JLabel jLabelNoAccount) {
+        this.jLabelNoAccount = jLabelNoAccount;
     }
 
-    public JLabel getjLabel3() {
-        return jLabel3;
-    }
-
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
-    }
-
-    public JLabel getjLabePassword() {
+    public JLabel getjLabelPassword() {
         return jLabelPassword;
     }
 
-    public void setjLabelPassword(JLabel jLabel4) {
-        this.jLabelPassword = jLabel4;
+    public void setjLabelPassword(JLabel jLabelPass) {
+        this.jLabelPassword = jLabelPass;
     }
 
     public JLabel getjLabelUsername() {
         return jLabelUsername;
     }
 
-    public void setjLabelUsername(JLabel jLabel5) {
-        this.jLabelUsername = jLabel5;
+    public void setjLabelUsername(JLabel jLabelUser) {
+        this.jLabelUsername = jLabelUser;
+    }
+    
+    
+    
+    public JComboBox<String> getjComboBoxLanguage() {
+        return jComboBoxLanguage;
+    }
+
+    public void setjComboBoxLanguage(JComboBox<String> jComboBoxLanguage) {
+        this.jComboBoxLanguage = jComboBoxLanguage;
+    }
+    public JLabel getjLabelPasswordValidation() {
+        return jLabelPasswordValidation;
+    }
+
+    public void setjLabelPasswordValidation(JLabel jLabel4) {
+        this.jLabelPasswordValidation = jLabel4;
+    }
+
+    public JLabel getjLabelUsernameValidation() {
+        return jLabelUsernameValidation;
+    }
+
+    public void setjLabelUsernameValidation(JLabel jLabel5) {
+        this.jLabelUsernameValidation = jLabel5;
     }
 
     public JPanel getjPanel1() {
@@ -149,16 +167,18 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldKorisnickoIme = new javax.swing.JTextField();
         jLabelUsername = new javax.swing.JLabel();
-        jPasswordFieldSifra = new javax.swing.JPasswordField();
         jLabelPassword = new javax.swing.JLabel();
+        jTextFieldKorisnickoIme = new javax.swing.JTextField();
+        jLabelUsernameValidation = new javax.swing.JLabel();
+        jPasswordFieldSifra = new javax.swing.JPasswordField();
+        jLabelPasswordValidation = new javax.swing.JLabel();
         jButtonLogin = new javax.swing.JButton();
         jButtonExit = new javax.swing.JButton();
+        jLabelLanguage = new javax.swing.JLabel();
+        jComboBoxLanguage = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelNoAccount = new javax.swing.JLabel();
         jButtonRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,13 +188,13 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Korisničko ime:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        jLabelUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelUsername.setText("Korisničko ime:");
+        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Šifra:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 20));
+        jLabelPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelPassword.setText("Šifra:");
+        jPanel1.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 20));
 
         jTextFieldKorisnickoIme.setText("admin");
         jTextFieldKorisnickoIme.setBorder(null);
@@ -185,11 +205,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
         jPanel1.add(jTextFieldKorisnickoIme, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 150, 20));
 
-        jLabelUsername.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelUsername.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, 20));
+        jLabelUsernameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelUsernameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelUsernameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, 20));
 
-        jPasswordFieldSifra.setText("admin0202");
+        jPasswordFieldSifra.setText("admin2002");
         jPasswordFieldSifra.setBorder(null);
         jPasswordFieldSifra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,11 +218,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
         jPanel1.add(jPasswordFieldSifra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 150, 20));
 
-        jLabelPassword.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabelPassword.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 200, 20));
+        jLabelPasswordValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPasswordValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPasswordValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 200, 20));
 
-        jButtonLogin.setText("Uloguj se");
+        jButtonLogin.setText("Prijavi se");
         jButtonLogin.setFocusPainted(false);
         jButtonLogin.setFocusable(false);
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +230,7 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 150, 25));
+        jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 150, 25));
 
         jButtonExit.setText("Izađi");
         jButtonExit.setFocusPainted(false);
@@ -220,11 +240,18 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonExitActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 150, 25));
+        jPanel1.add(jButtonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 150, 25));
+
+        jLabelLanguage.setText("Izaberite jezik:");
+        jPanel1.add(jLabelLanguage, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 100, 20));
+
+        jPanel1.add(jComboBoxLanguage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 150, 20));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("Nemaš nalog?");
+        jLabelNoAccount.setText("Nemaš nalog?");
+        jPanel2.add(jLabelNoAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 140, -1));
 
         jButtonRegister.setText("Registruj se");
         jButtonRegister.setFocusPainted(false);
@@ -234,47 +261,27 @@ public class LoginForm extends javax.swing.JFrame {
                 jButtonRegisterActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(jButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        jPanel2.add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 16, 115, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -337,11 +344,13 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonRegister;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> jComboBoxLanguage;
+    private javax.swing.JLabel jLabelLanguage;
+    private javax.swing.JLabel jLabelNoAccount;
     private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelPasswordValidation;
     private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JLabel jLabelUsernameValidation;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSifra;
@@ -358,5 +367,13 @@ public class LoginForm extends javax.swing.JFrame {
 
     public void exitActionListener(ActionListener actionListener) {
         jButtonExit.addActionListener(actionListener);
+    }
+    
+    public void languageActionListener(ActionListener actionListener){
+        jComboBoxLanguage.addActionListener(actionListener);
+    }
+    
+    public void setFrameTitle(String title){
+        setTitle(title);
     }
 }

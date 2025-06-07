@@ -80,20 +80,20 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         this.jLabelZvanje = jLabelZvanje;
     }
 
-    public JLabel getjLabel16() {
-        return jLabel16;
+    public JLabel getjLabelLicenceStatus() {
+        return jLabelLicenceStatus;
     }
 
-    public void setjLabel16(JLabel jLabel16) {
-        this.jLabel16 = jLabel16;
+    public void setjLabelLicenceStatus(JLabel jLabel16) {
+        this.jLabelLicenceStatus = jLabel16;
     }
 
-    public JLabel getjLabel17() {
-        return jLabel17;
+    public JLabel getjLabelLicenceZvanje() {
+        return jLabelLicenceZvanje;
     }
 
-    public void setjLabel17(JLabel jLabel17) {
-        this.jLabel17 = jLabel17;
+    public void setjLabelLicenceZvanje(JLabel jLabel17) {
+        this.jLabelLicenceZvanje = jLabel17;
     }
 
     
@@ -163,6 +163,14 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         this.jButtonSave = jButtonSave;
     }
 
+    public JLabel getjLabelLicence() {
+        return jLabelLicence;
+    }
+
+    public void setjLabelLicence(JLabel jLabelLicence) {
+        this.jLabelLicence = jLabelLicence;
+    }
+
     public JComboBox<Licenca> getjComboBoxLicence() {
         return jComboBoxLicence;
     }
@@ -179,124 +187,124 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         this.jDateChooser1 = jDateChooser1;
     }
 
-    public JLabel getjLabel1() {
-        return jLabel1;
+    public JLabel getjLabelName() {
+        return jLabelName;
     }
 
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+    public void setjLabelName(JLabel jLabel1) {
+        this.jLabelName = jLabel1;
     }
 
-    public JLabel getjLabel10() {
-        return jLabel10;
+    public JLabel getjLabelPasswordValidation() {
+        return jLabelPasswordValidation;
     }
 
-    public void setjLabel10(JLabel jLabel10) {
-        this.jLabel10 = jLabel10;
+    public void setjLabelPasswordValidation(JLabel jLabel10) {
+        this.jLabelPasswordValidation = jLabel10;
     }
 
-    public JLabel getjLabel11() {
-        return jLabel11;
+    public JLabel getjLabelPassword() {
+        return jLabelPassword;
     }
 
-    public void setjLabel11(JLabel jLabel11) {
-        this.jLabel11 = jLabel11;
+    public void setjLabelPassword(JLabel jLabel11) {
+        this.jLabelPassword = jLabel11;
     }
 
-    public JLabel getjLabel12() {
-        return jLabel12;
+    public JLabel getjLabelRepeatPasswordValidation() {
+        return jLabelRepeatPasswordValidation;
     }
 
-    public void setjLabel12(JLabel jLabel12) {
-        this.jLabel12 = jLabel12;
+    public void setjLabelRepeatPasswordValidation(JLabel jLabel12) {
+        this.jLabelRepeatPasswordValidation = jLabel12;
     }
 
     public JLabel getjLabel13() {
-        return jLabel13;
+        return jLabelLicence;
     }
 
     public void setjLabel13(JLabel jLabel13) {
-        this.jLabel13 = jLabel13;
+        this.jLabelLicence = jLabel13;
     }
 
-    public JLabel getjLabel14() {
-        return jLabel14;
+    public JLabel getjLabelLicenceName() {
+        return jLabelLicenceName;
     }
 
-    public void setjLabel14(JLabel jLabel14) {
-        this.jLabel14 = jLabel14;
+    public void setjLabelLicenceName(JLabel jLabel14) {
+        this.jLabelLicenceName = jLabel14;
     }
 
-    public JLabel getjLabel15() {
-        return jLabel15;
+    public JLabel getjLabelLicenceDate() {
+        return jLabelLicenceDate;
     }
 
-    public void setjLabel15(JLabel jLabel15) {
-        this.jLabel15 = jLabel15;
+    public void setjLabelLicenceDate(JLabel jLabel15) {
+        this.jLabelLicenceDate = jLabel15;
     }
 
-    public JLabel getjLabel2() {
-        return jLabel2;
+    public JLabel getjLabelSurname() {
+        return jLabelSurname;
     }
 
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+    public void setjLabeSurname(JLabel jLabel2) {
+        this.jLabelSurname = jLabel2;
     }
 
-    public JLabel getjLabel3() {
-        return jLabel3;
+    public JLabel getjLabelContact() {
+        return jLabelContact;
     }
 
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
+    public void setjLabeContact(JLabel jLabel3) {
+        this.jLabelContact = jLabel3;
     }
 
-    public JLabel getjLabel4() {
-        return jLabel4;
+    public JLabel getjLabelUsername() {
+        return jLabelUsername;
     }
 
-    public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
+    public void setjLabelUsername(JLabel jLabel4) {
+        this.jLabelUsername = jLabel4;
     }
 
-    public JLabel getjLabel5() {
-        return jLabel5;
+    public JLabel getjLabelRepeatPassword() {
+        return jLabelRepeatPassword;
     }
 
-    public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
+    public void setjLabelRepeatPassword(JLabel jLabel5) {
+        this.jLabelRepeatPassword = jLabel5;
     }
 
-    public JLabel getjLabel6() {
-        return jLabel6;
+    public JLabel getjLabelNameValidation() {
+        return jLabelNameValidation;
     }
 
-    public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
+    public void setjLabelNameValidation(JLabel jLabel6) {
+        this.jLabelNameValidation = jLabel6;
     }
 
-    public JLabel getjLabel7() {
-        return jLabel7;
+    public JLabel getjLabelSurnameValidation() {
+        return jLabelSurnameValidation;
     }
 
-    public void setjLabel7(JLabel jLabel7) {
-        this.jLabel7 = jLabel7;
+    public void setjLabelSurnameValidation(JLabel jLabel7) {
+        this.jLabelSurnameValidation = jLabel7;
     }
 
-    public JLabel getjLabel8() {
-        return jLabel8;
+    public JLabel getjLabelContactValidation() {
+        return jLabelContactValidation;
     }
 
-    public void setjLabel8(JLabel jLabel8) {
-        this.jLabel8 = jLabel8;
+    public void setjLabelContactValidation(JLabel jLabel8) {
+        this.jLabelContactValidation = jLabel8;
     }
 
-    public JLabel getjLabel9() {
-        return jLabel9;
+    public JLabel getjLabelUsernameValidation() {
+        return jLabelUsernameValidation;
     }
 
-    public void setjLabel9(JLabel jLabel9) {
-        this.jLabel9 = jLabel9;
+    public void setjLabelUsernameValidation(JLabel jLabel9) {
+        this.jLabelUsernameValidation = jLabel9;
     }
 
     public JPanel getjPanel1() {
@@ -397,40 +405,40 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelName = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelSurname = new javax.swing.JLabel();
         jTextFieldSurname = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelContact = new javax.swing.JLabel();
         jTextFieldContact = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelUsername = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
         jPasswordFieldPass = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelRepeatPassword = new javax.swing.JLabel();
         jPasswordFieldRepeatPass = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelNameValidation = new javax.swing.JLabel();
+        jLabelSurnameValidation = new javax.swing.JLabel();
+        jLabelContactValidation = new javax.swing.JLabel();
+        jLabelUsernameValidation = new javax.swing.JLabel();
+        jLabelPasswordValidation = new javax.swing.JLabel();
+        jLabelRepeatPasswordValidation = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonEdit = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jLabelLicence = new javax.swing.JLabel();
+        jLabelLicenceName = new javax.swing.JLabel();
+        jLabelLicenceDate = new javax.swing.JLabel();
         jComboBoxLicence = new javax.swing.JComboBox<>();
         jButtonAdd = new javax.swing.JButton();
         jButtonDeleteLicence = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabelDate = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabelLicenceStatus = new javax.swing.JLabel();
+        jLabelLicenceZvanje = new javax.swing.JLabel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelZvanje = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -443,71 +451,71 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Ime:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 24, 100, 20));
-        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 24, 150, 20));
+        jLabelName.setText("Ime:");
+        jPanel1.add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, 20));
+        jPanel1.add(jTextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 150, 20));
 
-        jLabel2.setText("Prezime:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 76, 100, 20));
+        jLabelSurname.setText("Prezime:");
+        jPanel1.add(jLabelSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, 20));
 
         jTextFieldSurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSurnameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 76, 150, 20));
+        jPanel1.add(jTextFieldSurname, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 150, 20));
 
-        jLabel3.setText("Kontakt:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 128, 100, 20));
-        jPanel1.add(jTextFieldContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 128, 150, 20));
+        jLabelContact.setText("Kontakt:");
+        jPanel1.add(jLabelContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 100, 20));
+        jPanel1.add(jTextFieldContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 150, 20));
 
-        jLabel4.setText("Korisnicko ime:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 180, 100, 20));
-        jPanel1.add(jTextFieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 180, 150, 20));
+        jLabelUsername.setText("Korisnicko ime:");
+        jPanel1.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 100, 20));
+        jPanel1.add(jTextFieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 150, 20));
 
-        jLabel11.setText("Šifra");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 232, 100, 20));
+        jLabelPassword.setText("Šifra");
+        jPanel1.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 100, 20));
 
         jPasswordFieldPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldPassActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordFieldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 232, 150, 20));
+        jPanel1.add(jPasswordFieldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 150, 20));
 
-        jLabel5.setText("Ponovi šifru");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 284, 100, 20));
+        jLabelRepeatPassword.setText("Ponovi šifru");
+        jPanel1.add(jLabelRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 120, 20));
 
         jPasswordFieldRepeatPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldRepeatPassActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordFieldRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 284, 150, 20));
+        jPanel1.add(jPasswordFieldRepeatPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 150, 20));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 50, 150, 20));
+        jLabelNameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelNameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 150, 20));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 102, 150, 20));
+        jLabelSurnameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelSurnameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelSurnameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 150, 20));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 154, 150, 20));
+        jLabelContactValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelContactValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelContactValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 190, 20));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 204, 150, 20));
+        jLabelUsernameValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelUsernameValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelUsernameValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 150, 20));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 258, 170, 20));
+        jLabelPasswordValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelPasswordValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelPasswordValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 200, 20));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 310, 170, 20));
+        jLabelRepeatPasswordValidation.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelRepeatPasswordValidation.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jLabelRepeatPasswordValidation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, 20));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(null);
@@ -558,11 +566,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel13.setText("Licenca");
+        jLabelLicence.setText("Licenca");
 
-        jLabel14.setText("Naziv:");
+        jLabelLicenceName.setText("Naziv:");
 
-        jLabel15.setText("Datum:");
+        jLabelLicenceDate.setText("Datum:");
 
         jComboBoxLicence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -589,9 +597,9 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         jLabelDate.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelDate.setForeground(new java.awt.Color(255, 0, 0));
 
-        jLabel16.setText("Status:");
+        jLabelLicenceStatus.setText("Status:");
 
-        jLabel17.setText("Zvanje:");
+        jLabelLicenceZvanje.setText("Zvanje:");
 
         jLabelZvanje.setForeground(new java.awt.Color(0, 204, 0));
 
@@ -608,11 +616,11 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelLicenceName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelLicence, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(jLabelLicenceDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelLicenceStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelLicenceZvanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -626,25 +634,25 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13)
+                .addComponent(jLabelLicence)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
+                            .addComponent(jLabelLicenceName)
                             .addComponent(jComboBoxLicence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel15))
+                        .addComponent(jLabelLicenceDate))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jLabelDate)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
+                    .addComponent(jLabelLicenceStatus)
                     .addComponent(jLabelStatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
+                    .addComponent(jLabelLicenceZvanje)
                     .addComponent(jLabelZvanje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButtonAdd)
@@ -909,25 +917,25 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSave;
     private javax.swing.JComboBox<Licenca> jComboBoxLicence;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelContact;
+    private javax.swing.JLabel jLabelContactValidation;
     private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelLicence;
+    private javax.swing.JLabel jLabelLicenceDate;
+    private javax.swing.JLabel jLabelLicenceName;
+    private javax.swing.JLabel jLabelLicenceStatus;
+    private javax.swing.JLabel jLabelLicenceZvanje;
+    private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelNameValidation;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelPasswordValidation;
+    private javax.swing.JLabel jLabelRepeatPassword;
+    private javax.swing.JLabel jLabelRepeatPasswordValidation;
     private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JLabel jLabelSurname;
+    private javax.swing.JLabel jLabelSurnameValidation;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JLabel jLabelUsernameValidation;
     private javax.swing.JLabel jLabelZvanje;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -957,26 +965,26 @@ public class InstruktorNalogForm extends javax.swing.JFrame {
         
         jButtonSave.setVisible(b);
         
-        jLabel5.setVisible(b);
-        jLabel11.setVisible(b);
+        jLabelRepeatPassword.setVisible(b);
+        jLabelPassword.setVisible(b);
         
         jPasswordFieldPass.setVisible(b);
         jPasswordFieldRepeatPass.setVisible(b);
     }
 
     private void fillLabels() {
-        jLabel6.setText("Unesite ime!"); 
-        jLabel7.setText("Unesite prezime!"); 
-        jLabel8.setText("Unesite kontakt telefon!"); 
-        jLabel9.setText("Unesite korisničko ime!"); 
-        jLabel10.setText("Unesite šifru!");
-        jLabel12.setText("Ponovite šifru!"); 
-        jLabel9.setVisible(false);
-        jLabel10.setVisible(false);
-        jLabel7.setVisible(false);
-        jLabel8.setVisible(false);
-        jLabel6.setVisible(false);
-        jLabel12.setVisible(false);
+        jLabelNameValidation.setText("Unesite ime!"); 
+        jLabelSurnameValidation.setText("Unesite prezime!"); 
+        jLabelContactValidation.setText("Unesite kontakt telefon!"); 
+        jLabelUsernameValidation.setText("Unesite korisničko ime!"); 
+        jLabelPasswordValidation.setText("Unesite šifru!");
+        jLabelRepeatPasswordValidation.setText("Ponovite šifru!"); 
+        jLabelUsernameValidation.setVisible(false);
+        jLabelPasswordValidation.setVisible(false);
+        jLabelSurnameValidation.setVisible(false);
+        jLabelContactValidation.setVisible(false);
+        jLabelNameValidation.setVisible(false);
+        jLabelRepeatPasswordValidation.setVisible(false);
     }
     
     private void fillComboBox() {

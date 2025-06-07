@@ -4,6 +4,7 @@
  */
 package formController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -47,14 +48,14 @@ public class NivoSkijanjaFormController {
                     
                     List<NivoSkijanja> list = Communication.getInstance().vratiListuNivoSkijanja(ns);
                     if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(nsf, "Sistem ne može da nadje nivoe skijanja po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("search_ski_level_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(nsf, "Sistem je našao nivoe skijanja po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("search_ski_level_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsf, "Greska prilikom ucitavanja nivoa skijanja. \n"+ex.getMessage(),"Ucitavanje nivoa skijanja",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("error_loading_ski_level")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_ski_level"),JOptionPane.ERROR_MESSAGE);
 
                 }
             }
@@ -82,7 +83,7 @@ public class NivoSkijanjaFormController {
                 
                 int row = nsf.getjTableNivoSkijanja().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(nsf, "Izaberite nivo skijanja iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("choose_ski_level"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
                 NivoSkijanjaTableModel nstm = (NivoSkijanjaTableModel) nsf.getjTableNivoSkijanja().getModel();
@@ -100,6 +101,7 @@ public class NivoSkijanjaFormController {
     }
     public void openForm(){
         fillTable(null);
+        setLanguage();
         nsf.setVisible(true);
     }
     
@@ -120,14 +122,25 @@ public class NivoSkijanjaFormController {
 
     private boolean validation(NivoSkijanja ns) {
         if(ns.getNazivNivoa().isBlank()){
-            JOptionPane.showMessageDialog(nsf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
             return false;
         }else if(!ns.getNazivNivoa().matches("^[a-zA-Z ]+$")){
             nsf.getjTextFieldName().setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-            JOptionPane.showMessageDialog(nsf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(nsf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
+    }
+
+    private void setLanguage() {
+        nsf.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        nsf.getjButtonSearch().setText(LanguageSupport.getText("search_btn"));
+        nsf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        nsf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        nsf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        nsf.getjLabel1().setText(LanguageSupport.getText("search_criteria"));
+        nsf.getjLabel2().setText(LanguageSupport.getText("ski_level_name"));
+        nsf.setTitle(LanguageSupport.getText("ski_level"));
     }
     
 }

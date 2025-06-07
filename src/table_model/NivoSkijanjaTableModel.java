@@ -4,6 +4,7 @@
  */
 package table_model;
 
+import Language.LanguageSupport;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.NivoSkijanja;
@@ -15,7 +16,7 @@ import model.NivoSkijanja;
 public class NivoSkijanjaTableModel extends AbstractTableModel {
     
     private List<NivoSkijanja> list;
-    private String[] columns={"Naziv"};
+    private String[] columns={LanguageSupport.getText("ski_level_name")};
     
     public List<NivoSkijanja> getList() {
         return list;

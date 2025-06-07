@@ -6,6 +6,10 @@ package uiform;
 
 import cordinator.Cordinator;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import model.Instruktor;
 
 /**
@@ -23,6 +27,7 @@ public class GlavnaForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         ulogovan=ins;
+        
     }
 
     /**
@@ -35,13 +40,13 @@ public class GlavnaForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelInstructors = new javax.swing.JLabel();
         jButtonInstruktor = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelSkiers = new javax.swing.JLabel();
         jButtonSkijas = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelAppointments = new javax.swing.JLabel();
         jButtonTermin = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuAccount = new javax.swing.JMenu();
@@ -57,7 +62,7 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Instruktori");
+        jLabelInstructors.setText("Instruktori");
 
         jButtonInstruktor.setText("Prikaži instruktore");
         jButtonInstruktor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -75,9 +80,9 @@ public class GlavnaForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelInstructors, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonInstruktor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
@@ -85,14 +90,14 @@ public class GlavnaForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelInstructors, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonInstruktor))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel3.setText("Skijaši");
+        jLabelSkiers.setText("Skijaši");
 
         jButtonSkijas.setText("Prikaži skijaše");
         jButtonSkijas.setFocusPainted(false);
@@ -109,9 +114,9 @@ public class GlavnaForm extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelSkiers, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSkijas, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,13 +125,13 @@ public class GlavnaForm extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonSkijas)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelSkiers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setText("Termini");
+        jLabelAppointments.setText("Termini");
 
         jButtonTermin.setText("Prikaži termine");
         jButtonTermin.setFocusPainted(false);
@@ -143,9 +148,9 @@ public class GlavnaForm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addComponent(jButtonTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(jButtonTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         jPanel3Layout.setVerticalGroup(
@@ -153,7 +158,7 @@ public class GlavnaForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonTermin))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -234,7 +239,111 @@ public class GlavnaForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public JButton getjButtonInstruktor() {
+        return jButtonInstruktor;
+    }
 
+    public void setjButtonInstruktor(JButton jButtonInstruktor) {
+        this.jButtonInstruktor = jButtonInstruktor;
+    }
+
+    public JButton getjButtonSkijas() {
+        return jButtonSkijas;
+    }
+
+    public void setjButtonSkijas(JButton jButtonSkijas) {
+        this.jButtonSkijas = jButtonSkijas;
+    }
+
+    public JButton getjButtonTermin() {
+        return jButtonTermin;
+    }
+
+    public void setjButtonTermin(JButton jButtonTermin) {
+        this.jButtonTermin = jButtonTermin;
+    }
+
+    public JLabel getjLabelAppointments() {
+        return jLabelAppointments;
+    }
+
+    public void setjLabelAppointments(JLabel jLabelAppointments) {
+        this.jLabelAppointments = jLabelAppointments;
+    }
+
+    public JLabel getjLabelInstructors() {
+        return jLabelInstructors;
+    }
+
+    public void setjLabelInstructors(JLabel jLabelInstructors) {
+        this.jLabelInstructors = jLabelInstructors;
+    }
+
+    public JLabel getjLabelSkiers() {
+        return jLabelSkiers;
+    }
+
+    public void setjLabelSkiers(JLabel jLabelSkiers) {
+        this.jLabelSkiers = jLabelSkiers;
+    }
+
+    public JMenu getPodešavanja() {
+        return Podešavanja;
+    }
+
+    public void setPodešavanja(JMenu Podešavanja) {
+        this.Podešavanja = Podešavanja;
+    }
+
+    public JMenu getjMenuAccount() {
+        return jMenuAccount;
+    }
+
+    public void setjMenuAccount(JMenu jMenuAccount) {
+        this.jMenuAccount = jMenuAccount;
+    }
+
+    public JMenuItem getjMenuItemEditProfile() {
+        return jMenuItemEditProfile;
+    }
+
+    public void setjMenuItemEditProfile(JMenuItem jMenuItemEditProfile) {
+        this.jMenuItemEditProfile = jMenuItemEditProfile;
+    }
+
+    public JMenuItem getjMenuItemLicenca() {
+        return jMenuItemLicenca;
+    }
+
+    public void setjMenuItemLicenca(JMenuItem jMenuItemLicenca) {
+        this.jMenuItemLicenca = jMenuItemLicenca;
+    }
+
+    public JMenuItem getjMenuItemLogOut() {
+        return jMenuItemLogOut;
+    }
+
+    public void setjMenuItemLogOut(JMenuItem jMenuItemLogOut) {
+        this.jMenuItemLogOut = jMenuItemLogOut;
+    }
+
+    public JMenuItem getjMenuItemNivo() {
+        return jMenuItemNivo;
+    }
+
+    public void setjMenuItemNivo(JMenuItem jMenuItemNivo) {
+        this.jMenuItemNivo = jMenuItemNivo;
+    }
+
+    public JMenuItem getjMenuItemTip() {
+        return jMenuItemTip;
+    }
+
+    public void setjMenuItemTip(JMenuItem jMenuItemTip) {
+        this.jMenuItemTip = jMenuItemTip;
+    }
+    
     private void jMenuItemEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditProfileActionPerformed
           
     }//GEN-LAST:event_jMenuItemEditProfileActionPerformed
@@ -279,9 +388,9 @@ public class GlavnaForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInstruktor;
     private javax.swing.JButton jButtonSkijas;
     private javax.swing.JButton jButtonTermin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelAppointments;
+    private javax.swing.JLabel jLabelInstructors;
+    private javax.swing.JLabel jLabelSkiers;
     private javax.swing.JMenu jMenuAccount;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItemEditProfile;

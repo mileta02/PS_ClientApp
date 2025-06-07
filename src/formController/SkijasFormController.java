@@ -4,6 +4,7 @@
  */
 package formController;
 
+import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
 import java.awt.Color;
@@ -49,21 +50,21 @@ public class SkijasFormController {
                     
                     List<Skijas> list = Communication.getInstance().vratiListuSkijas(s);
                      if(list.isEmpty()){
-                        JOptionPane.showMessageDialog(sf, "Sistem ne može da nadje skijaše po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(sf, LanguageSupport.getText("search_skier_error"),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    JOptionPane.showMessageDialog(sf, "Sistem je našao skijaše po zadatim kriterijumima.","Filtriranje podataka",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("search_skier_success"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     fillTable(list);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sf, "Greska prilikom filtriranja instruktora.\n"+ex.getMessage(),"Filtriranje podataka",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("error_loading_skier")+"\n"+ex.getMessage(),LanguageSupport.getText("search_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
             private boolean validation(Skijas s) {
                 boolean valid = true;
                 if(s.getIme().isBlank()&& s.getPrezime().isBlank() && s.getNivoSkijanja()==null){
-                    JOptionPane.showMessageDialog(sf, "Unesite  kriterijum pretrage","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("search_validation"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                     return false;
                 }
 
@@ -76,7 +77,7 @@ public class SkijasFormController {
                     sf.getjTextFieldSurname().setBorder(new LineBorder(Color.red,2));
                 }
                 if(!valid){
-                    JOptionPane.showMessageDialog(sf, "Pogrešan unos","Pretraga",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("search_error"),LanguageSupport.getText("search_title"),JOptionPane.WARNING_MESSAGE);
                     return false;
                 }
                 return valid;
@@ -108,7 +109,7 @@ public class SkijasFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = sf.getjTableSkijas().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(sf, "Izaberite skijasa iz tabele","Pogrešan izbor",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("choose_skier"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
                 SkijasTableModel stm = (SkijasTableModel) sf.getjTableSkijas().getModel();
@@ -128,6 +129,7 @@ public class SkijasFormController {
     public void openForm(){
         fillComboBox();
         fillTable(null);
+        setLanguage();
         sf.setVisible(true);
     }
     public void fillTable(List<Skijas> list) {
@@ -137,7 +139,7 @@ public class SkijasFormController {
             SkijasTableModel stm = new SkijasTableModel(list);
             sf.getjTableSkijas().setModel(stm);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(sf, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(sf, LanguageSupport.getText("loading_skier")+"\n"+ex.getMessage(),LanguageSupport.getText("error_loading_skier"),JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -150,7 +152,7 @@ public class SkijasFormController {
             sf.getjComboNivo().setSelectedItem(null);
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(sf, "Greska prilikom ucitavanja podatakaaa.\n"+ex.getMessage(),"Ucitavanje podataka",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(sf, LanguageSupport.getText("loading_skier")+"\n"+ex.getMessage(),LanguageSupport.getText("error_loading_skier"),JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -158,5 +160,18 @@ public class SkijasFormController {
     private void defaultBorders() {
         sf.getjTextFieldName().setBorder(new LineBorder(Color.black,1));
         sf.getjTextFieldSurname().setBorder(new LineBorder(Color.black,1));
+    }
+
+    private void setLanguage() {
+        sf.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        sf.getjButtonFilter().setText(LanguageSupport.getText("search_btn"));
+        sf.getjButtonClearFilter().setText(LanguageSupport.getText("clear_filter_btn"));
+        sf.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
+        sf.getjButtonDetails().setText(LanguageSupport.getText("details_btn"));
+        sf.getjLabel1().setText(LanguageSupport.getText("search_criteria"));
+        sf.getjLabel2().setText(LanguageSupport.getText("name"));
+        sf.getjLabel3().setText(LanguageSupport.getText("surname"));
+        sf.getjLabel4().setText(LanguageSupport.getText("ski_level"));
+        sf.setTitle(LanguageSupport.getText("skiers"));
     }
 }
