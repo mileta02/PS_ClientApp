@@ -196,7 +196,7 @@ public class TerminDetaljiDialog extends javax.swing.JDialog {
 
         jLabelVremeDo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelVremeDo.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 205, 70, -1));
+        jPanel1.add(jLabelVremeDo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 205, 170, 20));
 
         jLabelTip.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelTip.setForeground(new java.awt.Color(255, 0, 0));

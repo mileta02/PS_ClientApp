@@ -6,6 +6,7 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -47,6 +48,7 @@ public class SkijasDialogController {
                     Skijas s = new Skijas(0, name, surname, num, ns);
                     
                     if(!validation(s)){
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText("create_skier_unsuccess"),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     boolean b = Communication.getInstance().kreirajSkijas(s);
@@ -55,8 +57,10 @@ public class SkijasDialogController {
                         sd.dispose();
                         sd.getController().fillTable(null);
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(sd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(sd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -85,6 +89,7 @@ public class SkijasDialogController {
                     Skijas sk = new Skijas(sd.getS().getIdSkijas(), name, surname, num, ns);
 
                     if(!validation(sk)){
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText("create_skier_unsuccess"),LanguageSupport.getText("create_skier_title"),JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
@@ -105,8 +110,10 @@ public class SkijasDialogController {
                     }
                     else
                         return;
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("update_skier_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(sd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("update_skier_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(sd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("update_skier_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -125,8 +132,10 @@ public class SkijasDialogController {
                             sd.getController().fillTable(null);
                             sd.dispose();
                             }
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(sd, ex.getMessage(),LanguageSupport.getText("delete_skier_title"),JOptionPane.ERROR_MESSAGE);
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("delete_skier_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(sd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("delete_skier_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

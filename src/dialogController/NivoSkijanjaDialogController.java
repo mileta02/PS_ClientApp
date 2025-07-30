@@ -6,6 +6,7 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -46,8 +47,10 @@ public class NivoSkijanjaDialogController {
                         nsd.getController().fillTable(null);
                         nsd.dispose();
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("create_ski_level_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(nsd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("create_ski_level_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("create_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -64,25 +67,26 @@ public class NivoSkijanjaDialogController {
         
         nsd.saveActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                try {        
-                    if(!validation() || !isEdited())
-                        return;
-                   
-                    int i =JOptionPane.showConfirmDialog(nsd, LanguageSupport.getText("update_ski_level_confirm"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.YES_NO_OPTION);
-                    if(i == JOptionPane.YES_OPTION){
-                        nsd.getNs().setNazivNivoa(nsd.getjTextFieldName().getText());
-                        if(Communication.getInstance().promeniNivoSkijanja(nsd.getNs())){
+            public void actionPerformed(ActionEvent e) {   
+                if(!validation() || !isEdited())
+                    return;
+
+                int i =JOptionPane.showConfirmDialog(nsd, LanguageSupport.getText("update_ski_level_confirm"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.YES_NO_OPTION);
+                if(i == JOptionPane.YES_OPTION){
+                    try {     
+                        NivoSkijanja toUpdate = new NivoSkijanja(nsd.getNs().getIdNivoSkijanja(),nsd.getjTextFieldName().getText());
+                        if(Communication.getInstance().promeniNivoSkijanja(toUpdate)){
                             JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("update_ski_level_success"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.INFORMATION_MESSAGE);
                             nsd.getController().fillTable(null);
                             nsd.dispose();
                         }
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(nsd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("update_ski_level_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("update_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                     }
-                    else
-                        return;
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("update_ski_level_title"),JOptionPane.ERROR_MESSAGE);
-                }
+                }else
+                    return;
             }
         });
         
@@ -98,8 +102,10 @@ public class NivoSkijanjaDialogController {
                             nsd.getController().fillTable(null);
                             nsd.dispose();
                         }
-                    } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(nsd, ex.getMessage(),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.ERROR_MESSAGE);
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(nsd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(nsd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("delete_ski_level_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -108,6 +114,7 @@ public class NivoSkijanjaDialogController {
         nsd.backActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                nsd.getController().fillTable(null);
                 nsd.dispose();
             }
         });

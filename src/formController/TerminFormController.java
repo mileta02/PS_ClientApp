@@ -124,13 +124,15 @@ public class TerminFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = tf.getjTableTermin().getSelectedRow();
                 if (row == -1) {
-                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("choose_appointment"), LanguageSupport.getText("wrong_choice"), JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tf, LanguageSupport.getText("appointment_not_found"), LanguageSupport.getText("wrong_choice"), JOptionPane.WARNING_MESSAGE);
                     return;
                 }   
 
                 TerminTableModel ttm = (TerminTableModel) tf.getjTableTermin().getModel();
                 List<Termin> list = ttm.getList();
                 Termin t = list.get(row);
+                
+                JOptionPane.showMessageDialog(tf, LanguageSupport.getText("appointment_found"), LanguageSupport.getText("search_title"), JOptionPane.INFORMATION_MESSAGE);
                 Cordinator.getInstance().openTerminDetaljiDialog(tf, t);
             }
         });

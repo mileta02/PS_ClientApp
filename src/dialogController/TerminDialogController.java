@@ -6,6 +6,8 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import cordinator.Cordinator;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -16,6 +18,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Instruktor;
 import model.Termin;
 import model.TipTermina;
 import uidialog.TerminDialog;
@@ -44,8 +47,10 @@ public class TerminDialogController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(!validation())
+                    if(!validation()){
+                        JOptionPane.showMessageDialog(td, LanguageSupport.getText("create_appointment_unsuccess"),LanguageSupport.getText("create_appointment_title"),JOptionPane.ERROR_MESSAGE);
                         return;
+                    }
                     Date utilDate = td.getjDateChooser().getDate();
                     LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -74,11 +79,14 @@ public class TerminDialogController {
                         JOptionPane.showMessageDialog(td, LanguageSupport.getText("create_appointment_success"),LanguageSupport.getText("create_appointment_title"),JOptionPane.INFORMATION_MESSAGE);
                         td.dispose();
                         td.getController().fillTable(null);
+                        Cordinator.getInstance().openTerminDetaljiDialog(td.getParent(), t);
                     }
 
 
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(td, ex.getMessage(),LanguageSupport.getText("create_appointment_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(td, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("create_appointment_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(td, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("create_appointment_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -144,12 +152,24 @@ public class TerminDialogController {
     
     private void fillComboBox() {
         List<TipTermina> listTip;
+        List<Instruktor> listInstruktor;
         try {
             listTip = Communication.getInstance().vratiListuSviTipTermina();
             for(TipTermina t : listTip){
                 td.getjComboBoxTipTermina().addItem(t);
             }
             td.getjComboBoxTipTermina().setSelectedItem(null);
+            
+            listInstruktor = Communication.getInstance().vratiListuSviInstruktor();
+            for(Instruktor i : listInstruktor){
+                td.getjComboBoxInstruktor().addItem(i);
+                if(i.equals(td.getUlogovan())){
+                    td.getjComboBoxInstruktor().setSelectedItem(i);
+                    break;
+                }
+            }
+            td.getjComboBoxInstruktor().setEnabled(false);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(td, LanguageSupport.getText("loading_appointment")+"\n"+ex.getMessage(),LanguageSupport.getText("error_loading_appointment"),JOptionPane.ERROR_MESSAGE);
         }
@@ -163,7 +183,8 @@ public class TerminDialogController {
         td.getjLabel4().setText(LanguageSupport.getText("time_to"));
         td.getjLabel5().setText(LanguageSupport.getText("skiers_num"));
         td.getjLabel7().setText(LanguageSupport.getText("type_of_appointment"));
-        td.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
+        td.getjLabel8().setText(LanguageSupport.getText("instructor"));
+        td.getjButtonAdd().setText(LanguageSupport.getText("save_btn"));
         td.getjButtonBack().setText(LanguageSupport.getText("back_btn"));
         td.setTitle(LanguageSupport.getText("create_appointment_title"));
     }

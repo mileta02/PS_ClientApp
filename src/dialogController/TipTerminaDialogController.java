@@ -6,6 +6,7 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -51,8 +52,10 @@ public class TipTerminaDialogController {
                         ttd.dispose();
                         ttd.getController().fillTable(null);
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),LanguageSupport.getText("create_type_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(ttd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("create_type_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(ttd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("create_type_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -73,26 +76,24 @@ public class TipTerminaDialogController {
             public void actionPerformed(ActionEvent e) {
                 if(!validation() || !isEdited())
                     return;
-
-                try{
-                    int i =JOptionPane.showConfirmDialog(ttd, LanguageSupport.getText("update_type_confirm"),LanguageSupport.getText("update_type_title"),JOptionPane.YES_NO_OPTION);
-        
-                    if(i == JOptionPane.YES_OPTION){
-                        String name = ttd.getjTextFieldName().getText();
-                        double price = Double.parseDouble(ttd.getjTextFieldPrice().getText());
-                        ttd.getTt().setNazivTipa(name);
-                        ttd.getTt().setCenaSata(price);
-                        boolean b = Communication.getInstance().promeniTipTermina(ttd.getTt());
-                        if(b){
+                
+                int i =JOptionPane.showConfirmDialog(ttd, LanguageSupport.getText("update_type_confirm"),LanguageSupport.getText("update_type_title"),JOptionPane.YES_NO_OPTION);
+                if(i == JOptionPane.YES_OPTION){
+                    try{
+                        TipTermina toUpdate = new TipTermina(ttd.getTt().getIdTip(),Double.parseDouble(ttd.getjTextFieldPrice().getText()),ttd.getjTextFieldName().getText());
+                        if(Communication.getInstance().promeniTipTermina(toUpdate)){
                             JOptionPane.showMessageDialog(ttd, LanguageSupport.getText("update_type_success"),LanguageSupport.getText("update_type_title"),JOptionPane.INFORMATION_MESSAGE);
                             ttd.getController().fillTable(null);
                             ttd.dispose();
                         }
-                    }else
-                        return;
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),LanguageSupport.getText("update_type_title"),JOptionPane.ERROR_MESSAGE);
-                }
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(ttd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("update_type_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(ttd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("update_type_title"),JOptionPane.ERROR_MESSAGE);
+                    }
+                }else
+                    return;
+                
             }
         });
         
@@ -109,8 +110,10 @@ public class TipTerminaDialogController {
                         ttd.getController().fillTable(null);
                         ttd.dispose();
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(ttd, ex.getMessage(),LanguageSupport.getText("delete_type_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(ttd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("delete_type_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(ttd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("delete_type_title"),JOptionPane.ERROR_MESSAGE);
                 }
                 }
             }
@@ -120,6 +123,7 @@ public class TipTerminaDialogController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ttd.dispose();
+                ttd.getController().fillTable(null);
             }
         });
     }

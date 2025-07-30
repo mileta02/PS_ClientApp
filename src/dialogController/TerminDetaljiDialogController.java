@@ -6,6 +6,7 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Duration;
@@ -62,52 +63,59 @@ public class TerminDetaljiDialogController {
         tdd.saveActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    if(!validation(tdd.getT()))
+                int i =JOptionPane.showConfirmDialog(tdd, LanguageSupport.getText("update_appointment_confirm"),LanguageSupport.getText("update_appointment_title"),JOptionPane.YES_NO_OPTION);
+                if(i==JOptionPane.YES_OPTION){
+                    if(!validation(tdd.getT())){
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("create_appointment_unsuccess"),LanguageSupport.getText("update_appointment_title"),JOptionPane.ERROR_MESSAGE);
                         return;
-                
-                    int i =JOptionPane.showConfirmDialog(tdd, LanguageSupport.getText("update_appointment_confirm"),LanguageSupport.getText("update_appointment_title"),JOptionPane.YES_NO_OPTION);
-                    if(i==JOptionPane.YES_OPTION){
-                        try {
-                            Date utilDate = tdd.getjDateChooser().getDate();
-                            LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                            
-                            Date vremeOdDate = (Date) tdd.getjSpinnerVremeOd().getValue();
-                            LocalTime vremeOd = vremeOdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-
-                            Date vremeDoDate = (Date) tdd.getjSpinnerVremeDo().getValue();
-                            LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-                            
-                            int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
-                            int maxBrojSkijasa = (int) tdd.getjSpinnerBrojSkijasa().getValue();
-                            TipTermina tip = (TipTermina) tdd.getjComboBoxTipTermina().getSelectedItem();
-                            
-                            TerminSkijasTableModel stm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
-                            int brojSkijasa = stm.getList().size();
-                            double ukupanIznos = brojSkijasa*brojSati*tip.getCenaSata();
-                            
-                            tdd.getT().setBrojSati(brojSati);
-                            tdd.getT().setMaxBrojSkijasa(maxBrojSkijasa);
-                            tdd.getT().setDatum(date);
-                            tdd.getT().setVremeOd(vremeOd);
-                            tdd.getT().setVremeDo(vremeDo);
-                            tdd.getT().setTipTermina(tip);
-                            tdd.getT().setUkupanIznos(ukupanIznos);
-                            
-                            boolean b = Communication.getInstance().promeniTermin(tdd.getT());
-                            JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("update_appointment_success"),LanguageSupport.getText("update_appointment_title"),JOptionPane.INFORMATION_MESSAGE);
-                            
-                            tdd.getController().fillTable(null);
-                            tdd.getjButtonChange().setVisible(true);
-                            tdd.getjButtonSave().setVisible(false);
-                            configureFields(false);
-                        } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(tdd, ex.getMessage(),LanguageSupport.getText("update_appointment_title"),JOptionPane.ERROR_MESSAGE);
-                        }
                     }
-                    else{
-                        return;
+                    try {
+                        Date utilDate = tdd.getjDateChooser().getDate();
+                        LocalDate date = (utilDate == null) ? null : utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                        Date vremeOdDate = (Date) tdd.getjSpinnerVremeOd().getValue();
+                        LocalTime vremeOd = vremeOdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
+                        Date vremeDoDate = (Date) tdd.getjSpinnerVremeDo().getValue();
+                        LocalTime vremeDo = vremeDoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
+                        int brojSati = (int) Duration.between(vremeOd, vremeDo).toHours();
+                        int maxBrojSkijasa = (int) tdd.getjSpinnerBrojSkijasa().getValue();
+                        TipTermina tip = (TipTermina) tdd.getjComboBoxTipTermina().getSelectedItem();
+
+                        TerminSkijasTableModel stm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
+                        int brojSkijasa = stm.getList().size();
+                        double ukupanIznos = brojSkijasa*brojSati*tip.getCenaSata();
+
+                        Termin toUpdate = new Termin();
+                        toUpdate.setIdTermin(tdd.getT().getIdTermin());
+                        toUpdate.setBrojSati(brojSati);
+                        toUpdate.setMaxBrojSkijasa(maxBrojSkijasa);
+                        toUpdate.setDatum(date);
+                        toUpdate.setVremeOd(vremeOd);
+                        toUpdate.setVremeDo(vremeDo);
+                        toUpdate.setTipTermina(tip);
+                        toUpdate.setUkupanIznos(ukupanIznos);
+                        toUpdate.setInstruktor(tdd.getT().getInstruktor());
+
+                        boolean b = Communication.getInstance().promeniTermin(toUpdate);
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("update_appointment_success"),LanguageSupport.getText("update_appointment_title"),JOptionPane.INFORMATION_MESSAGE);
+
+                        tdd.getController().fillTable(null);
+                        tdd.getjButtonChange().setVisible(true);
+                        tdd.getjButtonSave().setVisible(false);
+                        configureFields(false);
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("update_appointment_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("error.unknown")+" "+ex.getMessage(),LanguageSupport.getText("update_appointment_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
+                else{
+                    return;
+                }
+            }
 
             private boolean validation(Termin t) {
                 tdd.getjLabelDate().setText("");
@@ -190,8 +198,10 @@ public class TerminDetaljiDialogController {
                             tdd.getController().fillTable(null);
                             tdd.dispose();
                             }
-                    } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tdd, ex.getMessage(),LanguageSupport.getText("delete_appointment_title"),JOptionPane.ERROR_MESSAGE);
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("delete_appointment_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("delete_appointment_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -221,8 +231,10 @@ public class TerminDetaljiDialogController {
                             tdd.getParent().getjCheckBoxFuture().setSelected(false);
                             fillTable(null);
                         }
+                    }catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText(ex.getErrorCode()),JOptionPane.ERROR_MESSAGE);
                     }catch (Exception ex) {
-                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("adding_skiers_error")+"\n"+ex.getMessage(),LanguageSupport.getText("adding_skiers_title"),JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("update_licence_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -231,25 +243,10 @@ public class TerminDetaljiDialogController {
         tdd.addSkijasActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                int num = brojSkijasa();
-//                if(num==tdd.getT().getMaxBrojSkijasa()){
-//                    JOptionPane.showMessageDialog(tdd, "Dostigli se maksimalan broj skijaša za izabrani termin","Dodavanje skijaša",JOptionPane.WARNING_MESSAGE);
-//                    return;
-//                }
-//                
-//                TerminSkijas ts = new TerminSkijas((Skijas) tdd.getjComboBoxSkijas().getSelectedItem(), tdd.getT(), LocalDate.now());
-//                try {
-//                    boolean b = Communication.getInstance().kreirajTerminSkijas(ts);
-//                    if(b){
-//                        updateTerminPrice(num + 1);
-//                        Communication.getInstance().promeniTermin(tdd.getT());
-//                        JOptionPane.showMessageDialog(tdd, "Sistem je zapamtio skijaša.","Dodavanje skijaša",JOptionPane.INFORMATION_MESSAGE);
-//                        fillTable();
-//                        tdd.getController().fillTable(null);
-//                    }
-//                }catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(tdd, "Sistem ne može da zapamti skijaša."+ex.getMessage(),"Dodavanje skijaša",JOptionPane.ERROR_MESSAGE);
-//                }
+                if(tdd.getjComboBoxSkijas().getSelectedItem() == null){
+                   JOptionPane.showMessageDialog(tdd, "Izaberite skijaša!",LanguageSupport.getText("adding_skiers_title"),JOptionPane.WARNING_MESSAGE);
+                   return; 
+                }
                 int num = brojSkijasa();
                 if(num==tdd.getT().getMaxBrojSkijasa()){
                     JOptionPane.showMessageDialog(tdd, LanguageSupport.getText("adding_skiers_max_num_error"),LanguageSupport.getText("adding_skiers_title"),JOptionPane.WARNING_MESSAGE);
@@ -266,42 +263,12 @@ public class TerminDetaljiDialogController {
                 
                 tdd.getCurrentList().add(ts);
                 fillTable(tdd.getCurrentList());
-//                System.out.println("Current:"+tdd.getCurrentList()+"\n Original:"+tdd.getOriginalList());
             }
         });
         
         tdd.deleteSkijasActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                int num = brojSkijasa();
-//                System.out.println(num);
-//                if(num==0){
-//                    JOptionPane.showMessageDialog(tdd, "Ne postoji skijaš za izabrani termin","Brisanje skijaša",JOptionPane.WARNING_MESSAGE);
-//                    return;
-//                }
-//                
-//                int row = tdd.getjTableSkijasi().getSelectedRow();
-//                if (row == -1) {
-//                    JOptionPane.showMessageDialog(tdd, "Morate izabrati skijaša", "Greška", JOptionPane.WARNING_MESSAGE);
-//                    return;
-//                }
-//
-//                TerminSkijasTableModel tstm = (TerminSkijasTableModel) tdd.getjTableSkijasi().getModel();
-//                List<TerminSkijas> list = tstm.getList();
-//                TerminSkijas ts = list.get(row);
-//
-//                try {
-//                    boolean b = Communication.getInstance().obrisiTerminSkijas(ts);
-//                    if(b){
-//                        updateTerminPrice(num - 1);
-//                        Communication.getInstance().promeniTermin(tdd.getT());
-//                        JOptionPane.showMessageDialog(tdd, "Sistem je obrisao skijaša","Brisanje skijaša",JOptionPane.INFORMATION_MESSAGE);
-//                        fillTable();
-//                        tdd.getController().fillTable(null);
-//                    }
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(tdd, ex.getMessage(),"Brisanje skijaša",JOptionPane.ERROR_MESSAGE);
-//                }
                 int num = brojSkijasa();
                 System.out.println(num);
                 if(num==0){
@@ -321,7 +288,6 @@ public class TerminDetaljiDialogController {
                 
                 tdd.getCurrentList().remove(ts);
                 fillTable(tdd.getCurrentList());
-//                System.out.println("Current:"+tdd.getCurrentList()+"\n Original:"+tdd.getOriginalList());
 
             }
         });
@@ -347,6 +313,7 @@ public class TerminDetaljiDialogController {
             for(Skijas s : listSki){
                 tdd.getjComboBoxSkijas().addItem(s);
             }
+            tdd.getjComboBoxSkijas().setSelectedItem(null);
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(tdd, "Greska prilikom punjenja CB."+ex.getMessage(),"Punjenje CB",JOptionPane.ERROR_MESSAGE);
@@ -386,9 +353,6 @@ public class TerminDetaljiDialogController {
 
     private void fillTable(List<TerminSkijas> list2) {
         try {
-//                List<TerminSkijas> list = Communication.getInstance().vratiListuTerminSkijas(tdd.getT());
-//                TerminSkijasTableModel tstm = new TerminSkijasTableModel(list);
-//                tdd.getjTableSkijasi().setModel(tstm);
             if(list2 == null){
                 List<TerminSkijas> list = Communication.getInstance().vratiListuTerminSkijas(tdd.getT());
                 System.out.println(list);
@@ -416,11 +380,6 @@ public class TerminDetaljiDialogController {
         boolean visible = true;
             if(!my || date)
                 visible = false;
-//        tdd.getjButtonDelete().setVisible(visible);
-//        tdd.getjButtonAddSkijas().setVisible(visible);
-//        tdd.getjButtonChange().setVisible(visible);
-//        tdd.getjButtonDeleteSkijas().setVisible(visible);
-//        tdd.getjComboBoxSkijas().setVisible(visible);
         tdd.getjButtonDelete().setEnabled(visible);
         tdd.getjButtonAddSkijas().setEnabled(visible);
         tdd.getjButtonChange().setEnabled(visible);
@@ -429,11 +388,7 @@ public class TerminDetaljiDialogController {
         tdd.getjComboBoxSkijas().setEnabled(visible);
         tdd.getjTableSkijasi().setEnabled(visible);
     }
-    
-//    private void updateTerminPrice(int num){
-//        double cena = tdd.getT().getBrojSati() * tdd.getT().getTipTermina().getCenaSata() * num;
-//        tdd.getT().setUkupanIznos(cena);
-//    }
+
     private double updateTerminPrice(){
         double cena = tdd.getT().getBrojSati() * tdd.getT().getTipTermina().getCenaSata() * tdd.getCurrentList().size();
         return cena;

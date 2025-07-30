@@ -7,6 +7,7 @@ package formController;
 import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -51,7 +52,9 @@ public class RegisterController {
                             LanguageSupport.getText("register_title"), JOptionPane.INFORMATION_MESSAGE);
                     rf.dispose();
                     Cordinator.getInstance().openLoginForm();
-                } catch (Exception ex) {
+                } catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(rf,LanguageSupport.getText(ex.getErrorCode()), LanguageSupport.getText("register_title"), JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
                     JOptionPane.showMessageDialog(rf,LanguageSupport.getText("register_invalid"), LanguageSupport.getText("register_title"), JOptionPane.ERROR_MESSAGE);
                 }
             }

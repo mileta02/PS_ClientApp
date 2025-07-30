@@ -6,6 +6,7 @@ package dialogController;
 
 import Language.LanguageSupport;
 import communication.Communication;
+import exception.CustomException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -35,8 +36,10 @@ public class LicencaDialogController {
         ld.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!validation())
+                if(!validation()){
+                    JOptionPane.showMessageDialog(ld, LanguageSupport.getText("create_licence_unsuccess"),LanguageSupport.getText("create_licence_title"),JOptionPane.ERROR_MESSAGE);                 
                     return;
+                }
                 String naziv = ld.getjTextFieldNaziv().getText();
                 String zvanje = ld.getjTextFieldZvanje().getText();
 
@@ -50,8 +53,10 @@ public class LicencaDialogController {
                         ld.getController().fillTable(null);
                         ld.dispose();
                     }
-                } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(ld, ex.getMessage(),LanguageSupport.getText("create_licence_title"),JOptionPane.ERROR_MESSAGE);
+                } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("create_licence_title"),JOptionPane.ERROR_MESSAGE);
+                }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText("uknknow_error"),LanguageSupport.getText("create_licence_title"),JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -76,15 +81,16 @@ public class LicencaDialogController {
                 int i =JOptionPane.showConfirmDialog(ld, LanguageSupport.getText("update_licence_confirm"),LanguageSupport.getText("update_licence_title"),JOptionPane.YES_NO_OPTION);
                 if(i == JOptionPane.YES_OPTION){
                     try {
-                        ld.getL().setNazivLicence(ld.getjTextFieldNaziv().getText());
-                        ld.getL().setZvanjeInstruktora(ld.getjTextFieldZvanje().getText());
-                        if(Communication.getInstance().promeniLicenca(ld.getL())){
+                        Licenca toUpdate = new Licenca(ld.getL().getIdLicenca(),ld.getjTextFieldZvanje().getText(),ld.getjTextFieldNaziv().getText());
+                        if(Communication.getInstance().promeniLicenca(toUpdate)){
                             JOptionPane.showMessageDialog(ld, LanguageSupport.getText("update_licence_success"),LanguageSupport.getText("update_licence_title"),JOptionPane.INFORMATION_MESSAGE);
                             ld.getController().fillTable(null);
                             ld.dispose();
                         }
-                    } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(ld, ex.getMessage(),LanguageSupport.getText("update_licence_title"),JOptionPane.ERROR_MESSAGE);
+                    } catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("update_licence_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("update_licence_title"),JOptionPane.ERROR_MESSAGE);
                     }
                 }else
                     return;
@@ -103,8 +109,10 @@ public class LicencaDialogController {
                             ld.getController().fillTable(null);
                             ld.dispose();
                         }
-                    }catch(Exception ex){
-                        JOptionPane.showMessageDialog(ld, ex.getMessage(),LanguageSupport.getText("delete_licence_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (CustomException ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("delete_licence_title"),JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(ld, LanguageSupport.getText("unknown_error"),LanguageSupport.getText("delete_licence_title"),JOptionPane.ERROR_MESSAGE);
                     }
                     }else{
                         return;
@@ -116,6 +124,7 @@ public class LicencaDialogController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ld.dispose();
+                ld.getController().fillTable(null);
             }
         });
     }

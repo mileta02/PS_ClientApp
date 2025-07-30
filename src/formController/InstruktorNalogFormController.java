@@ -7,19 +7,15 @@ package formController;
 import Language.LanguageSupport;
 import communication.Communication;
 import cordinator.Cordinator;
+import exception.CustomException;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Instruktor;
 import model.InstruktorLicenca;
 import model.Licenca;
 import table_model.InstructorLicenceTableModel;
@@ -40,8 +36,10 @@ public class InstruktorNalogFormController {
     public void openForm(){
         if(!inf.getLogged().equals(Cordinator.getInstance().getLogged())){
             configureVisibilityViewOnly();
+            inf.setTitle(LanguageSupport.getText("instructor_data"));
         } else{
             configureVisibility(false);
+            inf.setTitle(LanguageSupport.getText("my_account"));
         }
         fillLabels();
         fillComboBox();
@@ -68,7 +66,7 @@ public class InstruktorNalogFormController {
             InstructorLicenceTableModel iltm = new InstructorLicenceTableModel(list);
             inf.getjTableInstruktorLicence().setModel(iltm);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_licences")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_licences")+"\n"+ex.getMessage(),JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_licences"),LanguageSupport.getText("loading_licences"),JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -79,7 +77,7 @@ public class InstruktorNalogFormController {
                 inf.getjComboBoxLicence().addItem(l);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_licences")+"\n"+ex.getMessage(),LanguageSupport.getText("loading_licences")+"\n"+ex.getMessage(),JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("error_loading_licences"),LanguageSupport.getText("loading_licences"),JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -124,29 +122,31 @@ public class InstruktorNalogFormController {
         inf.addLicenceActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    try{
-                        if(!validation())
-                            return;
-                        
-                        Date utilDate = inf.getjDateChooser1().getDate();
-                        LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                       
-                        InstruktorLicenca il = new InstruktorLicenca();
-                        il.setGodinaSticanja(date.getYear());
-                        il.setLicenca((Licenca) inf.getjComboBoxLicence().getSelectedItem());
-                        il.setInstruktor(inf.getLogged());
-
-                        boolean b = Communication.getInstance().kreirajInstruktorLicenca(il);
-                        if(b){
-                            JOptionPane.showMessageDialog(inf, LanguageSupport.getText("adding_licence_valid"),LanguageSupport.getText("adding_licences"),JOptionPane.INFORMATION_MESSAGE);
-                            fillTable();
-                        }
-                    }catch (Exception ex) {
-                        JOptionPane.showMessageDialog(inf,ex.getMessage(),LanguageSupport.getText("adding_licences"),JOptionPane.ERROR_MESSAGE);
+                try{
+                    if(!validation())
                         return;
 
+                    Date utilDate = inf.getjDateChooser1().getDate();
+                    LocalDate date = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                    InstruktorLicenca il = new InstruktorLicenca();
+                    il.setGodinaSticanja(date.getYear());
+                    il.setLicenca((Licenca) inf.getjComboBoxLicence().getSelectedItem());
+                    il.setInstruktor(inf.getLogged());
+
+                    boolean b = Communication.getInstance().kreirajInstruktorLicenca(il);
+                    if(b){
+                        JOptionPane.showMessageDialog(inf, LanguageSupport.getText("adding_licence_valid"),LanguageSupport.getText("adding_licences"),JOptionPane.INFORMATION_MESSAGE);
+                        fillTable();
                     }
+                }catch (CustomException ex) {
+                    JOptionPane.showMessageDialog(inf,LanguageSupport.getText(ex.getErrorCode()),LanguageSupport.getText("adding_licences"),JOptionPane.ERROR_MESSAGE);
+                    return;
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(inf,LanguageSupport.getText("error.unknown"),LanguageSupport.getText("adding_licences"),JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
+            }
 
             private boolean validation() {
                 boolean valid = true;
@@ -164,7 +164,7 @@ public class InstruktorNalogFormController {
                 }
                 return valid;
             }
-            });
+        });
         
         inf.deleteLicenceActionListener(new ActionListener() {
             @Override
@@ -205,7 +205,7 @@ public class InstruktorNalogFormController {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(
                             inf,
-                            ex.getMessage(),
+                            LanguageSupport.getText("error.licenca.delete"),
                             LanguageSupport.getText("delete_licence_error_title"),
                             JOptionPane.ERROR_MESSAGE
                         );
@@ -232,13 +232,21 @@ public class InstruktorNalogFormController {
                             );
                             inf.dispose();
                             inf.getParent().dispose();
-                            new LoginForm().setVisible(true);
+                            Cordinator.getInstance().openLoginForm();
                         }
                     }
-                } catch (Exception ex) {
+                } catch (CustomException ex) {
                     JOptionPane.showMessageDialog(
                         inf,
-                        ex.getMessage(),
+                        LanguageSupport.getText(ex.getErrorCode()),
+                        LanguageSupport.getText("delete_account_error_title"),
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                }
+                catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                        inf,
+                        LanguageSupport.getText("unknown_error"),
                         LanguageSupport.getText("delete_account_error_title"),
                         JOptionPane.ERROR_MESSAGE
                     );
@@ -268,24 +276,7 @@ public class InstruktorNalogFormController {
                     String surname = inf.getjTextFieldSurname().getText().trim();
 
                     if (!validation())
-                        return;
-
-                    if (name.equals(inf.getLogged().getIme()) &&
-                        pass.equals(inf.getLogged().getSifra()) &&
-                        surname.equals(inf.getLogged().getPrezime()) &&
-                        contact.equals(inf.getLogged().getKontakt()) &&
-                        user.equals(inf.getLogged().getKorisnickoIme())) {
-
-                        JOptionPane.showMessageDialog(
-                            inf,
-                            LanguageSupport.getText("instructor_no_changes"),
-                            LanguageSupport.getText("update_data_title"),
-                            JOptionPane.WARNING_MESSAGE
-                        );
-                        return;
-                    }
-
-                    int odgovor = JOptionPane.showConfirmDialog(
+                        return;int odgovor = JOptionPane.showConfirmDialog(
                         inf,
                         LanguageSupport.getText("confirm_data_update"),
                         LanguageSupport.getText("update_data_title"),
@@ -293,6 +284,14 @@ public class InstruktorNalogFormController {
                     );
 
                     if (odgovor == JOptionPane.YES_OPTION) {
+                        if (name.equals(inf.getLogged().getIme()) &&
+                            pass.equals(inf.getLogged().getSifra()) &&
+                            surname.equals(inf.getLogged().getPrezime()) &&
+                            contact.equals(inf.getLogged().getKontakt()) &&
+                            user.equals(inf.getLogged().getKorisnickoIme())) {
+                            JOptionPane.showMessageDialog(inf,LanguageSupport.getText("instructor_no_changes"),LanguageSupport.getText("update_data_title"),JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
                         inf.getLogged().setIdInstruktor(inf.getLogged().getIdInstruktor());
                         inf.getLogged().setIme(name);
                         inf.getLogged().setPrezime(surname);
@@ -311,10 +310,17 @@ public class InstruktorNalogFormController {
                         prepareFields();
                     }
 
-                } catch (Exception ex) {
+                } catch (CustomException ex) {
                     JOptionPane.showMessageDialog(
                         inf,
-                        LanguageSupport.getText("update_error") + "\n" + ex.getMessage(),
+                        LanguageSupport.getText(ex.getErrorCode()),
+                        LanguageSupport.getText("update_data_title"),
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                }catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                        inf,
+                        LanguageSupport.getText("unknown_error"),
                         LanguageSupport.getText("update_data_title"),
                         JOptionPane.ERROR_MESSAGE
                     );
@@ -469,7 +475,6 @@ public class InstruktorNalogFormController {
         inf.getjButtonDeleteLicence().setText(LanguageSupport.getText("delete_btn"));
         inf.getjButtonAdd().setText(LanguageSupport.getText("add_btn"));
         inf.getjButtonSave().setText(LanguageSupport.getText("save_btn"));
-        inf.setTitle(LanguageSupport.getText("my_account"));
         
         inf.getjLabelLicenceName().setText(LanguageSupport.getText("licence_name"));
         inf.getjLabelLicenceDate().setText(LanguageSupport.getText("licence_date"));

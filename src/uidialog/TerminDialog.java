@@ -81,6 +81,8 @@ public class TerminDialog extends javax.swing.JDialog {
         jLabelVremeDo = new javax.swing.JLabel();
         jLabelBroj = new javax.swing.JLabel();
         jLabelTip = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxInstruktor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
@@ -146,6 +148,16 @@ public class TerminDialog extends javax.swing.JDialog {
         jLabelTip.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jLabelTip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 140, 20));
 
+        jLabel8.setText("Instruktor:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 130, 20));
+
+        jComboBoxInstruktor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxInstruktorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBoxInstruktor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 161, 20));
+
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonAdd.setText("Dodaj");
@@ -198,7 +210,7 @@ public class TerminDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -206,7 +218,7 @@ public class TerminDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     public JLabel getjLabelBroj() {
         return jLabelBroj;
     }
@@ -223,6 +235,14 @@ public class TerminDialog extends javax.swing.JDialog {
         this.jLabelDate = jLabelDate;
     }
 
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+    
     public JLabel getjLabelTip() {
         return jLabelTip;
     }
@@ -391,6 +411,14 @@ public class TerminDialog extends javax.swing.JDialog {
         this.jSpinnerVremeOd = jSpinnerVremeOd;
     }
 
+    public JComboBox<Instruktor> getjComboBoxInstruktor() {
+        return jComboBoxInstruktor;
+    }
+
+    public void setjComboBoxInstruktor(JComboBox<Instruktor> jComboBoxInstruktor) {
+        this.jComboBoxInstruktor = jComboBoxInstruktor;
+    }
+
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         //this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
@@ -463,6 +491,10 @@ public class TerminDialog extends javax.swing.JDialog {
         }*/
     }//GEN-LAST:event_jButtonAddActionPerformed
 
+    private void jComboBoxInstruktorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstruktorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxInstruktorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,6 +503,7 @@ public class TerminDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JComboBox<Instruktor> jComboBoxInstruktor;
     private javax.swing.JComboBox<TipTermina> jComboBoxTipTermina;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
@@ -479,6 +512,7 @@ public class TerminDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelBroj;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelTip;

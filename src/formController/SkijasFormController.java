@@ -109,11 +109,12 @@ public class SkijasFormController {
             public void actionPerformed(ActionEvent e) {
                 int row = sf.getjTableSkijas().getSelectedRow();
                 if(row==-1){
-                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("choose_skier"),LanguageSupport.getText("wrong_choice"),JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, LanguageSupport.getText("skier_not_found"),LanguageSupport.getText("wrong_choice"),JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 SkijasTableModel stm = (SkijasTableModel) sf.getjTableSkijas().getModel();
                 Skijas s = stm.getList().get(row);
+                JOptionPane.showMessageDialog(sf, LanguageSupport.getText("skier_found"),LanguageSupport.getText("search_title"),JOptionPane.INFORMATION_MESSAGE);
                 Cordinator.getInstance().openSkijasDialog(sf, s);
             }
         });
